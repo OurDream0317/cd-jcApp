@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.GtyBillingTransationInfoMapper">
+    <select id="getGtyBillingTransationInfo" resultType="com.tuozhi.zhlw.admin.jc.entity.GtyBillingTransationEntity"
+            parameterType="java.util.Map">
+        select n.*,CD_SYSTEM.F_ENUM_SPECIALTYPE(n.SPECIALTYPE) SPECIALTYPENAME from(
+        select rownum rn ,s.* FROM
+        (
+        SELECT   nvl(round(c4.REALFEE,2),0) REALFEE,
+        nvl(round(c4.OWEFEE,2),0) OWEFEE,
+        c4.NEWVEHICLETYPE, base.gantryName,
+        base.sectionName,gg.*
+       from (
+        SELECT
+        gbt.tradeid,
+        gbt.gantryid,
+        cd_system.F_ENUM_VEHICLETYPE(gbt.feevehicletype) feevehicletype,
+        gbt.gantryordernum,
+        gbt.transtime,
+        nvl(round(gbt.payfee/100,2),0) payfee,
+        nvl(round(gbt.fee/100,2),0) fee,
+        nvl(round(gbt.discountfee/100,2),0) discountfee,
+        nvl(round(gbt.transfee/100,2),0) transfee,
+        gbt.mediatype,
+        gbt.obusn,
+        gbt.obusign,
+        gbt.vehicletype,
+        gbt.vehicleclass,
+        gbt.passstate,
+        gbt.entolllaneid,
+        gbt.entime,
+        gbt.enlanetype,
+        gbt.PASSID,
+        gbt.vehicleplate,
+        gbt.obuvehicleplate,
+        gbt.obuvehicletype,
+        gbt.vehicleseat,
+        gbt.axlecount,
+        gbt.totalweight,
+        gbt.vehiclelength,
+        gbt.vehiclewidth,
+        gbt.vehiclehight,
+        gbt.cpunetid,
+        gbt.cpuvehicleplate,
+        gbt.cpuvehicletype,
+        gbt.cpucardid,
+        gbt.gantrypasscount,
+        gbt.gantrypassinfo,
+        gbt.obupayfeesumafter,
+        gbt.obudiscountfeesumafter,
+        gbt.obufeesumafter,
+        gbt.obuprovfeesumafter,
+        gbt.holidaystate,
+        gbt.traderesult,
+        gbt.provminfee,
+        gbt.specialtype,
+        gbt.interruptsignal,
+        gbt.vehiclepicid,
+        gbt.vehicletailpicid,
+        gbt.ratecompute,
+        gbt.fitprovflag,
+        gbt.exitfeetype,
+        gbt.OBUTRADERESULT,
+        DECODE(gbt.gantryType,1,'路段',2,'省界入口',3,'省界出口', '') gantryType
+        FROM
+        CD_PASS.GTY_BILLING_TRANSACTION gbt
+        union
+        select
+        gbt.tradeid,
+        gbt.gantryid,
+        cd_system.F_ENUM_VEHICLETYPE(gbt.feevehicletype) feevehicletype,
+        gbt.gantryordernum,
+        gbt.transtime,
+        nvl(round(gbt.payfee/100,2),0) payfee,
+        nvl(round(gbt.fee/100,2),0) fee,
+        nvl(round(gbt.discountfee/100,2),0) discountfee,
+        nvl(round(gbt.transfee/100,2),0) transfee,
+        gbt.mediatype,
+        gbt.obusn,
+        gbt.obusign,
+        gbt.vehicletype,
+        gbt.vehicleclass,
+        gbt.passstate,
+        gbt.entolllaneid,
+        gbt.entime,
+        gbt.enlanetype,
+        gbt.PASSID,
+        gbt.vehicleplate,
+        gbt.obuvehicleplate,
+        gbt.obuvehicletype,
+        gbt.vehicleseat,
+        gbt.axlecount,
+        gbt.totalweight,
+        gbt.vehiclelength,
+        gbt.vehiclewidth,
+        gbt.vehiclehight,
+        gbt.cpunetid,
+        gbt.cpuvehicleplate,
+        gbt.cpuvehicletype,
+        gbt.cpucardid,
+        gbt.gantrypasscount,
+        gbt.gantrypassinfo,
+        gbt.obupayfeesumafter,
+        gbt.obudiscountfeesumafter,
+        gbt.obufeesumafter,
+        gbt.obuprovfeesumafter,
+        gbt.holidaystate,
+        gbt.traderesult,
+        gbt.provminfee,
+        gbt.specialtype,
+        gbt.interruptsignal,
+        gbt.vehiclepicid,
+        gbt.vehicletailpicid,
+        gbt.ratecompute,
+        gbt.fitprovflag,
+        gbt.exitfeetype,
+        gbt.OBUTRADERESULT,
+        '代扣' gantryType
+        FROM
+        CD_PASS.STA_LANE_GANTRY gbt) gg
+        left join (SELECT bt.name gantryName ,bs.name sectionName,bt.id from
+        CD_pass.BASE_TOLLPOINT bt
+        LEFT JOIN CD_pass.BASE_SECTION bs ON bs.id= bt.SECTIONID ) base on base.id=gg.gantryid
+        left join CD_JC.JC_NEWDATAOFPASSID c4 on c4.PASSID = gg.PASSID and c4.TOLLGANTRYID=gg.gantryid
+        left JOIN cd_pass.GTY_LPR_DATA s on gg.TRADEID=s.GANTRYID
+        <where>
+            <trim prefixOverrides="and">
+                <if test="passid!=null">
+                    and gg.PASSID=#{passid}
+                </if>
+                <if test="mediatype!=null">
+                    <![CDATA[
+			and	gg.MEDIATYPE=#{mediatype}
+				]]>
+                </if>
+                <if test="section!=null">
+                    <![CDATA[
+			and	gg.GANTRYSECTIONID=#{section}
+				]]>
+                </if>
+                <if test="etccardid!=null">
+                    <![CDATA[
+			and	gg.CPUCARDID=#{etccardid}
+				]]>
+                </if>
+                <if test="tollgantryid!=null">
+                    <![CDATA[
+			and	gg.GANTRYID=#{tollgantryid}
+				]]>
+                </if>
+                <if test="obuid!=null">
+                    <![CDATA[
+			and	gg.OBUSN=#{obuid}
+				]]>
+                </if>
+                <if test="vehicleid!=null">
+                    <![CDATA[
+                 AND gg.vehicleplate like #{vehicleid}
+                    ]]>
+                </if>
+                <if test="color!=null">
+                    <![CDATA[
+                 AND gg.vehicleplate like #{color}
+                    ]]>
+                </if>
+                <if test="startTime!=null">
+                    <![CDATA[	and gg.TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')]]>
+                </if>
+                <if test="endTime!=null">
+                    <![CDATA[	and	gg.TRANSTIME<= to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')]]>
+                </if>
+            </trim>
+        </where>
+         <choose>
+             <when test="pageStart!=null">
+                 order by gg.TRANSTIME desc,gg.passid DESC
+             </when>
+             <otherwise>
+                 order by gg.TRANSTIME asc
+             </otherwise>
+         </choose>
+        ) s
+        <if test="pageEnd!=null">
+            where rownum  <![CDATA[ <=]]>  #{pageEnd}
+        </if>
+        ) n
+        <if test="pageStart!=null">
+            where rn  <![CDATA[ >]]>  #{pageStart}
+        </if>
+
+    </select>
+
+    <select id="selectAllDataCount" resultType="Long" parameterType="Map">
+        select count(1) count FROM
+        (
+        SELECT   nvl(round(c4.REALFEE,2),0) REALFEE,
+        nvl(round(c4.OWEFEE,2),0) OWEFEE,
+        c4.NEWVEHICLETYPE, base.gantryName,
+        base.sectionName,gg.*
+        from (
+        SELECT
+        gbt.tradeid,
+        gbt.gantryid,
+        cd_system.F_ENUM_VEHICLETYPE(gbt.feevehicletype) feevehicletype,
+        gbt.gantryordernum,
+        gbt.transtime,
+        nvl(round(gbt.payfee/100,2),0) payfee,
+        nvl(round(gbt.fee/100,2),0) fee,
+        nvl(round(gbt.discountfee/100,2),0) discountfee,
+        nvl(round(gbt.transfee/100,2),0) transfee,
+        gbt.mediatype,
+        gbt.obusn,
+        gbt.obusign,
+        gbt.vehicletype,
+        gbt.vehicleclass,
+        gbt.passstate,
+        gbt.entolllaneid,
+        gbt.entime,
+        gbt.enlanetype,
+        gbt.PASSID,
+        gbt.vehicleplate,
+        gbt.obuvehicleplate,
+        gbt.obuvehicletype,
+        gbt.vehicleseat,
+        gbt.axlecount,
+        gbt.totalweight,
+        gbt.vehiclelength,
+        gbt.vehiclewidth,
+        gbt.vehiclehight,
+        gbt.cpunetid,
+        gbt.cpuvehicleplate,
+        gbt.cpuvehicletype,
+        gbt.cpucardid,
+        gbt.gantrypasscount,
+        gbt.gantrypassinfo,
+        gbt.obupayfeesumafter,
+        gbt.obudiscountfeesumafter,
+        gbt.obufeesumafter,
+        gbt.obuprovfeesumafter,
+        gbt.holidaystate,
+        gbt.traderesult,
+        gbt.provminfee,
+        gbt.specialtype,
+        gbt.interruptsignal,
+        gbt.vehiclepicid,
+        gbt.vehicletailpicid,
+        gbt.ratecompute,
+        gbt.fitprovflag,
+        gbt.exitfeetype,
+        gbt.OBUTRADERESULT,
+        DECODE(gbt.gantryType,1,'路段',2,'省界入口',3,'省界出口', '') gantryType
+        FROM
+        CD_PASS.GTY_BILLING_TRANSACTION gbt
+        union
+        select
+        gbt.tradeid,
+        gbt.gantryid,
+        cd_system.F_ENUM_VEHICLETYPE(gbt.feevehicletype) feevehicletype,
+        gbt.gantryordernum,
+        gbt.transtime,
+        nvl(round(gbt.payfee/100,2),0) payfee,
+        nvl(round(gbt.fee/100,2),0) fee,
+        nvl(round(gbt.discountfee/100,2),0) discountfee,
+        nvl(round(gbt.transfee/100,2),0) transfee,
+        gbt.mediatype,
+        gbt.obusn,
+        gbt.obusign,
+        gbt.vehicletype,
+        gbt.vehicleclass,
+        gbt.passstate,
+        gbt.entolllaneid,
+        gbt.entime,
+        gbt.enlanetype,
+        gbt.PASSID,
+        gbt.vehicleplate,
+        gbt.obuvehicleplate,
+        gbt.obuvehicletype,
+        gbt.vehicleseat,
+        gbt.axlecount,
+        gbt.totalweight,
+        gbt.vehiclelength,
+        gbt.vehiclewidth,
+        gbt.vehiclehight,
+        gbt.cpunetid,
+        gbt.cpuvehicleplate,
+        gbt.cpuvehicletype,
+        gbt.cpucardid,
+        gbt.gantrypasscount,
+        gbt.gantrypassinfo,
+        gbt.obupayfeesumafter,
+        gbt.obudiscountfeesumafter,
+        gbt.obufeesumafter,
+        gbt.obuprovfeesumafter,
+        gbt.holidaystate,
+        gbt.traderesult,
+        gbt.provminfee,
+        gbt.specialtype,
+        gbt.interruptsignal,
+        gbt.vehiclepicid,
+        gbt.vehicletailpicid,
+        gbt.ratecompute,
+        gbt.fitprovflag,
+        gbt.exitfeetype,
+        gbt.OBUTRADERESULT,
+        '代扣' gantryType
+        FROM
+        CD_PASS.STA_LANE_GANTRY gbt) gg
+        left join (SELECT bt.name gantryName ,bs.name sectionName,bt.id from
+        CD_pass.BASE_TOLLPOINT bt
+        LEFT JOIN CD_pass.BASE_SECTION bs ON bs.id= bt.SECTIONID ) base on base.id=gg.gantryid
+        left join CD_JC.JC_NEWDATAOFPASSID c4 on c4.PASSID = gg.PASSID and c4.TOLLGANTRYID=gg.gantryid
+        left JOIN cd_pass.GTY_LPR_DATA s on gg.TRADEID=s.GANTRYID
+        <where>
+            <trim prefixOverrides="and">
+                <if test="passid!=null">
+                    and gg.PASSID=#{passid}
+                </if>
+                <if test="mediatype!=null">
+                    <![CDATA[
+			and	gg.MEDIATYPE=#{mediatype}
+				]]>
+                </if>
+                <if test="section!=null">
+                    <![CDATA[
+			and	gg.GANTRYSECTIONID=#{section}
+				]]>
+                </if>
+                <if test="etccardid!=null">
+                    <![CDATA[
+			and	gg.CPUCARDID=#{etccardid}
+				]]>
+                </if>
+                <if test="tollgantryid!=null">
+                    <![CDATA[
+			and	gg.GANTRYID=#{tollgantryid}
+				]]>
+                </if>
+                <if test="obuid!=null">
+                    <![CDATA[
+			and	gg.OBUSN=#{obuid}
+				]]>
+                </if>
+                <if test="vehicleid!=null">
+                    <![CDATA[
+                 AND gg.vehicleplate like #{vehicleid}
+                    ]]>
+                </if>
+                <if test="color!=null">
+                    <![CDATA[
+                 AND gg.vehicleplate like #{color}
+                    ]]>
+                </if>
+                <if test="startTime!=null">
+                    <![CDATA[	and gg.TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')]]>
+                </if>
+                <if test="endTime!=null">
+                    <![CDATA[	and	gg.TRANSTIME<= to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')]]>
+                </if>
+            </trim>
+        </where>
+        <choose>
+            <when test="pageStart!=null">
+                order by gg.TRANSTIME desc,gg.passid DESC
+            </when>
+            <otherwise>
+                order by gg.TRANSTIME asc
+            </otherwise>
+        </choose>
+        ) s
+
+    </select>
+
+    <select id="getGtyBillingTransationInfoByPassId"
+            resultType="com.tuozhi.zhlw.admin.jc.entity.GtyBillingTransationEntity">
+         SELECT
+        gbt.tradeid,
+        gbt.gantryid,
+        gbt.gantryordernum,
+        gbt.transtime,
+        gbt.payfee,
+        gbt.fee,
+        gbt.discountfee,
+        gbt.transfee,
+        gbt.mediatype,
+        gbt.obusign,
+        gbt.vehicletype,
+        gbt.vehicleclass,
+        gbt.passstate,
+        gbt.entolllaneid,
+        gbt.entime,
+        gbt.enlanetype,
+        gbt.PASSID,
+        gbt.vehicleplate,
+        gbt.obuvehicleplate,
+        gbt.obuvehicletype,
+        gbt.vehicleseat,
+        gbt.axlecount,
+        gbt.totalweight,
+        gbt.vehiclelength,
+        gbt.vehiclewidth,
+        gbt.vehiclehight,
+        gbt.cpunetid,
+        gbt.cpuvehicleplate,
+        gbt.cpuvehicletype,
+        gbt.cpucardid,
+        gbt.gantrypasscount,
+        gbt.gantrypassinfo,
+        gbt.holidaystate,
+        gbt.traderesult,
+        gbt.specialtype,
+        gbt.interruptsignal,
+        gbt.vehiclepicid,
+        gbt.vehicletailpicid
+
+        FROM
+        cd_trade.GTY_BILLING_TRANSACTION  gbt
+
+				where gbt.passid=#{passid}
+				union all
+				 SELECT
+         gbt.tradeid,
+        gbt.gantryid,
+        gbt.gantryordernum,
+        gbt.transtime,
+        gbt.payfee,
+        gbt.fee,
+        gbt.discountfee,
+        gbt.transfee,
+        gbt.mediatype,
+        gbt.obusign,
+        gbt.vehicletype,
+        gbt.vehicleclass,
+        gbt.passstate,
+        gbt.entolllaneid,
+        gbt.entime,
+        gbt.enlanetype,
+        gbt.PASSID,
+        gbt.vehicleplate,
+        gbt.obuvehicleplate,
+        gbt.obuvehicletype,
+        gbt.vehicleseat,
+        gbt.axlecount,
+        gbt.totalweight,
+        gbt.vehiclelength,
+        gbt.vehiclewidth,
+        gbt.vehiclehight,
+        gbt.cpunetid,
+        gbt.cpuvehicleplate,
+        gbt.cpuvehicletype,
+        gbt.cpucardid,
+        gbt.gantrypasscount,
+        gbt.gantrypassinfo,
+        gbt.holidaystate,
+        gbt.traderesult,
+        gbt.specialtype,
+        gbt.interruptsignal,
+        gbt.vehiclepicid,
+        gbt.vehicletailpicid
+
+        FROM
+       CD_PASS.STA_LANE_GANTRY gbt
+
+				where gbt.passid=#{passid}
+    </select>
+
+    <select id="newCreateExcel" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT    base.gantryName,
+        base.sectionName,gg.*
+        from (
+        SELECT
+        gbt.tradeid, gbt.gantryid,cd_system.F_ENUM_VEHICLETYPE(gbt.feevehicletype) feevehicletype,
+        gbt.vehicleplate, gbt.mediatype, gbt.obusn, gbt.cpucardid, gbt.transtime, gbt.entime,
+        nvl(round(gbt.payfee/100,2),0) payfee, nvl(round(gbt.fee/100,2),0) fee, nvl(round(gbt.discountfee/100,2),0)
+        discountfee,
+        nvl(round(gbt.transfee/100,2),0) transfee, gbt.obusign, gbt.vehicletype, gbt.entolllaneid,
+        gbt.vehicleclass,gbt.passstate,gbt.holidaystate,gbt.traderesult,gbt.ratecompute,gbt.vehiclepicid,gbt.exitfeetype,gbt.PASSID
+        FROM
+        CD_PASS.GTY_BILLING_TRANSACTION gbt
+        union
+        select gbt.tradeid, gbt.gantryid,cd_system.F_ENUM_VEHICLETYPE(gbt.feevehicletype) feevehicletype,
+        gbt.vehicleplate, gbt.mediatype, gbt.obusn, gbt.cpucardid, gbt.transtime, gbt.entime,
+        nvl(round(gbt.payfee/100,2),0) payfee, nvl(round(gbt.fee/100,2),0) fee, nvl(round(gbt.discountfee/100,2),0)
+        discountfee,
+        nvl(round(gbt.transfee/100,2),0) transfee, gbt.obusign, gbt.vehicletype, gbt.entolllaneid,
+        gbt.vehicleclass,gbt.passstate,gbt.holidaystate,gbt.traderesult,gbt.ratecompute,gbt.vehiclepicid,gbt.exitfeetype,gbt.PASSID
+        FROM
+        CD_PASS.STA_LANE_GANTRY gbt
+        )gg
+        left join (SELECT bt.name gantryName ,bs.name sectionName,bt.id  from
+        CD_pass.BASE_TOLLPOINT bt
+        LEFT JOIN CD_pass.BASE_SECTION bs ON   bs.id= bt.SECTIONID ) base on base.id=gg.gantryid
+        <where>
+            <trim prefixOverrides="and">
+                <if test="passid!=null">
+                    and PASSID=#{passid}
+                </if>
+                <if test="mediatype!=null">
+                    <![CDATA[
+			and	MEDIATYPE=#{mediatype}
+				]]>
+                </if>
+                <if test="section!=null">
+                    <![CDATA[
+			and	GANTRYSECTIONID=#{section}
+				]]>
+                </if>
+                <if test="etccardid!=null">
+                    <![CDATA[
+			and	CPUCARDID=#{etccardid}
+				]]>
+                </if>
+                <if test="tollgantryid!=null">
+                    <![CDATA[
+			and	GANTRYID=#{tollgantryid}
+				]]>
+                </if>
+                <if test="obuid!=null">
+                    <![CDATA[
+			and	OBUSN=#{obuid}
+				]]>
+                </if>
+                <if test="vehicleid!=null">
+                    <![CDATA[
+                 AND vehicleplate like #{vehicleid}
+                    ]]>
+                </if>
+                <if test="color!=null">
+                    <![CDATA[
+                 AND vehicleplate like #{color}
+                    ]]>
+                </if>
+                <if test="startTime!=null">
+                    <![CDATA[	and TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')]]>
+                </if>
+                <if test="endTime!=null">
+                    <![CDATA[	and	TRANSTIME<= to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')]]>
+                </if>
+            </trim>
+        </where>
+        <choose>
+            <when test="flag!=null">
+                order by TRANSTIME
+            </when>
+            <otherwise>
+                order by TRANSTIME desc,passid DESC
+            </otherwise>
+        </choose>
+
+    </select>
+</mapper>

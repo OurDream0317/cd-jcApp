@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jcApp.mapper.JCAppETCCardMapper">
+    <insert id="addJCAppETCCard" parameterType="java.util.Map">
+        insert into CD_JC.JC_APP_ETC_CARD values
+        (
+         TO_NUMBER(to_char(sysdate,'yyyymmdd')||cd_jc.SEQ_JC_APP_ETC_CARD.nextval),
+         #{PLATENO,jdbcType=VARCHAR},
+         #{CARDVEHICLECOLOR,jdbcType=VARCHAR},
+         #{CARDVEHICLETYPE,jdbcType=VARCHAR},
+         #{CARDSTATE,jdbcType=VARCHAR},
+         #{CODENAME,jdbcType=VARCHAR},
+         #{OFFICENAME,jdbcType=VARCHAR},
+         #{APPROVEDCOUNT,jdbcType=VARCHAR},
+         #{OICARUSERTYPE,jdbcType=VARCHAR},
+         #{OIID,jdbcType=VARCHAR},
+         #{OIPLATENO,jdbcType=VARCHAR},
+         #{OIPLATECOLOR,jdbcType=VARCHAR},
+         #{OICARCATEGORY,jdbcType=VARCHAR},
+         #{OISTATE,jdbcType=VARCHAR},
+         #{OWNERNAME,jdbcType=VARCHAR},
+         #{OICARAXIES,jdbcType=VARCHAR},
+         #{OICARTONNAGE,jdbcType=VARCHAR},
+         #{SALEDATE,jdbcType=VARCHAR},
+         #{CREATEDEPTID,jdbcType=VARCHAR},
+         sysdate,
+          #{CREATEUSERID,jdbcType=VARCHAR},
+           #{CPUCARDID,jdbcType=VARCHAR}
+        )
+    </insert>
+    <select id="getJCAppETCCard" resultType="java.util.Map">
+      select * from CD_JC.JC_APP_ETC_CARD where  CREATEUSERID=#{userId,jdbcType=NUMERIC}
+    </select>
+    <insert id="addJCAppLabelType" parameterType="java.util.Map">
+        insert into cd_jc.JC_APP_LABELTYPE values
+        (
+         TO_NUMBER(to_char(sysdate,'yyyymmdd')||cd_jc.SEQ_JC_APP_LABELTYPE.nextval),
+         #{vehicle,jdbcType=VARCHAR},
+        null,
+         #{labelType,jdbcType=VARCHAR},
+         #{createUserId,jdbcType=NUMERIC},
+         #{createDeptId,jdbcType=NUMERIC},
+         sysdate
+        )
+    </insert>
+
+    <select id="getJCAppLabelType" resultType="com.tuozhi.zhlw.admin.jcApp.entity.JCAppLabelTypeEntity">
+       select jal.ID,jal.VEHICLE,jal.VEHICLECOLOR,jal.LABELTYPE,s.user_name CREATEUSER,jal.CREATETIME from cd_jc.JC_APP_LABELTYPE jal
+       left join cd_system.SYS_USERS s on jal.CREATEUSERID=s.id
+       where CREATEUSERID=#{userId,jdbcType=NUMERIC}
+    </select>
+
+
+    <select id="getAllUser" resultType="java.util.Map">
+         SELECT
+            s.ID 用户编号,
+            USER_NAME 用户名,
+            DEPT_ID 部门编号,
+            s1.DEPT_NAME 部门名称,
+            s1.DEPT_WORK
+        FROM
+            CD_SYSTEM.SYS_USERS s
+            LEFT JOIN (
+        SELECT
+            ID,
+            DEPT_NAME,
+            DEPT_WORK,
+            WORKFLOWDEPTROLE
+        FROM
+            CD_SYSTEM.SYS_DEPT sqlsd CONNECT BY PRIOR sqlsd.ID = sqlsd.PARENT_ID START WITH sqlsd.ID = 4
+            ) s1 ON s.DEPT_ID = s1.id
+        WHERE
+            s1.WORKFLOWDEPTROLE = 3
+        ORDER BY
+            NLSSORT(
+            s.USER_NAME,
+            'NLS_SORT=SCHINESE_PINYIN_M')
+
+        </select>
+
+    <select id="getSendorAcceptMessageByUserId" resultType="java.util.Map">
+       select w.*,s.USER_NAME SENDUSERNAME,
+           s1.USER_NAME ACCEPTUSERNAME from (
+          SELECT
+           t.ID,
+           t.SENDUSERID,
+           t.ACCEPTUSERID,
+           t.MESSAGE,
+           t.ISREAD,
+           to_char(t.CREATETIME, 'yyyy-mm-dd HH24:mi:ss') CREATETIME,
+           t.ISDEL,
+           row_number() over (partition by decode(senduserid, #{userId},acceptuserid,senduserid) order by t.id desc) currownum
+           FROM cd_jc.jc_app_message t
+           WHERE t.ISDEL = 0 and (t.senduserid = #{userId} OR t.acceptuserid = #{userId})
+         ) w
+       LEFT JOIN cd_system.SYS_USERS s  ON w.SENDUSERID = s.ID
+       LEFT JOIN cd_system.SYS_USERS s1 ON w.ACCEPTUSERID = s1.ID
+       where w.currownum = 1
+       ORDER BY CREATETIME
+    </select>
+
+    <select id="getMessageDetial" resultType="java.util.Map">
+        select t.ID,t.SENDUSERID,t.ACCEPTUSERID,t.MESSAGE,t.ISREAD,
+               to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME,
+               ISDEL,s.USER_NAME SENDUSERNAME,s1.USER_NAME ACCEPTUSERNAME
+        from cd_jc.jc_app_message t
+           left join cd_system.SYS_USERS s on t.SENDUSERID=s.ID
+           left join cd_system.SYS_USERS s1 on t.ACCEPTUSERID=s1.ID
+        where t.senduserid in(#{sendUserId,jdbcType=NUMERIC},#{acceptUserId,jdbcType=NUMERIC})
+        and t.acceptuserid in(#{sendUserId,jdbcType=NUMERIC},#{acceptUserId,jdbcType=NUMERIC})
+        order by t.createtime asc
+    </select>
+
+    <insert id="insertSendMessage">
+        insert into cd_jc.JC_APP_MESSAGE(ID,SENDUSERID,ACCEPTUSERID,MESSAGE,CREATETIME)
+        values (
+          cd_jc.SEQ_JC_APP_MESSAGE.nextval,
+          #{sendUserId,jdbcType=NUMERIC},
+          #{acceptUserId,jdbcType=NUMERIC},
+          #{message,jdbcType=VARCHAR},
+          SYSDATE
+        )
+    </insert>
+
+    <select id="getStationByProvincename" resultType="java.util.Map">
+        SELECT
+        x.ID,
+        x.NAME,
+        n.PROVINCENAME,
+        x.NAME || ' (' || n.PROVINCENAME || '-' || x.ID || ')' AS STATIONNAME
+        FROM
+        CD_PASS.BASIC_BASICINFODOWN_RES x
+        LEFT JOIN "CD_TRADE"."BASE_NETPROVINCE" n ON n.PROVINCEID = x.PROVINCEID
+        WHERE
+        x.downid = ( SELECT max( w.down_id ) FROM "CD_PASS".CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type
+        = 24 ) AND x.TYPE = '1'
+
+        <if test="provincename!=null">
+            and n.PROVINCENAME=#{provincename,jdbcType=VARCHAR}
+        </if>
+        <if test="stationname!=null">
+            and x.name like '%'||#{stationname,jdbcType=VARCHAR}||'%'
+        </if>
+
+    </select>
+
+
+    <select id="getNewVersionFilePath" resultType="java.util.Map">
+     select * from
+          (
+             select VERSION,URLPATH,row_number()over(ORDER BY VERSION DESC) rn FROM CD_JC.JC_APP_VERSION
+           ) where rn=1
+    </select>
+
+    <insert id="insertNewVersion" parameterType="java.lang.String">
+      insert into CD_JC.JC_APP_VERSION(VERSION,URLPATH) values (
+      #{version,jdbcType=VARCHAR},#{filePath,jdbcType=VARCHAR}
+      )
+    </insert>
+</mapper>

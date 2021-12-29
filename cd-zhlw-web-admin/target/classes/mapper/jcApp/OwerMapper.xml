@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jcApp.mapper.OwerMapper">
+    <select id="getJCAppBlackAddOrBlackRevoked" resultType="java.util.Map">
+        SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        decode(jbr.LOGICTYPE,1,'追缴黑名单申请',2,'撤销追缴名单申请') LOGICTYPE,
+        sed.ENUM_NAME CARCOLOUR,
+        to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME,
+        decode(jbr.IS_APP,1,'APP添加','非APP添加') IS_APP
+        FROM
+        cd_jc.JC_BLACKLIST_REQUEST jbr
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR
+        AND sed.ENUM_ID = 39
+        WHERE
+        jbr.DELETEFLAG = 1
+        <choose>
+            <when test="logicType==1">
+                AND jbr.LOGICTYPE = 1
+            </when>
+            <when test="logicType==2">
+                AND jbr.LOGICTYPE = 2
+            </when>
+        </choose>
+        AND LOGINUSERID=#{userId,jdbcType=NUMERIC}
+        ORDER BY jbr.CREATETIME desc
+    </select>
+
+    <select id="findEtcBlackList" resultType="java.util.Map">
+        SELECT
+        jeb.RCARDTYPE,
+        jeb.ICCISSUER,
+        esc.codename iccIssuerName,
+        jeb.CPUCARDID,
+        jeb.VEHICLELICENSE,
+        decode(jeb.BLACKLISTTYPE,1,'白名单',5,'黑名单','')BLACKLISTTYPE,
+        to_char(jeb.CREATETIME,'yyyy-MM-dd HH24:mi:ss') CREATETIME,
+        jeb.AVT_ID,
+        decode(jeb.FLAG,1,'已下发',0,'未下发')FLAG,
+        jeb.TIME,
+        decode(jeb.DELETEFLAG,1,'已下发',0,'未下发','此卡已消失/已入黑') DELETEFLAG,
+        to_char(jeb.DELETETIME,'yyyy-MM-dd HH24:mi:ss') DELETETIME,
+        jeb.DEVVEHICLELICENSE,
+        sed1.ENUM_NAME ELUDEMONEYTYPE,
+        CASE
+        WHEN jeb.ELUDEMONEYTYPE = 1001 THEN
+        sed2.ENUM_NAME
+        WHEN jeb.ELUDEMONEYTYPE = 1002 THEN
+        sed3.ENUM_NAME
+        WHEN jeb.ELUDEMONEYTYPE = 1003 THEN
+        sed4.ENUM_NAME
+        WHEN jeb.ELUDEMONEYTYPE = 1004 THEN
+        sed5.ENUM_NAME
+        END ELUDEMONEYTYPEITEM,
+        s2.enum_name VEHICLECOLOR,
+        sed6.enum_name CARTYPE,
+        jeb.BLACKTYPE,
+        to_char(jeb.RECOVERTIME,'yyyy-MM-dd HH24:mi:ss') RECOVERTIME,
+        jeb.SUMMONENY,
+        jeb.SUMTOTAL,
+        jeb.OBUID,
+        jeb.ENTRYSTATIONID,
+        bt1.NAME ENTRYSTATIONNAME,
+        jeb.EXITSTATIONID,
+        bt2.NAME EXITSTATIONNAME,
+        to_char(jeb.ENTRYSTATIONTIME,'yyyy-MM-dd HH24:mi:ss') ENTRYSTATIONTIME,
+        to_char(jeb.EXITSTATIONTIME,'yyyy-MM-dd HH24:mi:ss') EXITSTATIONTIME,
+        jeb.PHYSICALTRUTHSTATUS,
+        jeb.REQUESTDESCRIPTION,
+        jeb.CREATENAME,
+        jeb.CREATEDEPT,
+        jeb.CREATEDEPTNAME,
+        jeb.REQUESTID
+        FROM
+        HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 jeb
+        LEFT JOIN (SELECT 	ID,NAME FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE =
+        '1') bt1 ON bt1.ID = jeb.ENTRYSTATIONID
+        LEFT JOIN (SELECT 	ID,NAME FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE =
+        '1') bt2 ON bt2.ID = jeb.EXITSTATIONID
+        left join etc_system_code@db_link_2310etc esc on esc.codevalue=jeb.ICCISSUER and typeid=62
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON jeb.VEHICLECOLOR = s2.ENUM_VALUE and s2.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jeb.ELUDEMONEYTYPE
+        AND sed1.ENUM_ID = 87
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM
+        AND sed2.ENUM_ID = 88
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM
+        AND sed3.ENUM_ID = 89
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM
+        AND sed4.ENUM_ID = 90
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM
+        AND sed5.ENUM_ID = 91
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jeb.CARTYPE
+        AND sed6.ENUM_ID = 40
+        WHERE
+        jeb.BLACKTYPE = 5
+        <if test="etcParams!= null">
+            AND (
+            jeb.CPUCARDID LIKE CONCAT( #{ etcParams, jdbcType = VARCHAR }, '%' )
+            OR jeb.OBUID LIKE CONCAT( #{ etcParams, jdbcType = VARCHAR }, '%' )
+            OR jeb.VEHICLELICENSE LIKE '%' || #{ etcParams,jdbcType = VARCHAR } || '%')
+        </if>
+        ORDER BY jeb.CREATETIME DESC
+    </select>
+</mapper>

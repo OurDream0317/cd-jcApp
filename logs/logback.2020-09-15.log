@@ -1,0 +1,255 @@
+2020/09/15-14:16:00 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 2468 (D:\JCAPP\cd-zhlw\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-zhlw)
+2020/09/15-14:16:00 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020/09/15-14:16:00 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2020/09/15-14:16:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/09/15-14:16:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 71ms. Found 3 JPA repository interfaces.
+2020/09/15-14:16:02 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2020/09/15-14:16:02 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/09/15-14:16:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 82ms. Found 0 Redis repository interfaces.
+2020/09/15-14:16:02 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020/09/15-14:16:03 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2020/09/15-14:16:03 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2020/09/15-14:16:03 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2020/09/15-14:16:03 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020/09/15-14:16:03 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020/09/15-14:16:03 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2020/09/15-14:16:03 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 3048 ms
+2020/09/15-14:16:04 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2020/09/15-14:16:04 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2020/09/15-14:16:04 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2020/09/15-14:16:06 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2020/09/15-14:16:06 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020/09/15-14:16:06 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2020/09/15-14:16:06 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020/09/15-14:16:07 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020/09/15-14:16:12 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020/09/15-14:16:12 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020/09/15-14:16:17 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020/09/15-14:16:18 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020/09/15-14:16:18 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020/09/15-14:16:18 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2020/09/15-14:16:19 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2020/09/15-14:16:19 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2020/09/15-14:16:19 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2020/09/15-14:16:19 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 19.09 seconds (JVM running for 20.194)
+2020/09/15-14:16:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2020/09/15-14:16:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2020/09/15-14:16:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2020/09/15-14:16:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2020/09/15-14:16:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2020/09/15-14:16:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2020/09/15-18:03:10 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/09/15-18:03:10 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/09/15-18:03:10 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/09/15-18:03:10 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2020/09/15-18:03:10 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2020/09/15-18:03:10 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2020/09/15-18:03:10 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2020/09/15-18:03:10 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2020/09/15-18:03:10 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed

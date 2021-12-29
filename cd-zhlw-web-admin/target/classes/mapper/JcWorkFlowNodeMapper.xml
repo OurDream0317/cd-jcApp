@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.JcWorkFlowNodeMapper">
+
+    <select id="getDataByDefinationId" resultType="com.tuozhi.zhlw.admin.jc.entity.JcWorkFlowNodeEntity">
+        SELECT
+            jwn.NODEID,
+            jwn.DEFINATIONID,
+            jwn.NODENAME,
+            jwn.PREVNODEID,
+            jwn.NEXTNODEID,
+            jwn.WORKFLOWDEPTROLE,
+            jwn.NODETYPE,
+            jwn.CREATETIME,
+            jwd.DEFINATION_NAME DEFINATIONNAME
+        FROM
+            "CD_JC"."JC_WORKFLOW_NODE" jwn
+        LEFT JOIN "CD_JC".JC_WORKFLOW_DEFINATION jwd ON jwd.DEFINATION_ID = jwn.DEFINATIONID
+        WHERE jwn.DEFINATIONID = #{definationId,jdbcType=NUMERIC}
+    </select>
+
+    <select id="getDataByDefinationInitDept" resultType="com.tuozhi.zhlw.admin.jc.entity.JcWorkFlowNodeEntity">
+        SELECT
+			p.*
+		FROM
+			(
+                SELECT
+                jwn.NODEID,
+                jwn.DEFINATIONID,
+                jwn.NODENAME,
+                jwn.PREVNODEID,
+                jwn.NEXTNODEID,
+                jwn.WORKFLOWDEPTROLE,
+                jwn.NODETYPE,
+                jwn.CREATETIME
+            FROM
+                "CD_JC"."JC_WORKFLOW_NODE" jwn
+            LEFT JOIN (SELECT * FROM(SELECT jwd.DEFINATION_ID,jwd.DEFINATION_STATUS,jwd.DEFINATION_MENU,jwd.CREATE_TIME,regexp_substr( DEFINATION_INIT_DEPT, '[^,]+', 1, LEVEL ) definationInitDept FROM "CD_JC".JC_WORKFLOW_DEFINATION jwd CONNECT BY LEVEL &lt;= regexp_count ( jwd.DEFINATION_INIT_DEPT, ',' ) + 1 and jwd.DEFINATION_ID = prior jwd.DEFINATION_ID and prior dbms_random.value is not null) WHERE definationInitDept = #{definationInitDept,jdbcType=VARCHAR}) jwd2 ON jwd2.DEFINATION_ID = jwn.DEFINATIONID
+            WHERE
+                jwn.NODETYPE = 1
+            AND jwd2.DEFINATION_STATUS = 4
+            AND jwd2.DEFINATION_MENU = #{definationMenu,jdbcType=NUMERIC}
+            ORDER BY
+            jwd2.CREATE_TIME DESC
+			) p
+		WHERE
+			ROWNUM = 1
+    </select>
+    
+    <insert id="insertData" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcWorkFlowNodeEntity">
+        INSERT INTO "CD_JC"."JC_WORKFLOW_NODE" (
+            NODEID,
+            DEFINATIONID,
+            NODENAME,
+            PREVNODEID,
+            NEXTNODEID,
+            WORKFLOWDEPTROLE,
+            NODETYPE,
+            CREATETIME
+        )
+        VALUES(
+            #{nodeId,jdbcType=NUMERIC},
+            #{definationId,jdbcType=NUMERIC},
+            #{nodeName,jdbcType=VARCHAR},
+            #{prevNodeId,jdbcType=NUMERIC},
+            #{nextNodeId,jdbcType=NUMERIC},
+            #{workFlowDeptRole,jdbcType=NUMERIC},
+            #{nodeType,jdbcType=NUMERIC},
+            #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="updateData" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcWorkFlowNodeEntity">
+        UPDATE
+            "CD_JC"."JC_WORKFLOW_NODE"
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="definationId != null">
+                DEFINATIONID = #{definationId,jdbcType=NUMERIC},
+            </if>
+            <if test="nodeName != null and nodeName != ''">
+                NODENAME = #{nodeName,jdbcType=VARCHAR},
+            </if>
+            <if test="prevNodeId != null">
+                PREVNODEID = #{prevNodeId,jdbcType=NUMERIC},
+            </if>
+            <if test="nextNodeId != null">
+                NEXTNODEID = #{nextNodeId,jdbcType=NUMERIC},
+            </if>
+            <if test="workFlowDeptRole != null">
+                WORKFLOWDEPTROLE = #{workFlowDeptRole,jdbcType=NUMERIC},
+            </if>
+            <if test="nodeType != null">
+                NODETYPE = #{nodeType,jdbcType=NUMERIC},
+            </if>
+            <if test="createTime != null">
+                CREATETIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        WHERE
+            NODEID = #{nodeId,jdbcType=NUMERIC}
+        AND DEFINATIONID = #{definationId,jdbcType=NUMERIC}
+    </update>
+
+    <delete id="deleteDataByDefinationId">
+        DELETE FROM
+            "CD_JC"."JC_WORKFLOW_NODE"
+        WHERE
+            DEFINATIONID IN
+        <foreach item="definationId" collection="list" separator="," open="(" close=")" index="">
+            #{definationId,jdbcType=NUMERIC}
+        </foreach>
+    </delete>
+</mapper>

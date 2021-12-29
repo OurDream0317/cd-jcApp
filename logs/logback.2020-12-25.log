@@ -1,0 +1,1050 @@
+2020/12/25-09:21:27 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 12180 (D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-jcApp)
+2020/12/25-09:21:27 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020/12/25-09:21:27 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2020/12/25-09:21:28 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:21:28 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020/12/25-09:21:28 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 82ms. Found 3 JPA repository interfaces.
+2020/12/25-09:21:29 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2020/12/25-09:21:29 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2020/12/25-09:21:29 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:21:29 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020/12/25-09:21:29 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:21:29 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:21:29 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:21:29 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 51ms. Found 0 Redis repository interfaces.
+2020/12/25-09:21:29 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020/12/25-09:21:30 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2020/12/25-09:21:30 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2020/12/25-09:21:30 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2020/12/25-09:21:30 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020/12/25-09:21:30 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020/12/25-09:21:30 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2020/12/25-09:21:30 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 3077 ms
+2020/12/25-09:21:31 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2020/12/25-09:21:31 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2020/12/25-09:21:31 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2020/12/25-09:21:32 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2020/12/25-09:21:32 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020/12/25-09:21:32 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2020/12/25-09:21:32 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020/12/25-09:21:32 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020/12/25-09:21:35 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020/12/25-09:21:35 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:21:38 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020/12/25-09:21:38 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020/12/25-09:21:38 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020/12/25-09:21:38 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2020/12/25-09:21:38 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2020/12/25-09:21:38 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2020/12/25-09:21:39 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2020/12/25-09:21:39 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 12.192 seconds (JVM running for 13.582)
+2020/12/25-09:21:39 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2020/12/25-09:21:39 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2020/12/25-09:21:39 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2020/12/25-09:21:39 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2020/12/25-09:21:39 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2020/12/25-09:21:39 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 11 ms
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[32] 方法执行前执行。。。。。before
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[33] <============================================
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[34] 请求来源： =》0:0:0:0:0:0:0:1
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[35] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[36] 请求方式：=》POST
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[37] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2020/12/25-09:24:03 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[38] 请求参数：=》[null]
+2020/12/25-09:24:21 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 <![CDATA[ and CREATETIME>=? and CREATETIME<=sysdate ORDER BY jbr.CREATETIME desc 
+2020/12/25-09:24:21 [http-nio-317-exec-1] ERROR com.alibaba.druid.filter.stat.StatFilter-[149] merge sql error, dbType oracle, druid-1.1.17, sql : SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        sed.ENUM_NAME CARCOLOUR,
+        jbr.CARFEATURE,
+        round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER,
+        round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER,
+        sed1.ENUM_NAME ELUDEMONEYTYPE,
+        CASE
+
+        WHEN jbr.ELUDEMONEYTYPE = 1001 THEN
+        sed2.ENUM_NAME
+        WHEN jbr.ELUDEMONEYTYPE = 1002 THEN
+        sed3.ENUM_NAME
+        WHEN jbr.ELUDEMONEYTYPE = 1003 THEN
+        sed4.ENUM_NAME
+        WHEN jbr.ELUDEMONEYTYPE = 1004 THEN
+        sed5.ENUM_NAME
+        END ELUDEMONEYTYPEITEMNAME,
+        sed6.ENUM_NAME CARTYPE,
+        jbr.AXLETYPE,
+        bt2.NAME ENTRYSTATIONID,
+        bt3.NAME EXITSTATIONID,
+        to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME,
+        to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME,
+        nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT,
+        decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD,
+        decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE,
+        decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO,
+        nvl( jbr.CPUCARDID, '' ) CPUCARDID,
+        nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION,
+        to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME,
+        jbr.CREATEUSERNAME,
+        sed7.dept_name CREATEDEPTID,
+        nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL,
+        bd1.DEPT_NAME SERVICEDEPTNAME,
+        jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销
+        jbr.IS_APP,
+        jbr.REQUESTSTATUS
+        FROM
+        cd_jc.JC_BLACKLIST_REQUEST jbr
+        LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID
+        AND jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 2
+        INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR
+        AND sed.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE
+        AND sed1.ENUM_ID = 87
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed2.ENUM_ID = 88
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed3.ENUM_ID = 89
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed4.ENUM_ID = 90
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed5.ENUM_ID = 91
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE
+        AND sed6.ENUM_ID = 40
+        LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID
+        LEFT JOIN (
+        SELECT
+        x.*
+        FROM
+        CD_PASS.BASIC_BASICINFODOWN_RES x
+        WHERE
+        x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =
+        24 )
+        AND x.TYPE = '1'
+        ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID
+        LEFT JOIN (
+        SELECT
+        x.*
+        FROM
+        CD_PASS.BASIC_BASICINFODOWN_RES x
+        WHERE
+        x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =
+        24 )
+        AND x.TYPE = '1'
+        ) bt3 ON bt3.ID = jbr.EXITSTATIONID
+        WHERE
+        jbr.DELETEFLAG = 1
+        AND jbr.LOGICTYPE =1
+         
+                 <![CDATA[
+                and CREATETIME>=? and CREATETIME<=sysdate
+                 
+            
+        ORDER BY jbr.CREATETIME desc
+com.alibaba.druid.sql.parser.ParserException: ERROR. pos 3564, line 86, column 21, token LBRACKET
+	at com.alibaba.druid.sql.parser.SQLExprParser.primary(SQLExprParser.java:866)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleExprParser.primary(OracleExprParser.java:516)
+	at com.alibaba.druid.sql.parser.SQLExprParser.primary(SQLExprParser.java:803)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleExprParser.primary(OracleExprParser.java:516)
+	at com.alibaba.druid.sql.parser.SQLExprParser.bitXor(SQLExprParser.java:188)
+	at com.alibaba.druid.sql.parser.SQLExprParser.multiplicative(SQLExprParser.java:275)
+	at com.alibaba.druid.sql.parser.SQLExprParser.additive(SQLExprParser.java:1920)
+	at com.alibaba.druid.sql.parser.SQLExprParser.shift(SQLExprParser.java:1958)
+	at com.alibaba.druid.sql.parser.SQLExprParser.bitAnd(SQLExprParser.java:1778)
+	at com.alibaba.druid.sql.parser.SQLExprParser.bitOr(SQLExprParser.java:1792)
+	at com.alibaba.druid.sql.parser.SQLExprParser.relationalRest(SQLExprParser.java:2208)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleExprParser.relationalRest(OracleExprParser.java:1109)
+	at com.alibaba.druid.sql.parser.SQLExprParser.relationalRest(SQLExprParser.java:2452)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleExprParser.relationalRest(OracleExprParser.java:1109)
+	at com.alibaba.druid.sql.parser.SQLExprParser.relational(SQLExprParser.java:2139)
+	at com.alibaba.druid.sql.parser.SQLExprParser.andRest(SQLExprParser.java:1998)
+	at com.alibaba.druid.sql.parser.SQLSelectParser.parseWhere(SQLSelectParser.java:497)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleSelectParser.query(OracleSelectParser.java:323)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleSelectParser.select(OracleSelectParser.java:92)
+	at com.alibaba.druid.sql.dialect.oracle.parser.OracleStatementParser.parseStatementList(OracleStatementParser.java:200)
+	at com.alibaba.druid.sql.parser.SQLStatementParser.parseStatementList(SQLStatementParser.java:171)
+	at com.alibaba.druid.sql.visitor.ParameterizedOutputVisitorUtils.parameterize(ParameterizedOutputVisitorUtils.java:98)
+	at com.alibaba.druid.sql.visitor.ParameterizedOutputVisitorUtils.parameterize(ParameterizedOutputVisitorUtils.java:81)
+	at com.alibaba.druid.sql.visitor.ParameterizedOutputVisitorUtils.parameterize(ParameterizedOutputVisitorUtils.java:54)
+	at com.alibaba.druid.filter.stat.StatFilter.mergeSql(StatFilter.java:147)
+	at com.alibaba.druid.filter.stat.StatFilter.createSqlStat(StatFilter.java:648)
+	at com.alibaba.druid.filter.stat.StatFilter.statementPrepareAfter(StatFilter.java:311)
+	at com.alibaba.druid.filter.FilterEventAdapter.connection_prepareStatement(FilterEventAdapter.java:124)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_prepareStatement(FilterChainImpl.java:568)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.prepareStatement(ConnectionProxyImpl.java:341)
+	at com.alibaba.druid.pool.DruidPooledConnection.prepareStatement(DruidPooledConnection.java:350)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.ConnectionLogger.invoke(ConnectionLogger.java:55)
+	at com.sun.proxy.$Proxy224.prepareStatement(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.instantiateStatement(PreparedStatementHandler.java:87)
+	at org.apache.ibatis.executor.statement.BaseStatementHandler.prepare(BaseStatementHandler.java:88)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.prepare(RoutingStatementHandler.java:59)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:85)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:326)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:111)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy223.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy134.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:139)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy209.getLocalBlackList(Unknown Source)
+	at com.tuozhi.zhlw.admin.jcApp.service.impl.JCAuditStatusServiceImpl.getLocalBlackList(JCAuditStatusServiceImpl.java:33)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle(JCAuditStatusController.java:78)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$FastClassBySpringCGLIB$$5151cd04.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$EnhancerBySpringCGLIB$$bf3f251f.getBlackListByVehicle(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.tuozhi.zhlw.admin.config.CorsFilter.doFilter(CorsFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1591)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2020/12/25-09:24:21 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 2020-12-25 00:00:00.0(Timestamp)
+2020/12/25-09:24:33 [http-nio-317-exec-1] ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]-[175] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL 命令未正确结束
+
+### The error may exist in file [D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes\mapper\jcApp\JCAuditStatusMapper.xml]
+### The error may involve com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-Inline
+### The error occurred while setting parameters
+### SQL: SELECT         jbr.REQUESTID,         jbr.CARNUMBER,         sed.ENUM_NAME CARCOLOUR,         jbr.CARFEATURE,         round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER,         round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER,         sed1.ENUM_NAME ELUDEMONEYTYPE,         CASE          WHEN jbr.ELUDEMONEYTYPE = 1001 THEN         sed2.ENUM_NAME         WHEN jbr.ELUDEMONEYTYPE = 1002 THEN         sed3.ENUM_NAME         WHEN jbr.ELUDEMONEYTYPE = 1003 THEN         sed4.ENUM_NAME         WHEN jbr.ELUDEMONEYTYPE = 1004 THEN         sed5.ENUM_NAME         END ELUDEMONEYTYPEITEMNAME,         sed6.ENUM_NAME CARTYPE,         jbr.AXLETYPE,         bt2.NAME ENTRYSTATIONID,         bt3.NAME EXITSTATIONID,         to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME,         to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME,         nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT,         decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD,         decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE,         decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO,         nvl( jbr.CPUCARDID, '' ) CPUCARDID,         nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION,         to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME,         jbr.CREATEUSERNAME,         sed7.dept_name CREATEDEPTID,         nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL,         bd1.DEPT_NAME SERVICEDEPTNAME,         jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销         jbr.IS_APP,         jbr.REQUESTSTATUS         FROM         cd_jc.JC_BLACKLIST_REQUEST jbr         LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID         AND jbr1.DELETEFLAG = 1         AND jbr1.LOGICTYPE = 2         INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID         LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR         AND sed.ENUM_ID = 39         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE         AND sed1.ENUM_ID = 87         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed2.ENUM_ID = 88         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed3.ENUM_ID = 89         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed4.ENUM_ID = 90         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed5.ENUM_ID = 91         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE         AND sed6.ENUM_ID = 40         LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID         LEFT JOIN (         SELECT         x.*         FROM         CD_PASS.BASIC_BASICINFODOWN_RES x         WHERE         x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =         24 )         AND x.TYPE = '1'         ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID         LEFT JOIN (         SELECT         x.*         FROM         CD_PASS.BASIC_BASICINFODOWN_RES x         WHERE         x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =         24 )         AND x.TYPE = '1'         ) bt3 ON bt3.ID = jbr.EXITSTATIONID         WHERE         jbr.DELETEFLAG = 1         AND jbr.LOGICTYPE =1                            <![CDATA[                 and CREATETIME>=? and CREATETIME<=sysdate                                        ORDER BY jbr.CREATETIME desc
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00933: SQL 命令未正确结束
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00933: SQL 命令未正确结束
+] with root cause
+java.sql.SQLSyntaxErrorException: ORA-00933: SQL 命令未正确结束
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1059)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:522)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:587)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:225)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:53)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:774)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:925)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1111)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:4798)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:4901)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1385)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy225.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:326)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:111)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy223.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy134.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:139)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy209.getLocalBlackList(Unknown Source)
+	at com.tuozhi.zhlw.admin.jcApp.service.impl.JCAuditStatusServiceImpl.getLocalBlackList(JCAuditStatusServiceImpl.java:33)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle(JCAuditStatusController.java:78)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$FastClassBySpringCGLIB$$5151cd04.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$EnhancerBySpringCGLIB$$bf3f251f.getBlackListByVehicle(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.tuozhi.zhlw.admin.config.CorsFilter.doFilter(CorsFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1591)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2020/12/25-09:26:37 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/12/25-09:26:37 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:26:37 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/12/25-09:26:37 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed
+2020/12/25-09:26:41 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 16344 (D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-jcApp)
+2020/12/25-09:26:41 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020/12/25-09:26:41 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2020/12/25-09:26:42 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:26:42 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 73ms. Found 3 JPA repository interfaces.
+2020/12/25-09:26:43 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2020/12/25-09:26:43 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:26:43 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 48ms. Found 0 Redis repository interfaces.
+2020/12/25-09:26:43 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020/12/25-09:26:44 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2020/12/25-09:26:44 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2020/12/25-09:26:44 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2020/12/25-09:26:44 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020/12/25-09:26:44 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020/12/25-09:26:44 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2020/12/25-09:26:44 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 2394 ms
+2020/12/25-09:26:44 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2020/12/25-09:26:44 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2020/12/25-09:26:44 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2020/12/25-09:26:45 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2020/12/25-09:26:46 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020/12/25-09:26:46 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2020/12/25-09:26:46 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020/12/25-09:26:46 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020/12/25-09:26:48 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020/12/25-09:26:48 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:26:51 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020/12/25-09:26:51 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020/12/25-09:26:51 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020/12/25-09:26:51 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2020/12/25-09:26:52 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2020/12/25-09:26:52 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2020/12/25-09:26:52 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2020/12/25-09:26:52 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 10.862 seconds (JVM running for 11.95)
+2020/12/25-09:26:52 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2020/12/25-09:26:52 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2020/12/25-09:26:52 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2020/12/25-09:26:52 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2020/12/25-09:26:52 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2020/12/25-09:26:52 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 9 ms
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[32] 方法执行前执行。。。。。before
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[33] <============================================
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[34] 请求来源： =》0:0:0:0:0:0:0:1
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[35] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[36] 请求方式：=》POST
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[37] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2020/12/25-09:31:27 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[38] 请求参数：=》[null]
+2020/12/25-09:31:31 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 and CREATETIME>=? and CREATETIME<=sysdate ORDER BY jbr.CREATETIME desc 
+2020/12/25-09:31:31 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 2020-12-25 00:00:00.0(Timestamp)
+2020/12/25-09:31:31 [http-nio-317-exec-2] ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]-[175] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+
+### The error may exist in file [D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes\mapper\jcApp\JCAuditStatusMapper.xml]
+### The error may involve com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-Inline
+### The error occurred while setting parameters
+### SQL: SELECT         jbr.REQUESTID,         jbr.CARNUMBER,         sed.ENUM_NAME CARCOLOUR,         jbr.CARFEATURE,         round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER,         round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER,         sed1.ENUM_NAME ELUDEMONEYTYPE,         CASE          WHEN jbr.ELUDEMONEYTYPE = 1001 THEN         sed2.ENUM_NAME         WHEN jbr.ELUDEMONEYTYPE = 1002 THEN         sed3.ENUM_NAME         WHEN jbr.ELUDEMONEYTYPE = 1003 THEN         sed4.ENUM_NAME         WHEN jbr.ELUDEMONEYTYPE = 1004 THEN         sed5.ENUM_NAME         END ELUDEMONEYTYPEITEMNAME,         sed6.ENUM_NAME CARTYPE,         jbr.AXLETYPE,         bt2.NAME ENTRYSTATIONID,         bt3.NAME EXITSTATIONID,         to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME,         to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME,         nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT,         decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD,         decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE,         decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO,         nvl( jbr.CPUCARDID, '' ) CPUCARDID,         nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION,         to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME,         jbr.CREATEUSERNAME,         sed7.dept_name CREATEDEPTID,         nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL,         bd1.DEPT_NAME SERVICEDEPTNAME,         jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销         jbr.IS_APP,         jbr.REQUESTSTATUS         FROM         cd_jc.JC_BLACKLIST_REQUEST jbr         LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID         AND jbr1.DELETEFLAG = 1         AND jbr1.LOGICTYPE = 2         INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID         LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR         AND sed.ENUM_ID = 39         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE         AND sed1.ENUM_ID = 87         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed2.ENUM_ID = 88         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed3.ENUM_ID = 89         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed4.ENUM_ID = 90         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM         AND sed5.ENUM_ID = 91         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE         AND sed6.ENUM_ID = 40         LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID         LEFT JOIN (         SELECT         x.*         FROM         CD_PASS.BASIC_BASICINFODOWN_RES x         WHERE         x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =         24 )         AND x.TYPE = '1'         ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID         LEFT JOIN (         SELECT         x.*         FROM         CD_PASS.BASIC_BASICINFODOWN_RES x         WHERE         x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =         24 )         AND x.TYPE = '1'         ) bt3 ON bt3.ID = jbr.EXITSTATIONID         WHERE         jbr.DELETEFLAG = 1         AND jbr.LOGICTYPE =1                                             and CREATETIME>=? and CREATETIME<=sysdate                                        ORDER BY jbr.CREATETIME desc
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+] with root cause
+java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1059)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:522)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:587)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:225)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:53)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:774)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:925)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1111)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:4798)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:4901)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1385)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy225.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:326)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:111)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy223.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy134.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:139)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy209.getLocalBlackList(Unknown Source)
+	at com.tuozhi.zhlw.admin.jcApp.service.impl.JCAuditStatusServiceImpl.getLocalBlackList(JCAuditStatusServiceImpl.java:33)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle(JCAuditStatusController.java:78)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$FastClassBySpringCGLIB$$5151cd04.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$EnhancerBySpringCGLIB$$ea78be1f.getBlackListByVehicle(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.tuozhi.zhlw.admin.config.CorsFilter.doFilter(CorsFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1591)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2020/12/25-09:32:42 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/12/25-09:32:42 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:32:42 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/12/25-09:32:42 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed
+2020/12/25-09:32:47 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 1656 (D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-jcApp)
+2020/12/25-09:32:47 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020/12/25-09:32:47 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2020/12/25-09:32:47 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:32:47 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020/12/25-09:32:47 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 70ms. Found 3 JPA repository interfaces.
+2020/12/25-09:32:48 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2020/12/25-09:32:48 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2020/12/25-09:32:48 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:32:48 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020/12/25-09:32:48 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:32:48 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:32:48 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:32:48 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 48ms. Found 0 Redis repository interfaces.
+2020/12/25-09:32:48 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020/12/25-09:32:49 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2020/12/25-09:32:49 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2020/12/25-09:32:49 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2020/12/25-09:32:49 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020/12/25-09:32:49 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020/12/25-09:32:49 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2020/12/25-09:32:49 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 2269 ms
+2020/12/25-09:32:49 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2020/12/25-09:32:49 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2020/12/25-09:32:49 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2020/12/25-09:32:50 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2020/12/25-09:32:51 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020/12/25-09:32:51 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2020/12/25-09:32:51 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020/12/25-09:32:51 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020/12/25-09:32:53 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020/12/25-09:32:53 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:32:56 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020/12/25-09:32:56 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020/12/25-09:32:56 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020/12/25-09:32:56 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2020/12/25-09:32:56 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2020/12/25-09:32:57 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2020/12/25-09:32:57 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2020/12/25-09:32:57 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 10.556 seconds (JVM running for 11.777)
+2020/12/25-09:32:57 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2020/12/25-09:32:57 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2020/12/25-09:32:57 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2020/12/25-09:32:57 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2020/12/25-09:32:57 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2020/12/25-09:32:57 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 10 ms
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[32] 方法执行前执行。。。。。before
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[33] <============================================
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[34] 请求来源： =》0:0:0:0:0:0:0:1
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[35] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[36] 请求方式：=》POST
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[37] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2020/12/25-09:33:40 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[38] 请求参数：=》[null]
+2020/12/25-09:33:45 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 and jbr.CREATETIME>=? and jbr.CREATETIME<=sysdate ORDER BY jbr.CREATETIME desc 
+2020/12/25-09:33:45 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 2020-12-25 00:00:00.0(Timestamp)
+2020/12/25-09:33:45 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] <==      Total: 1
+2020/12/25-09:33:45 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==>  Preparing: select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,to_char(EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME, nvl(TOTALWEIGHT,'') TOTALWEIGHT, decode(HAVECARD,1,'是',0,'否','') HAVECARD, decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE, decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO, nvl(CPUCARDID,'') CPUCARDID, nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION, to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME, CREATEUSERNAME, s4.dept_name CREATEDEPTID, nvl(SUMTOTAL,0) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME from cd_jc.JC_GRAYLIST_REQUEST t INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = t.ENTRYSTATIONID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = t.EXITSTATIONID where CREATETIME>=? and CREATETIME<=sysdate order by t.CREATETIME desc 
+2020/12/25-09:33:45 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==> Parameters: 2020-12-25 00:00:00.0(Timestamp)
+2020/12/25-09:33:45 [http-nio-317-exec-1] ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]-[175] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+
+### The error may exist in file [D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes\mapper\jcApp\JCAuditStatusMapper.xml]
+### The error may involve com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-Inline
+### The error occurred while setting parameters
+### SQL: select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2)         ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME         ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE,         bt2.NAME ENTRYSTATIONID,         bt3.NAME EXITSTATIONID,         to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,to_char(EXITSTATIONTIME,'yyyy-mm-dd         HH24:mi:ss') EXITSTATIONTIME,         nvl(TOTALWEIGHT,'') TOTALWEIGHT,         decode(HAVECARD,1,'是',0,'否','') HAVECARD,         decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE,         decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO,         nvl(CPUCARDID,'') CPUCARDID,         nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION,         to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME,         CREATEUSERNAME,         s4.dept_name CREATEDEPTID,         nvl(SUMTOTAL,0) SUMTOTAL,         bd1.DEPT_NAME SERVICEDEPTNAME         from cd_jc.JC_GRAYLIST_REQUEST t         INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID         LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40         LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID         LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM         CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID =         t.ENTRYSTATIONID         LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM         CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID =         t.EXITSTATIONID          where  CREATETIME>=? and CREATETIME<=sysdate          order by t.CREATETIME desc
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+] with root cause
+java.sql.SQLSyntaxErrorException: ORA-00918: 未明确定义列
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:450)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:399)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1059)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:522)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:587)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:225)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:53)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:774)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:925)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1111)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:4798)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:4901)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1385)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3461)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3459)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy225.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:326)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:111)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy223.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy134.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:139)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy209.getLocalGreyList(Unknown Source)
+	at com.tuozhi.zhlw.admin.jcApp.service.impl.JCAuditStatusServiceImpl.getLocalGreyList(JCAuditStatusServiceImpl.java:38)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle(JCAuditStatusController.java:79)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$FastClassBySpringCGLIB$$5151cd04.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController$$EnhancerBySpringCGLIB$$67e3856c.getBlackListByVehicle(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.tuozhi.zhlw.admin.config.CorsFilter.doFilter(CorsFilter.java:29)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1591)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2020/12/25-09:34:18 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/12/25-09:34:18 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:34:18 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/12/25-09:34:18 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed
+2020/12/25-09:34:22 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 7328 (D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-jcApp)
+2020/12/25-09:34:22 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020/12/25-09:34:22 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 71ms. Found 3 JPA repository interfaces.
+2020/12/25-09:34:23 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2020/12/25-09:34:23 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-09:34:23 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 47ms. Found 0 Redis repository interfaces.
+2020/12/25-09:34:24 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020/12/25-09:34:24 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2020/12/25-09:34:24 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2020/12/25-09:34:24 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2020/12/25-09:34:24 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020/12/25-09:34:24 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020/12/25-09:34:24 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2020/12/25-09:34:24 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 2258 ms
+2020/12/25-09:34:24 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2020/12/25-09:34:24 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2020/12/25-09:34:25 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2020/12/25-09:34:26 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2020/12/25-09:34:26 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020/12/25-09:34:26 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2020/12/25-09:34:26 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020/12/25-09:34:26 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020/12/25-09:34:29 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020/12/25-09:34:29 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-09:34:32 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020/12/25-09:34:32 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020/12/25-09:34:32 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020/12/25-09:34:32 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2020/12/25-09:34:32 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2020/12/25-09:34:32 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2020/12/25-09:34:32 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2020/12/25-09:34:32 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 11.111 seconds (JVM running for 12.353)
+2020/12/25-09:34:32 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2020/12/25-09:34:33 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2020/12/25-09:34:33 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2020/12/25-09:34:33 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2020/12/25-09:34:33 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2020/12/25-09:34:33 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 10 ms
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[32] 方法执行前执行。。。。。before
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[33] <============================================
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[34] 请求来源： =》0:0:0:0:0:0:0:1
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[35] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[36] 请求方式：=》POST
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[37] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2020/12/25-09:34:57 [http-nio-317-exec-2] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[38] 请求参数：=》[null]
+2020/12/25-09:35:03 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 and jbr.CREATETIME>=? and jbr.CREATETIME<=sysdate ORDER BY jbr.CREATETIME desc 
+2020/12/25-09:35:03 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 2020-12-25 00:00:00.0(Timestamp)
+2020/12/25-09:35:03 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] <==      Total: 1
+2020/12/25-09:35:03 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==>  Preparing: select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,to_char(EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME, nvl(TOTALWEIGHT,'') TOTALWEIGHT, decode(HAVECARD,1,'是',0,'否','') HAVECARD, decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE, decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO, nvl(CPUCARDID,'') CPUCARDID, nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION, to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME, CREATEUSERNAME, s4.dept_name CREATEDEPTID, nvl(SUMTOTAL,0) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME from cd_jc.JC_GRAYLIST_REQUEST t INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = t.ENTRYSTATIONID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = t.EXITSTATIONID where t.CREATETIME>=? and t.CREATETIME<=sysdate order by t.CREATETIME desc 
+2020/12/25-09:35:03 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==> Parameters: 2020-12-25 00:00:00.0(Timestamp)
+2020/12/25-09:35:05 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] <==      Total: 0
+2020/12/25-10:02:01 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/12/25-10:02:01 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-10:02:01 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/12/25-10:02:02 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed
+2020/12/25-10:08:00 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 10468 (D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-jcApp)
+2020/12/25-10:08:00 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2020/12/25-10:08:00 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 76ms. Found 3 JPA repository interfaces.
+2020/12/25-10:08:01 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2020/12/25-10:08:01 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2020/12/25-10:08:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 48ms. Found 0 Redis repository interfaces.
+2020/12/25-10:08:02 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020/12/25-10:08:02 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2020/12/25-10:08:02 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2020/12/25-10:08:02 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2020/12/25-10:08:02 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020/12/25-10:08:03 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020/12/25-10:08:03 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2020/12/25-10:08:03 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 2549 ms
+2020/12/25-10:08:03 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2020/12/25-10:08:03 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2020/12/25-10:08:03 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2020/12/25-10:08:04 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2020/12/25-10:08:04 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020/12/25-10:08:05 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2020/12/25-10:08:05 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020/12/25-10:08:05 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020/12/25-10:08:07 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020/12/25-10:08:07 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-10:08:10 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020/12/25-10:08:10 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2020/12/25-10:08:10 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2020/12/25-10:08:10 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2020/12/25-10:08:11 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2020/12/25-10:08:11 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2020/12/25-10:08:11 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2020/12/25-10:08:11 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 11.291 seconds (JVM running for 13.069)
+2020/12/25-10:08:11 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2020/12/25-10:08:11 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2020/12/25-10:08:11 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2020/12/25-10:08:11 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2020/12/25-10:08:11 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2020/12/25-10:08:11 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 11 ms
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[32] 方法执行前执行。。。。。before
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[33] <============================================
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[34] 请求来源： =》0:0:0:0:0:0:0:1
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[35] 请求URL：=》/JC/APP/getExitPassData
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[36] 请求方式：=》POST
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[37] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getExitPassData
+2020/12/25-10:16:15 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[38] 请求参数：=》[org.apache.catalina.connector.RequestFacade@62c46c34, 1]
+2020/12/25-10:16:15 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.ExitPassDataMapper.getTradePassDataByParams-[159] ==>  Preparing: SELECT PASS.EXID, vehicleSignId, PASS.PASSID, cd_system.F_ENUM_MEDIATYPE(PASS.MEDIATYPE) MEDIATYPE, PASS.ENTIME, ROUND(jnw.realfee,2) realfee, ROUND(jnw.owefee,2) owefee, CD_SYSTEM.F_ENUM_VEHICLETYPE(jnw.NEWVEHICLETYPE) as NEWVEHICLETYPE, ROUND(PASS.FEE/100,2) FEE, ROUND(PASS.DISCOUNTFEE/100,2) DISCOUNTFEE, ROUND(PASS.PAYFEE/100,2) PAYFEE, ROUND(PASS.SHORTFEE/100,2) SHORTFEE, PASS.VEHICLELENGTH, PASS.VEHICLEWIDTH, PASS.VEHICLEHIGHT, PASS.EXWEIGHT, PASS.EXAXLECOUNT, decode(PASS.CD_PATHFITTINGCLASS,2,decode(PASS.TRANSPAYTYPE,1,'现金',2,'其他第三方',3,'银联',6,'支付宝',7,'微信',''),3,decode(PASS.TRANSPAYTYPE,1,'出口ETC通行',2,'出口ETC刷卡通行',''),'') paytype, PASS.CD_PATHFITTINGCLASS, PASS.CD_INSERTTIME, PASS.ENTOLLLANEID, PASS.ENPROVINCEID, PASS.CD_PATHFITTINGID, PASS.EXPROVINCEID, PASS.EXTIME, PASS.EXTOLLLANEID, PASS.ENTOLLSTATIONID, PASS.EXTOLLSTATIONID, ENTOLLSTATIONNAME, EXTOLLSTATIONNAME, SECTION.NAME ENSECTIONID, SECTION1.NAME EXSECTIONID, cd_system.F_ENUM_VEHICLE(PASS.ENVEHICLEID) ENVEHICLENAME, cd_system.F_ENUM_VEHICLE(PASS.EXVEHICLEID) EXVEHICLENAME, PASS.EXVEHICLEID, PASS.MEDIANO, PASS.OBUID, CD_SYSTEM.F_ENUM_VEHICLETYPE(PASS.EXVEHICLETYPE) as EXVEHICLETYPE, CD_SYSTEM.F_ENUM_VEHICLECLASS(PASS.EXVEHICLECLASS) as EXVEHICLECLASS, PASS.SPECIALTYPE, CD_SYSTEM.F_ENUM_VEHICLETYPE(PASS.ENVEHICLETYPE) as ENVEHICLETYPE, CD_SYSTEM.F_ENUM_VEHICLECLASS(PASS.ENVEHICLECLASS) as ENVEHICLECLASS, PASS.SECTIONIDGROUP, PASS.CD_ETCDISCOUNTTYPE, PASS.CD_ETCDISCOUNTID, PASS.CD_ETCDISCOUTTIME, PASS.CD_REFITTING, PASS.CD_REFITTINGBYTRADETIME, PROVINCE.PROVINCENAME as ENPROVINCENAME, PROVINCE1.PROVINCENAME as EXPROVINCENAME, PASS.EXITFEETYPE, sed.ENUM_NAME issuerName, ROUND( jnw.allfee,2) allfee, ROUND(jnw.owerfee,2) owerfee, (SELECT to_char(wm_concat( DISTINCT cd_system.F_ENUM_VEHICLETYPE(VEHICLETYPE))) FROM cd_pass.TRANSACTION_PASSTU_DETAIL WHERE PASSID=PASS.passid) FEEVEHICLETYPE FROM "CD_PASS"."TRADE_PASS" PASS left join (SELECT realfee ,owefee,owerfee,allfee,passid,NEWVEHICLETYPE from cd_jc.JC_NEWTRADEPASSVEHICLETYPE) jnw on jnw.passid=pass.passid LEFT JOIN CD_TRADE.BASE_SECTION SECTION ON PASS.ENSECTIONID = SECTION.ID LEFT JOIN CD_TRADE.BASE_SECTION SECTION1 ON PASS.EXSECTIONID = SECTION1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON PASS.issuerId = sed.ENUM_VALUE and sed.ENUM_ID = 20191 LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON PASS.ENPROVINCEID = PROVINCE.PROVINCEID LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE1 ON PASS.EXPROVINCEID = PROVINCE1.PROVINCEID where PASS.CD_PATHFITTINGCLASS in (2,3) AND (PASS.EXVEHICLEID like ?||'%' or pass.mediano like ?) ORDER BY PASS.EXTIME DESC 
+2020/12/25-10:16:15 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.ExitPassDataMapper.getTradePassDataByParams-[159] ==> Parameters: 津RXH755(String), 津RXH755(String)
+2020/12/25-10:16:17 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.ExitPassDataMapper.getTradePassDataByParams-[159] <==      Total: 22
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[32] 方法执行前执行。。。。。before
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[33] <============================================
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[34] 请求来源： =》0:0:0:0:0:0:0:1
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[35] 请求URL：=》/JC/APP/getExitPassData
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[36] 请求方式：=》POST
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[37] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getExitPassData
+2020/12/25-10:16:43 [http-nio-317-exec-3] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[38] 请求参数：=》[org.apache.catalina.connector.RequestFacade@62c46c34, 2]
+2020/12/25-10:16:43 [http-nio-317-exec-3] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getEtctsEntrypassdataInfo-[159] ==>  Preparing: SELECT ID, VEHICLEID, VEHICLETYPE, VEHICLECLASS, ENSTATIONNAME, ENSTATIONID, ENTIME, ENTOLLLANEID, TRANSFEE, signStatus, MEDIATYPE, CARDID, OBUID, ENWEIGHT, ENAXLECOUNT, PASSID, SPECIALTYPE, VEHICLESIGNID, LANETYPE, AXLETYPE, MONITORTYPE, ENTOLLPLAZAID from CD_PASS.ETCTS_ENTRYPASSDATA where VEHICLEID like CONCAT(?,'%') and VEHICLEID like CONCAT('%',?) order by ENTIME DESC 
+2020/12/25-10:16:43 [http-nio-317-exec-3] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getEtctsEntrypassdataInfo-[159] ==> Parameters: 津RXH755(String), 0(String)
+2020/12/25-10:16:44 [http-nio-317-exec-3] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getEtctsEntrypassdataInfo-[159] <==      Total: 22
+2020/12/25-17:08:23 [Druid-ConnectionPool-Destroy-456172878] ERROR com.alibaba.druid.util.JdbcUtils-[91] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.util.JdbcUtils.close(JdbcUtils.java:89)
+	at com.alibaba.druid.pool.DruidDataSource.shrink(DruidDataSource.java:3067)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyTask.run(DruidDataSource.java:2811)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2795)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 9 common frames omitted
+2020/12/25-17:08:23 [Druid-ConnectionPool-Destroy-456172878] ERROR com.alibaba.druid.util.JdbcUtils-[91] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.util.JdbcUtils.close(JdbcUtils.java:89)
+	at com.alibaba.druid.pool.DruidDataSource.shrink(DruidDataSource.java:3067)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyTask.run(DruidDataSource.java:2811)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2795)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 9 common frames omitted
+2020/12/25-17:08:23 [Druid-ConnectionPool-Destroy-456172878] ERROR com.alibaba.druid.util.JdbcUtils-[91] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.util.JdbcUtils.close(JdbcUtils.java:89)
+	at com.alibaba.druid.pool.DruidDataSource.shrink(DruidDataSource.java:3067)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyTask.run(DruidDataSource.java:2811)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2795)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 9 common frames omitted
+2020/12/25-17:08:23 [Druid-ConnectionPool-Destroy-456172878] ERROR com.alibaba.druid.util.JdbcUtils-[91] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.util.JdbcUtils.close(JdbcUtils.java:89)
+	at com.alibaba.druid.pool.DruidDataSource.shrink(DruidDataSource.java:3067)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyTask.run(DruidDataSource.java:2811)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2795)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 9 common frames omitted
+2020/12/25-17:17:23 [Druid-ConnectionPool-Destroy-456172878] ERROR com.alibaba.druid.util.JdbcUtils-[91] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.util.JdbcUtils.close(JdbcUtils.java:89)
+	at com.alibaba.druid.pool.DruidDataSource.shrink(DruidDataSource.java:3067)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyTask.run(DruidDataSource.java:2811)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2795)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 9 common frames omitted
+2020/12/25-18:09:15 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/12/25-18:09:15 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/12/25-18:09:15 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/12/25-18:09:15 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed

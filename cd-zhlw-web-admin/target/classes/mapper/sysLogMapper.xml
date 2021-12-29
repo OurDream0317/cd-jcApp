@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.mapper.LogMapper">
+    <select id="findLogsByCondition" resultType="com.tuozhi.zhlw.admin.entity.SysLogEntity">
+        SELECT
+                log_id as logId,
+                model as model,
+                login_name as loginName,
+                operate_description as operateDescription,
+                operate_time as operateTime,
+                request_uri as requestUri,
+                details as details,
+                log_model as logModel,
+                login_user_id as loginUserId,
+                login_ip as loginIp
+        FROM sys_log
+        <where>
+            <if test="startTime != '' and startTime != null">
+                operate_time &gt;= to_date(#{startTime,jdbcType=DATE}, 'yyyy-mm-dd hh24:mi:ss')
+            </if>
+            <if test="endTime != '' and endTime != null">
+                AND operate_time &lt;= to_date(#{endTime,jdbcType=DATE}, 'yyyy-mm-dd hh24:mi:ss')
+            </if>
+            <if test="loginName != '' and loginName != null">
+                AND login_name LIKE '%' || #{loginName,jdbcType=VARCHAR} || '%'
+            </if>
+        </where>
+        ORDER BY operate_time DESC
+   </select>
+
+
+</mapper>

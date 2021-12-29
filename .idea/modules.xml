@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cd-zhlw.iml" filepath="$PROJECT_DIR$/cd-zhlw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cd-zhlw-common/cd-zhlw-common.iml" filepath="$PROJECT_DIR$/cd-zhlw-common/cd-zhlw-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cd-zhlw-web-admin/cd-zhlw-web-admin.iml" filepath="$PROJECT_DIR$/cd-zhlw-web-admin/cd-zhlw-web-admin.iml" />
+    </modules>
+  </component>
+</project>

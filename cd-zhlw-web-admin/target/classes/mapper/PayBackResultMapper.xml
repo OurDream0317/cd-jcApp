@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.mapper.PayBackResultMapper">
+
+    <insert id="save" parameterType="com.tuozhi.zhlw.admin.entity.PayBackResultEntity">
+        <selectKey resultType="java.lang.Long" keyProperty="Sid" keyColumn="SID" order="AFTER">
+            select CD_JC.SEQ_JC_PAYBACKRESULT.CURRVAL FROM DUAL
+        </selectKey>
+        INSERT INTO CD_JC.JC_PAYBACKRESULT (
+        SID,
+        VEHICLEID,
+        PASSID,
+        PAYBACKUSER,
+        PAYBACKUSERPHONE,
+        TRANSACTIONTYPE,
+        PAYBACKTYPE,
+        OPERATOR,
+        OPERATEORG,
+        OPERATEROAD,
+        OPERATESTATION,
+        OWEFEE,
+        PAYBACKFEE,
+        PAYBACKTIME,
+        PAYBACKDESCRIPTION,
+        USERCARDID
+        )
+        VALUES (
+        CD_JC.SEQ_JC_PAYBACKRESULT.nextval,
+        #{ vehicleId,jdbcType=VARCHAR },
+        #{ passId,jdbcType=VARCHAR },
+        #{ paybackUser,jdbcType=VARCHAR },
+        #{ paybackUserPhone,jdbcType=VARCHAR },
+        #{ transactionType,jdbcType=INTEGER },
+        #{ paybackType,jdbcType=INTEGER },
+        #{ operator,jdbcType=VARCHAR },
+        #{ operateOrg,jdbcType=VARCHAR },
+        #{ operateRoad,jdbcType=VARCHAR },
+        #{ operateStation,jdbcType=VARCHAR },
+        #{ oweFee,jdbcType=DOUBLE },
+        #{ payBackFee,jdbcType=DOUBLE },
+        current_date,
+        #{ payBackDescription,jdbcType=VARCHAR },
+        #{ userCardId,jdbcType=VARCHAR }
+        )
+    </insert>
+
+    <insert id="saveRepairFeeInfo" parameterType="com.tuozhi.zhlw.admin.entity.RepairFeeDataInfoEntity">
+		INSERT INTO CD_JC.BASIC_JC_REPAIRFEEDATAINFO (
+			ID,
+			PASSID,
+			TRANSACTIONID,
+			MEDIATYPE,
+			OBUID,
+			CARDID,
+			ENTIME,
+			ENLANEID,
+			EXTIME,
+			EXLANEID,
+			REALENTIME,
+			REALENLANEID,
+			REALEXTIME,
+			REALEXLANEID,
+			REALVEHICLETYPE,
+			REALVEHICLECLASS,
+			CONFIRMEDESCAPETYPE,
+			OWEFEE,
+			PAYBACKSTATUS,
+			SID,
+			CD_INSERTTIME
+		)
+		VALUES(
+			CD_JC.SEQ_BASIC_JC_REPAIRFEEDATAINFO.nextval,
+			#{ passId,jdbcType=VARCHAR },
+			#{ transactionId,jdbcType=VARCHAR },
+			#{ mediaType,jdbcType=VARCHAR },
+			#{ obuId,jdbcType=VARCHAR },
+			#{ cardId,jdbcType=VARCHAR },
+			#{ enTime,jdbcType=TIMESTAMP },
+			#{ enLaneId,jdbcType=VARCHAR },
+			#{ exTime,jdbcType=TIMESTAMP },
+			#{ exLaneId,jdbcType=VARCHAR },
+			#{ realEnTime,jdbcType=TIMESTAMP },
+			#{ realEnLaneId,jdbcType=VARCHAR },
+			#{ realExTime,jdbcType=TIMESTAMP },
+			#{ realExLaneId,jdbcType=VARCHAR },
+			#{ realVehicleType,jdbcType=BIGINT },
+			#{ realVehicleClass,jdbcType=BIGINT },
+			#{ confirmedEscapeType,jdbcType=VARCHAR },
+			#{ oweFee,jdbcType=VARCHAR },
+			#{ payBackStatus,jdbcType=VARCHAR },
+			#{ Sid,jdbcType=BIGINT },
+			CURRENT_DATE
+		)
+	</insert>
+
+    <select id="findResultAll" resultType="com.tuozhi.zhlw.admin.entity.PayBackResultEntity">
+        SELECT
+        cjp.SID,
+        cjp.VEHICLEID,
+        cjp.PASSID,
+        cjp.PAYBACKUSER,
+        cjp.PAYBACKUSERPHONE,
+        cjp.TRANSACTIONTYPE,
+        cjp.PAYBACKTYPE,
+        cjp.OPERATOR,
+        cjp.OPERATEORG,
+        ber.NAME AS UNITNAME,
+        cjp.OPERATEROAD,
+        bsn.NAME AS ROADNAME,
+        cjp.OPERATESTATION,
+        btn.NAME AS TOLLNAME,
+        cjp.OWEFEE,
+        cjp.PAYBACKFEE,
+        cjp.PAYBACKTIME,
+        cjp.MESSAGEID,
+        cjp.PAYBACKDESCRIPTION,
+        cjp.USERCARDID,
+        (SELECT regexp_substr(cjp2.VEHICLEID, '[^_]+', 1, 1) FROM CD_JC.JC_PAYBACKRESULT cjp2 WHERE cjp2.SID = cjp.SID)
+        PLATEID,
+        (SELECT regexp_substr(cjp3.VEHICLEID, '[^_]+', 1, 2) FROM CD_JC.JC_PAYBACKRESULT cjp3 WHERE cjp3.SID = cjp.SID)
+        PLATECOLOR
+        FROM
+        CD_JC.JC_PAYBACKRESULT cjp
+        LEFT JOIN CD_PASS.BASE_SECTION bsn ON cjp.OPERATEROAD = bsn.ID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') btn ON
+        cjp.OPERATESTATION = btn.ID
+        LEFT JOIN CD_BASE.BASE_ISSUER ber ON cjp.OPERATEORG = ber.ID
+        WHERE
+        1 = 1
+        <if test="createTime != null">
+            <![CDATA[and cjp.PAYBACKTIME >= #{createTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[and cjp.PAYBACKTIME <= #{endTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="plateId != null and plateColor != null">
+            AND cjp.VEHICLEID = #{vehicleId,jdbcType=VARCHAR}
+        </if>
+        <if test="plateId == null or plateColor == null">
+            <if test="plateId != null">
+                AND cjp.VEHICLEID LIKE '%' || #{plateId,jdbcType=VARCHAR} || '%'
+            </if>
+            <if test="plateColor != null">
+                AND cjp.VEHICLEID LIKE CONCAT('%',#{plateColor,jdbcType=VARCHAR})
+            </if>
+        </if>
+        <if test="paybackUser != null">
+            AND cjp.PAYBACKUSER LIKE '%' || #{paybackUser,jdbcType=VARCHAR} || '%'
+        </if>
+        ORDER BY cjp.PAYBACKTIME DESC
+    </select>
+
+    <select id="createExcelLocalPay" resultType="com.tuozhi.zhlw.admin.entity.PayBackResultEntity" parameterType="Map">
+        SELECT a.*, d2.ENUM_NAME PLATECOLOR FROM (
+        SELECT
+        cjp.SID,
+        cjp.VEHICLEID,
+        cjp.PASSID,
+        cjp.PAYBACKUSER,
+        cjp.PAYBACKUSERPHONE,
+        d3.ENUM_NAME TRANSACTIONTYPE,
+        d.ENUM_NAME PAYBACKTYPE,
+        cjp.OPERATOR,
+        cjp.OPERATEORG,
+        ber.NAME AS UNITNAME,
+        cjp.OPERATEROAD,
+        bsn.NAME AS ROADNAME,
+        cjp.OPERATESTATION,
+        btn.NAME AS TOLLNAME,
+        ROUND(cjp.OWEFEE/100) OWEFEE,
+        ROUND(cjp.PAYBACKFEE/100) PAYBACKFEE,
+        cjp.PAYBACKTIME,
+        cjp.PAYBACKDESCRIPTION,
+        cjp.USERCARDID,
+        regexp_substr(cjp.VEHICLEID, '[^_]+', 1, 2) PLATECOLORA,
+        regexp_substr(cjp.VEHICLEID, '[^_]+', 1, 1) PLATEID
+        FROM
+        CD_JC.JC_PAYBACKRESULT cjp
+        LEFT JOIN CD_PASS.BASE_SECTION bsn ON cjp.OPERATEROAD = bsn.ID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') btn ON
+        cjp.OPERATESTATION = btn.ID
+        LEFT JOIN CD_BASE.BASE_ISSUER ber ON cjp.OPERATEORG = ber.ID
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS d3 on d3.ENUM_ID =92 and cjp.TRANSACTIONTYPE=d3.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS d on d.ENUM_ID =93 and cjp.PAYBACKTYPE=d.ENUM_VALUE
+        WHERE
+        1 = 1
+        <if test="createTime != null">
+            <![CDATA[and  to_char(cjp.PAYBACKTIME,'yyyy-MM-dd HH:mm:ss')>= #{createTime}]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[and to_char(cjp.PAYBACKTIME,'yyyy-MM-dd HH:mm:ss') <= #{endTime}]]>
+        </if>
+        <if test="plateId!=null">
+            <![CDATA[
+						and cjp.VEHICLEID  LIKE '%' || #{plateId,jdbcType=VARCHAR} || '%'
+						]]>
+        </if>
+        <if test="plateColor!=null">
+            <![CDATA[
+					and	cjp.VEHICLEID=#{plateColor}
+						]]>
+        </if>
+        <if test="paybackUser != null">
+            AND cjp.PAYBACKUSER LIKE '%' || #{paybackUser,jdbcType=VARCHAR} || '%'
+        </if>
+        ) a
+        left join CD_SYSTEM.SYS_ENUM_DETAILS d2 on d2.ENUM_ID =39 and a.PLATECOLORA=d2.ENUM_VALUE
+    </select>
+
+    <update id="uptPepairFeePassId" parameterType="java.lang.Long">
+		UPDATE CD_JC.JC_PAYBACKRESULT p
+		SET p.PASSID = (
+		SELECT
+			wmsys.wm_concat ( r.PASSID )
+		FROM
+			CD_JC.BASIC_JC_REPAIRFEEDATAINFO r
+			LEFT JOIN CD_JC.JC_PAYBACKRESULT p ON r.SID = p.SID
+		WHERE
+			r.SID = #{sid,jdbcType=BIGINT}
+			)
+		WHERE
+			p.SID = #{sid,jdbcType=BIGINT}
+	</update>
+
+    <select id="findRepairFeeData" resultType="com.tuozhi.zhlw.admin.entity.RepairFeeDataInfoEntity">
+		SELECT
+			r.ID,
+			r.PASSID,
+			r.TRANSACTIONID,
+			r.MEDIATYPE,
+			r.OBUID,
+			r.CARDID,
+			r.ENTIME,
+			r.ENLANEID,
+			r.EXTIME,
+			r.EXLANEID,
+			r.CONFIRMEDESCAPETYPE,
+			r.OWEFEE,
+			r.PAYBACKSTATUS,
+			r.SID,
+			r.REALENTIME,
+			r.REALENLANEID,
+			r.REALEXTIME,
+			r.REALEXLANEID,
+			r.REALVEHICLETYPE,
+			r.REALVEHICLECLASS
+		FROM
+			CD_JC.BASIC_JC_REPAIRFEEDATAINFO r
+		WHERE r.SID = #{sid,jdbcType=BIGINT}
+		ORDER BY r.CD_INSERTTIME DESC
+	</select>
+
+    <select id="findRoadEnum" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseSectionEntity">
+		SELECT
+			btn.SID,
+			btn.ID,
+			btn.NAME,
+			btn.TYPE,
+			btn.LENGTH,
+			btn.STARTSTAKENUM,
+			btn.ENDSTAKENUM,
+			btn.TAX,
+			btn.TAXRATE,
+			btn.SECTIONOWNERID,
+			btn.CHARGETYPE,
+			btn.TOLLROADS,
+			btn.BUILTTIME,
+			btn.STARTTIME,
+			btn.ENDTIME,
+			btn.STARTLAT,
+			btn.STARTLNG,
+			btn.ENDLAT,
+			btn.ENDLNG,
+			btn.NEXTTAXRATE,
+			btn.NEXTRATEDATE,
+			btn.SHORTID,
+			btn.TOLLROADID,
+			btn.SECTIONDIRECTION,
+			btn.BRANCHID,
+			btn.CD_OLDID,
+			btn.CD_LASTUPDATETIME,
+			btn.CD_DELETEFLAG,
+			btn.CD_INSERTTIME,
+			btn.OPENFLAG,
+			btn.REMARK
+		FROM
+			CD_PASS.BASE_SECTION btn
+		WHERE btn.CD_DELETEFLAG = 0
+	</select>
+    <select id="findRoadEnumOfFund" resultType="java.util.Map">
+SELECT DISTINCT
+	sqlbs.ID AS ENUMVALUE,
+	sqlbs.Name AS ENUMNAME
+FROM
+	CD_SYSTEM.SYS_DEPT sqlsd
+	left  JOIN CD_PASS.BASE_SECTION sqlbs ON substr(sqlsd.DEPT_LONG_ID,1,11) = sqlbs.ID where sqlbs.ID is not null and sqlsd.WORKFLOWDEPTROLE=2 CONNECT BY PRIOR sqlsd.ID = sqlsd.PARENT_ID START WITH sqlsd.ID =#{deptId}
+	</select>
+
+    <select id="findRoadEnumOfGrey" resultType="java.util.Map">
+			SELECT DISTINCT
+	to_char(wm_concat(sqlbs.ID)) AS ENUMVALUE,
+	'全部' AS ENUMNAME
+FROM
+	CD_SYSTEM.SYS_DEPT sqlsd
+	left  JOIN CD_PASS.BASE_SECTION sqlbs ON substr(sqlsd.DEPT_LONG_ID,1,11) = sqlbs.ID where sqlbs.ID is not null  and sqlsd.WORKFLOWDEPTROLE=2 CONNECT BY PRIOR sqlsd.ID = sqlsd.PARENT_ID START WITH sqlsd.ID =#{deptId}
+	union all
+SELECT DISTINCT
+	sqlbs.ID AS ENUMVALUE,
+	sqlbs.Name AS ENUMNAME
+FROM
+	CD_SYSTEM.SYS_DEPT sqlsd
+	left  JOIN CD_PASS.BASE_SECTION sqlbs ON substr(sqlsd.DEPT_LONG_ID,1,11) = sqlbs.ID where sqlbs.ID is not null and sqlsd.WORKFLOWDEPTROLE=2 CONNECT BY PRIOR sqlsd.ID = sqlsd.PARENT_ID START WITH sqlsd.ID =#{deptId}
+	</select>
+    <select id="findTollEnum" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseTollStationEntity">
+		SELECT
+			btn.SID,
+			btn.ID,
+			btn.NAME,
+			btn.TYPE,
+			btn.TOLLPLAZACOUNT,
+			btn.STATIONHEX,
+			btn.SHORTID,
+			btn.JS_PCOUNT,
+			btn.CD_OLDID,
+			btn.CD_LASTUPDATETIME,
+			btn.CD_DELETEFLAG,
+			btn.CD_INSERTTIME,
+			btn.LINETYPE,
+			btn.OPERATORS,
+			btn.DATAMERGEPOINT,
+			btn.IMEI,
+			btn.IP,
+			btn.SNMPVERSION,
+			btn.SNMPPORT,
+			btn.COMMUNITY,
+			btn.SECURITYNAME,
+			btn.SECURITYLEVEL,
+			btn.AUTHENTICATION,
+			btn.AUTHKEY,
+			btn.ENCRYPTION,
+			btn.SECRETKEY,
+			btn.STARTTIME,
+			btn.REMARK,
+			btn.SECTIONID
+		FROM
+			CD_BASE.BASE_TOLLSTATION btn
+		WHERE
+			btn.SECTIONID = #{sectionId,jdbcType=VARCHAR}
+	</select>
+
+    <select id="findBaseAgency" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseAgencyEntity">
+		SELECT
+			bay.SID,
+			bay.ID,
+			bay.NAME,
+			bay.CONTACT,
+			bay.TEL,
+			bay.STARTTIME,
+			bay.ENDTIME,
+			bay.CD_OLDID,
+			bay.CD_LASTUPDATETIME,
+			bay.CD_DELETEFLAG,
+			bay.CD_INSERTTIME
+		FROM
+			CD_BASE.BASE_AGENCY bay
+	</select>
+</mapper>

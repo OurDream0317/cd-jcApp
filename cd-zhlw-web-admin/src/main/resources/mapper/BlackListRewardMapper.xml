@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tuozhi.zhlw.admin.jc.mapper.BlackListRewardMapper">
+	<select id="getBlackListRewardDataByCondition" parameterType="Map" resultType="Map">
+		select t.*  from (
+		SELECT
+		rownum rn,
+		f.REQUESTID as AUDITID,
+		f.CARNUMBER as CARNUMBER,
+		to_char(f.CREATETIME,'yyyy-MM-dd HH:mm:ss') as AUDITCREATETIME,
+		f.FERRETOUTSTATIONID ,
+		d1.DEPT_NAME as HUNTSTATIONNAME,
+		b.REQUESTID as BLACKLISTID,
+		b.CREATEDEPTID,
+		d2.DEPT_LONG_ID,
+		d2.DEPT_NAME as BLACKLISTSTATIONNAME,
+		f.DISGORGEMENTMONEYNUMBER/100 as RECOVERFEE,
+		'30' as COMMISPROPOR,
+		(f.DISGORGEMENTMONEYNUMBER/100)*0.3*0.5 as REWARDFEE,
+		f.REQUESTDESCRIPTION as REQUESTDESCRIPTION
+		FROM
+		CD_JC.JC_FUNDS_REQUEST f inner join CD_JC.JC_BLACKLIST_REQUEST b on f.BLACKLISTNO=b.REQUESTID 
+		left join CD_SYSTEM.SYS_DEPT d1 on f.FERRETOUTSTATIONID=d1.DEPT_LONG_ID
+		left join CD_SYSTEM.SYS_DEPT d2 on b.CREATEDEPTID=d2.ID 
+		<where>
+		    B.LOGICTYPE = 1 AND B.DELETEFLAG = 1 AND B.REQUESTSTATUS = 2
+			<if test="carNum!=null">
+				f.CARNUMBER=#{carNum}
+			</if>
+			<if test="startTime!=null">
+			<![CDATA[
+			and	f.CREATETIME>=#{startTime}
+				]]>
+			</if>
+			<if test="endTime!=null">
+			<![CDATA[
+			and	f.CREATETIME <=#{endTime}
+				]]>
+			</if>
+			<if test="endIndex!=null">
+				<![CDATA[ and rownum < #{endIndex} ]]> 
+			</if>
+			
+			ORDER BY f.CREATETIME DESC
+			
+		</where>
+		) t 
+		<if test="startIndex!=null">
+			<![CDATA[ where t.rn >= #{startIndex} ]]> 
+		</if>
+		
+	</select>
+	<select id="getBlackListRewardTotalCountByCondition" parameterType="Map" resultType="Long">
+		SELECT
+		count(1) 
+		FROM
+		CD_JC.JC_FUNDS_REQUEST f inner join CD_JC.JC_BLACKLIST_REQUEST b on f.BLACKLISTNO=b.REQUESTID 
+
+		<where>
+			<if test="carNum!=null">
+				f.CARNUMBER=#{carNum}
+			</if>
+			<if test="startTime!=null">
+			<![CDATA[
+			and	f.CREATETIME>=#{startTime}
+				]]>
+			</if>
+			<if test="endTime!=null">
+			<![CDATA[
+			and	f.CREATETIME <=#{endTime}
+				]]>
+			</if>
+		</where>
+	</select>
+</mapper>

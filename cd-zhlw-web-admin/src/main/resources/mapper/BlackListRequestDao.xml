@@ -1,0 +1,1818 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+        namespace="com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper">
+
+    <select id="findAll">
+		SELECT * FROM CD_JC.JC_BLACKLIST_REQUEST
+	</select>
+
+    <select id="getCountByVehicle" resultType="java.util.Map">
+        SELECT s.deptname,s.createUserName,to_char(s.createtime,'yyyy-mm-dd HH24:mi:ss') createtime,to_char(s.RECOVERTIME,'yyyy-mm-dd HH24:mi:ss') RECOVERTIME from
+        (SELECT s.*,sd.dept_name deptname, jbr1.SREQUESTID SREQUESTID1 from CD_JC.JC_BLACKLIST_REQUEST s
+        left JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = s.REQUESTID and jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 2
+        left join cd_system.sys_dept sd on sd.id=s.CREATEDEPTID
+        where s.DELETEFLAG=1 and s.LOGICTYPE=1 ORDER BY s.CREATETIME
+        desc) s
+        <trim prefix="where" prefixOverrides="and">
+            and ROWNUM=1
+            <choose>
+                <when test="flag==1">
+                    and SREQUESTID1 is null
+                </when>
+                <otherwise>
+                    and SREQUESTID1 is not null
+                </otherwise>
+            </choose>
+            and CREATETIME>to_date(#{oldDate},'yyyy-mm-dd HH24:mi:ss')
+            <if test="carNumber!=null">
+                and CARNUMBER=#{carNumber}
+            </if>
+            <if test="carColour!=null">
+                and CARCOLOUR=#{carColour}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getJCBlackAttachmentByRequestId" resultType="java.lang.String">
+        SELECT jba.ATTACHMENTPATH from cd_jc.JC_BLACKLIST_ATTACHMENT jba LEFT JOIN
+        cd_jc.JC_BLACKLIST_REQUEST jbr on jba.REQUESTID=jbr.REQUESTID  and jbr.LOGICTYPE=1 and jbr.DELETEFLAG=1
+        <trim prefix="where" prefixOverrides="and">
+            and ( ATTACHMENTNAME like '%.xls' or ATTACHMENTNAME like '%.xlsx' or ATTACHMENTNAME like '%.csv')
+            and CREATETIME>to_date(#{oldDate},'yyyy-mm-dd HH24:mi:ss')
+            <if test="carNumber!=null">
+                and CARNUMBER=#{carNumber}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getAll" parameterType="Map"
+            resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        SELECT
+        *
+        FROM
+        CD_JC.JC_BLACKLIST_REQUEST
+
+        <where>
+            <if test="CARNUMBER!=null">
+                CARNUMBER=#{CARNUMBER}
+            </if>
+            <if test="REQUESTSTATUS!=null">
+                <![CDATA[
+			and	REQUESTSTATUS=#{REQUESTSTATUS}
+				]]>
+            </if>
+            <if test="START_TIME!=null">
+                <![CDATA[
+			and	FERRETOUTSTATIONTIME>=#{START_TIME}
+				]]>
+            </if>
+            <if test="END_TIME!=null">
+                <![CDATA[
+			and	FERRETOUTSTATIONTIME<=#{END_TIME}
+				]]>
+            </if>
+            and DELETEFLAG=0
+            and LOGICTYPE=1
+
+        </where>
+    </select>
+
+    <insert id="save"
+            parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+
+		insert into JC_BLACKLIST_REQUEST (
+		REQUESTID,CARNUMBER,CARFEATURE,CARTYPE,EXITSTATIONID,
+		ELUDEMONEYNUMBER,ELUDEMONEYTYPE,REQUESTDESCRIPTION,CREATETIME,LOGINUSERID,
+		CREATEUSERNAME,REQUESTSTATUS,CREATEDEPTID,ENTRYSTATIONID,ENTRYSTATIONTIME,
+		EXITSTATIONTIME,TOTALWEIGHT,FACTMONEYNUMBER,AXLETYPE,CURRENTFLOWPATHID,
+		LOGICTYPE,FERRETOUTSTATIONID,FERRETOUTSTATIONTIME,DISGORGEMENTMONEYNUMBER,CARDID,
+		HAVEDAMAGEDEVICE,HAVEVIDEO,HAVECARD,WORKFLOW_DEFINATION_ID,ELUDEMONEYTYPEITEM,
+		SUMTOTAL,CPUCARDID,OBUID,RECOVERTIME,PHYSICALTRUTHSTATUS,
+		DEVCARNUMBER,PHONE
+		)
+		values(
+		#{REQUESTID}, #{CARNUMBER},#{CARFEATURE},
+		#{CARTYPE}, #{EXITSTATIONID},
+		#{ELUDEMONEYNUMBER},
+		#{ELUDEMONEYTYPE},#{REQUESTDESCRIPTION},
+		#{CREATETIME}, #{LOGINUSERID},
+		#{CREATEUSERNAME}, #{REQUESTSTATUS},#{CREATEDEPTID},
+		#{ENTRYSTATIONID},
+		#{ENTRYSTATIONTIME},
+		#{EXITSTATIONTIME},
+		#{TOTALWEIGHT},#{FACTMONEYNUMBER}, #{AXLETYPE}, #{CURRENTFLOWPATHID},
+		#{LOGICTYPE}, #{FERRETOUTSTATIONID},#{FERRETOUTSTATIONTIME},
+		#{DISGORGEMENTMONEYNUMBER}, #{CARDID},
+		#{HAVEDAMAGEDEVICE},
+		#{HAVEVIDEO},#{HAVECARD}, #{WORKFLOW_DEFINATION_ID},
+		#{ELUDEMONEYTYPEITEM},
+		#{SUMTOTAL}, #{CPUCARDID},#{OBUID},
+		#{RECOVERTIME}, #{PHYSICALTRUTHSTATUS},
+		#{DEVCARNUMBER}, #{PHONE}
+		)
+	</insert>
+
+    <insert id="insert"
+            parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		INSERT INTO CD_JC.JC_BLACKLIST_REQUEST (
+		REQUESTID,
+		CARNUMBER,
+		CARFEATURE,
+		CARTYPE,
+		AXLETYPE,
+		INVESTIGATIONID,
+		SEAT_NUM,
+		ELUDEMONEYTYPE,
+		ELUDEMONEYTYPEITEM,
+		ENTRYSTATIONID,
+		FACTMONEYNUMBER,
+		EXITSTATIONID,
+		TOTALWEIGHT,
+		HAVEDAMAGEDEVICE,
+		HAVEVIDEO,
+		CREATEUSERNAME,
+		HAVECARD,
+		PHONE,
+		CARDID,
+		SUMTOTAL,
+		PHYSICALTRUTHSTATUS,
+		CPUCARDID,
+		DEVCARNUMBER,
+		OBUID,
+		RECOVERTIME,
+		REQUESTDESCRIPTION,
+		DELETEFLAG,
+		LOGICTYPE,
+		WORKFLOW_DEFINATION_ID
+		)
+		VALUES
+		( CD_JC.SEQ_JC_BLACKLIST_REQUEST.nextval,
+		#{carNumber,jdbcType=VARCHAR},#{carFeature,jdbcType=VARCHAR},#{carType,jdbcType=VARCHAR},#{axleType,jdbcType=VARCHAR},
+		#{investigationId,jdbcType=VARCHAR},#{seatNum,jdbcType=NUMERIC},#{eludeMoneyType,jdbcType=VARCHAR},#{eludeMoneyTypeItem,jdbcType=VARCHAR},
+		#{entryStationId,jdbcType=VARCHAR},#{factMoneyNumber,jdbcType=VARCHAR},#{exitStationId,jdbcType=VARCHAR},#{totalWeight,jdbcType=VARCHAR},
+		#{haveDamageDevice,jdbcType=VARCHAR},#{haveVideo,jdbcType=VARCHAR},#{createUserName,jdbcType=VARCHAR},#{haveCard,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},#{cardId,jdbcType=NUMERIC},#{sumtotal,jdbcType=NUMERIC},
+		#{physicalTruthStatus,jdbcType=NUMERIC},#{cpuCardId,jdbcType=VARCHAR},#{devcarNumber,jdbcType=VARCHAR},#{obuId,jdbcType=VARCHAR},
+		#{recoverTime,jdbcType=DATE},#{requestDescription,jdbcType=VARCHAR},0,#{logicType,jdbcType=NUMERIC},999
+		)
+	</insert>
+
+    <update id="deleteBlackListInfo" parameterType="java.util.List">
+
+        update CD_JC.JC_BLACKLIST_REQUEST
+        set
+        DELETEFLAG=1
+
+        where REQUESTID IN
+        <foreach collection="list" item="requestId" index="index"
+                 open="(" close=")" separator=",">
+            #{requestId}
+        </foreach>
+
+    </update>
+
+    <select id="findAllById" parameterType="Map"
+            resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		SELECT * FROM CD_JC.JC_BLACKLIST_REQUEST where
+		REQUESTID=#{requestId}
+	</select>
+
+    <update id="updateBlackList"
+            parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+
+		Update CD_JC.JC_BLACKLIST_REQUEST
+		set
+		CARNUMBER=#{carNumber},CARFEATURE=#{carFeature},CARTYPE=#{carType},
+		AXLETYPE=#{axleType},INVESTIGATIONID=#{investigationId},SEAT_NUM=#{seatNum},
+		ELUDEMONEYTYPE=#{eludeMoneyType},ELUDEMONEYTYPEITEM=#{eludeMoneyTypeItem},ENTRYSTATIONID=#{entryStationId},
+		FACTMONEYNUMBER=#{factMoneyNumber},EXITSTATIONID=#{exitStationId},TOTALWEIGHT=#{totalWeight},
+		HAVEDAMAGEDEVICE=#{haveDamageDevice},HAVEVIDEO=#{haveVideo},CREATEUSERNAME=#{createUserName},
+		HAVECARD=#{haveCard} ,PHONE=#{phone},CARDID=#{cardId},
+		SUMTOTAL=#{sumtotal},PHYSICALTRUTHSTATUS=#{physicalTruthStatus},CPUCARDID=#{cpuCardId},
+		DEVCARNUMBER=#{devcarNumber},OBUID=#{obuId},RECOVERTIME=#{recoverTime},
+		REQUESTDESCRIPTION=#{requestDescription}
+		where REQUESTID=#{requestId}
+	</update>
+
+    <insert id="saveBlackListForm" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        <selectKey keyProperty="requestId" resultType="java.lang.Integer" order="AFTER">
+            select CD_JC.SEQ_JC_BLACKLIST_REQUEST.CURRVAL from dual
+        </selectKey>
+        INSERT INTO CD_JC.JC_BLACKLIST_REQUEST (
+        REQUESTID,
+        CARNUMBER,
+        FERRETOUTSTATIONID,
+        CREATEUSERNAME,
+        CPUCARDID,
+        FERRETOUTSTATIONTIME,
+        DISGORGEMENTMONEYNUMBER,
+        DEVCARNUMBER,
+        OBUID,
+        REQUESTDESCRIPTION,
+        DELETEFLAG,
+        LOGICTYPE,
+        WORKFLOW_DEFINATION_ID
+        )
+        VALUES
+        (
+        CD_JC.SEQ_JC_BLACKLIST_REQUEST.nextval,
+        #{carNumber,jdbcType=VARCHAR},
+        #{ferretOutStationId,jdbcType=VARCHAR},
+        #{createUserName,jdbcType=VARCHAR},
+        #{cpuCardId,jdbcType=VARCHAR},
+        #{ferretOutStationTime,jdbcType=DATE},
+        #{disgorgementMoneyNumber,jdbcType=VARCHAR},
+        #{devcarNumber,jdbcType=VARCHAR},
+        #{obuId,jdbcType=VARCHAR},
+        #{requestDescription,jdbcType=VARCHAR},0,#{logicType,jdbcType=NUMERIC},999
+        )
+    </insert>
+
+    <select id="findAllRevocation" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		SELECT
+		*
+		FROM
+		CD_JC.JC_BLACKLIST_REQUEST
+		WHERE
+		DELETEFLAG=0
+		AND LOGICTYPE=2
+
+	</select>
+
+    <select id="getDataByParam" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        jbr.CARFEATURE,
+        jbr.CARTYPE,
+        jbr.EXITSTATIONID,
+        ROUND(jbr.ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,
+        ROUND(jbr.PAYMONEYNUMBER/100,2) PAYMONEYNUMBER,
+        jbr.ELUDEMONEYTYPE,
+        jbr.REQUESTDESCRIPTION,
+        jbr.CREATETIME,
+        jbr.LOGINUSERID,
+        jbr.CREATEUSERNAME,
+        jbr.REQUESTSTATUS,
+        jbr.CREATEDEPTID,
+        jbr.ENTRYSTATIONID,
+        jbr.ENTRYSTATIONTIME,
+        jbr.EXITSTATIONTIME,
+        jbr.TOTALWEIGHT,
+        ROUND(jbr.FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,
+        jbr.AXLETYPE,
+        jbr.CURRENTFLOWPATHID,
+        jbr.LOGICTYPE,
+        jbr.FERRETOUTSTATIONID,
+        jbr.FERRETOUTSTATIONTIME,
+        ROUND(jbr.DISGORGEMENTMONEYNUMBER/100,2) DISGORGEMENTMONEYNUMBER,
+        jbr.CARDID,
+        jbr.HAVEDAMAGEDEVICE,
+        jbr.HAVEVIDEO,
+        jbr.HAVECARD,
+        jbr.WORKFLOW_DEFINATION_ID,
+        jbr.ELUDEMONEYTYPEITEM,
+        jbr.SUMTOTAL,
+        jbr.CPUCARDID,
+        jbr.OBUID,
+        jbr.RECOVERTIME,
+        jbr.PHYSICALTRUTHSTATUS,
+        jbr.DEVCARNUMBER,
+        jbr.PHONE,
+        jbr.INVESTIGATIONID,
+        jbr.SEAT_NUM,
+        jbr.DELETEFLAG,
+        jbr.CARCOLOUR,
+        jbr.MEDIATYPE,
+        jbr.SREQUESTID,
+        t.codename ISSUER,
+        jbf.OPERATEDEPTID DEPTID,
+        jbf.CREATETIME FlowPathCREATETIME,
+        bd1.DEPT_NAME,
+        bd2.DEPT_NAME AS CreateStationName,
+        (SELECT count(1) FROM "CD_JC"."JC_EVADETOLL_RECORD" jer WHERE jer.BLACKLISTADDID = jbr.REQUESTID )
+        ADDEVADETOLLCOUNT,
+        bs1.NAME ENSECTIONNAME,
+        bs2.NAME EXSECTIONNAME,
+        bt1.NAME ENTRYSTATIONNAME,
+        bt2.NAME EXITSTATIONNAME,
+        bt3.NAME FERRETOUTSTATIONNAME,
+        jbr1.SREQUESTID SREQUESTID1,
+        jbr.REPAIRFEEUSERNAME,
+        jbr.REPAIRFEEPHONE,
+        jbr.CARDLOSSFEE /100 CARDLOSSFEE
+        FROM
+        "CD_JC"."JC_BLACKLIST_REQUEST" jbr
+        left JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID and jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 2
+        left join CD_ETC.etc_system_code t on jbr.issuer=t.codevalue and t.typeid=62 and t.codevalue like '%1001'
+        INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd2 ON jbr.CREATEDEPTID = bd2.ID
+        LEFT JOIN CD_PASS.BASE_SECTION bs1 ON bs1.ID = jbr.ENSECTIONID
+        LEFT JOIN CD_PASS.BASE_SECTION bs2 ON bs2.ID = jbr.EXSECTIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt1 ON bt1.ID =
+        jbr.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID =
+        jbr.EXITSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID =
+        jbr.ferretOutStationId
+        WHERE jbr.DELETEFLAG = 1
+        <if test="revokeStatus!=null">
+            <choose>
+                <when test="revokeStatus==1">
+                    and jbr1.SREQUESTID is not null
+                </when>
+                <otherwise>
+                    and jbr1.SREQUESTID is null
+                </otherwise>
+            </choose>
+        </if>
+        <if test="blackListRequest.logicType != null">
+            AND jbr.LOGICTYPE = #{blackListRequest.logicType,jdbcType=NUMERIC}
+        </if>
+        <if test="deptId != null">
+            AND jbr.REQUESTID IN (SELECT DISTINCT (jdf2.REQUESTID) FROM "CD_JC"."JC_BLACKLIST_FLOWPATH" jdf2 WHERE
+            jdf2.OPERATEDEPTID = #{deptId})
+        </if>
+        <if test="blackListRequest.carNumber != null">
+            AND jbr.CARNUMBER LIKE '%' || #{blackListRequest.carNumber} || '%'
+        </if>
+        <if test="blackListRequest.beginTime != null">
+            <![CDATA[AND jbr.CREATETIME >= #{blackListRequest.beginTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="blackListRequest.endDate != null">
+            <![CDATA[AND jbr.CREATETIME <= #{blackListRequest.endDate,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="blackListRequest.carType != null">
+            AND jbr.CARTYPE = #{blackListRequest.carType,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.exSectionId != null and blackListRequest.exSectionId != ''">
+            AND jbr.EXSECTIONID = #{blackListRequest.exSectionId,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyType != null">
+            AND jbr.ELUDEMONEYTYPE = #{blackListRequest.eludeMoneyType,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyTypeItem != null">
+            AND jbr.ELUDEMONEYTYPEITEM = #{blackListRequest.eludeMoneyTypeItem,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyNumber != null">
+            AND jbr.eludeMoneyNumber = #{blackListRequest.eludeMoneyNumber,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.disgorgementMoneyNumber != null">
+            AND jbr.disgorgementMoneyNumber = #{blackListRequest.disgorgementMoneyNumber,jdbcType=NUMERIC}
+        </if>
+        <if test="requestStatuss1 != null or requestStatuss2 != null">
+            AND (
+            <if test="requestStatuss1 != null">
+                (jbr.requeststatus IN
+                <foreach item="requestStatus" collection="requestStatuss1" separator="," open="(" close=")" index="">
+                    #{requestStatus,jdbcType=NUMERIC}
+                </foreach>
+                <if test="requestDeptStatus == 1 and deptId != null">
+                    AND jbf.OPERATEDEPTID = #{deptId}
+                </if>
+                <if test="requestDeptStatus == 2 and deptId != null">
+                    AND jbf.OPERATEDEPTID != #{deptId}
+                </if>
+                )
+            </if>
+            <if test="requestStatuss1 != null and requestStatuss2 != null">
+                OR
+            </if>
+            <if test="requestStatuss2 != null">
+                jbr.requeststatus IN
+                <foreach item="requestStatus" collection="requestStatuss2" separator="," open="(" close=")" index="">
+                    #{requestStatus,jdbcType=NUMERIC}
+                </foreach>
+            </if>
+            )
+        </if>
+        ORDER BY jbf.CREATETIME DESC
+    </select>
+
+    <select id="getExportDataByParam" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        jbr.CARFEATURE,
+        jbr.CARTYPE,
+        jbr.EXITSTATIONID,
+        ROUND(jbr.ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,
+        jbr.ELUDEMONEYTYPE,
+        jbr.REQUESTDESCRIPTION,
+        jbr.CREATETIME,
+        jbr.LOGINUSERID,
+        jbr.CREATEUSERNAME,
+        jbr.REQUESTSTATUS,
+        jbr.CREATEDEPTID,
+        jbr.ENTRYSTATIONID,
+        jbr.ENTRYSTATIONTIME,
+        jbr.EXITSTATIONTIME,
+        jbr.TOTALWEIGHT,
+        ROUND(jbr.FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,
+        jbr.AXLETYPE,
+        jbr.CURRENTFLOWPATHID,
+        jbr.LOGICTYPE,
+        jbr.FERRETOUTSTATIONID,
+        jbr.FERRETOUTSTATIONTIME,
+        ROUND(jbr.DISGORGEMENTMONEYNUMBER/100,2) DISGORGEMENTMONEYNUMBER,
+        jbr.CARDID,
+        jbr.HAVEDAMAGEDEVICE,
+        jbr.HAVEVIDEO,
+        jbr.HAVECARD,
+        jbr.WORKFLOW_DEFINATION_ID,
+        jbr.ELUDEMONEYTYPEITEM,
+        jbr.SUMTOTAL,
+        jbr.CPUCARDID,
+        jbr.OBUID,
+        jbr.RECOVERTIME,
+        jbr.PHYSICALTRUTHSTATUS,
+        jbr.DEVCARNUMBER,
+        jbr.PHONE,
+        jbr.INVESTIGATIONID,
+        jbr.SEAT_NUM,
+        jbr.DELETEFLAG,
+        jbr.CARCOLOUR,
+        jbr.MEDIATYPE,
+        jbf.OPERATEDEPTID DEPTID,
+        jbf.CREATETIME FlowPathCREATETIME,
+        jbr.CARDLOSSFEE / 100 CARDLOSSFEE,
+        bd1.DEPT_NAME,
+        bd2.DEPT_NAME AS CreateStationName,
+        (SELECT count(1) FROM "CD_JC"."JC_EVADETOLL_RECORD" jer WHERE jer.BLACKLISTADDID = jbr.REQUESTID )
+        ADDEVADETOLLCOUNT,
+        bs1.NAME ENSECTIONNAME,
+        bs2.NAME EXSECTIONNAME,
+        bt1.NAME ENTRYSTATIONNAME,
+        bt2.NAME EXITSTATIONNAME,
+        bt3.NAME ferretOutStationName,
+        sed1.ENUM_NAME ELUDEMONEYTYPENAME,
+        CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN
+        jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END
+        ELUDEMONEYTYPEITEMNAME,
+        sed6.ENUM_NAME CARCOLOURNAME,
+        sed7.ENUM_NAME CARTYPENAME,
+        sed8.ENUM_NAME HAVECARDNAME,
+        sed9.ENUM_NAME HAVEDAMAGEDEVICENAME,
+        sed10.ENUM_NAME HAVEVIDEONAME
+        FROM
+        "CD_JC"."JC_BLACKLIST_REQUEST" jbr
+        left JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID and jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 2
+        INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd2 ON jbr.CREATEDEPTID = bd2.ID
+        LEFT JOIN CD_PASS.BASE_SECTION bs1 ON bs1.ID = jbr.ENSECTIONID
+        LEFT JOIN CD_PASS.BASE_SECTION bs2 ON bs2.ID = jbr.EXSECTIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt1 ON bt1.ID =
+        jbr.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID =
+        jbr.EXITSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID =
+        jbr.ferretOutStationId
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARCOLOUR AND sed6.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed7 ON sed7.ENUM_VALUE = jbr.CARTYPE AND sed7.ENUM_ID = 40
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed8 ON sed8.ENUM_VALUE = jbr.HAVECARD AND sed8.ENUM_ID = 2025
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed9 ON sed9.ENUM_VALUE = jbr.HAVEDAMAGEDEVICE AND sed9.ENUM_ID = 2023
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed10 ON sed10.ENUM_VALUE = jbr.HAVEVIDEO AND sed10.ENUM_ID = 2024
+        WHERE jbr.DELETEFLAG = 1
+        <if test="revokeStatus!=null">
+            <choose>
+                <when test="revokeStatus==1">
+                    and jbr1.SREQUESTID is not null
+                </when>
+                <otherwise>
+                    and jbr1.SREQUESTID is null
+                </otherwise>
+            </choose>
+        </if>
+        <if test="blackListRequest.logicType != null">
+            AND jbr.LOGICTYPE = #{blackListRequest.logicType,jdbcType=NUMERIC}
+        </if>
+        <if test="deptId != null">
+            AND jbr.REQUESTID IN (SELECT DISTINCT (jdf2.REQUESTID) FROM "CD_JC"."JC_BLACKLIST_FLOWPATH" jdf2 WHERE
+            jdf2.OPERATEDEPTID = #{deptId})
+        </if>
+        <if test="blackListRequest.carNumber != null">
+            AND jbr.CARNUMBER LIKE '%' || #{blackListRequest.carNumber} || '%'
+        </if>
+        <if test="blackListRequest.beginTime != null">
+            <![CDATA[AND jbr.CREATETIME >= #{blackListRequest.beginTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="blackListRequest.endDate != null">
+            <![CDATA[AND jbr.CREATETIME <= #{blackListRequest.endDate,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="blackListRequest.carType != null">
+            AND jbr.CARTYPE = #{blackListRequest.carType,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.exSectionId != null and blackListRequest.exSectionId != ''">
+            AND jbr.EXSECTIONID = #{blackListRequest.exSectionId,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyType != null">
+            AND jbr.ELUDEMONEYTYPE = #{blackListRequest.eludeMoneyType,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyTypeItem != null">
+            AND jbr.ELUDEMONEYTYPEITEM = #{blackListRequest.eludeMoneyTypeItem,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyNumber != null">
+            AND jbr.eludeMoneyNumber = #{blackListRequest.eludeMoneyNumber,jdbcType=NUMERIC}
+        </if>
+        <if test="requestStatuss1 != null or requestStatuss2 != null">
+            AND (
+            <if test="requestStatuss1 != null">
+                (jbr.requeststatus IN
+                <foreach item="requestStatus" collection="requestStatuss1" separator="," open="(" close=")" index="">
+                    #{requestStatus,jdbcType=NUMERIC}
+                </foreach>
+                <if test="requestDeptStatus == 1">
+                    AND jbf.OPERATEDEPTID = #{deptId}
+                </if>
+                <if test="requestDeptStatus == 2">
+                    AND jbf.OPERATEDEPTID != #{deptId}
+                </if>
+                )
+            </if>
+            <if test="requestStatuss1 != null and requestStatuss2 != null">
+                OR
+            </if>
+            <if test="requestStatuss2 != null">
+                jbr.requeststatus IN
+                <foreach item="requestStatus" collection="requestStatuss2" separator="," open="(" close=")" index="">
+                    #{requestStatus,jdbcType=NUMERIC}
+                </foreach>
+            </if>
+            )
+        </if>
+        ORDER BY jbf.CREATETIME DESC
+    </select>
+
+    <select id="exportBlacklistVehicleRevocation" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        SELECT
+        jbr.CARNUMBER,
+        jbr1.CARFEATURE,
+        t2.CARFEATURE CARFEATURE1,
+        ROUND(jbr1.ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,
+        ROUND(t2.ELUDEMONEYNUMBER,2) ELUDEMONEYNUMBER1,
+        jbr.REQUESTDESCRIPTION,
+        jbr.CREATETIME,
+        jbr1.EXITSTATIONTIME,
+        to_char(t2.EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME1,
+        jbr1.AXLETYPE,
+        jbr.FERRETOUTSTATIONTIME,
+        ROUND(jbr.DISGORGEMENTMONEYNUMBER/100,2) DISGORGEMENTMONEYNUMBER,
+        jbr.CPUCARDID,
+        jbr.OBUID,
+        jbr1.SEAT_NUM,
+        bs1.NAME ENSECTIONNAME,
+        bs2.NAME EXSECTIONNAME,
+        olddept.deptname EXITSTATIONNAME1,
+        bt2.NAME EXITSTATIONNAME,
+        bt3.NAME ferretOutStationName,
+        sed1.ENUM_NAME ELUDEMONEYTYPENAME,
+        CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN
+        jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END
+        ELUDEMONEYTYPEITEMNAME,
+        sed6.ENUM_NAME CARCOLOURNAME,
+        sed7.ENUM_NAME CARTYPENAME
+        FROM
+        "CD_JC"."JC_BLACKLIST_REQUEST" jbr
+        INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+        LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr.SREQUESTID=jbr1.REQUESTID
+        left join JC_BLACKLIST_REQUEST@db_link3628 t2 on jbr.SREQUESTID=t2.REQUESTID and t2.LOGICTYPE = 1
+        left join base_dept@db_link3628 olddept on t2.CREATEDEPTID = olddept.deptid
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd2 ON jbr.CREATEDEPTID = bd2.ID
+        LEFT JOIN CD_PASS.BASE_SECTION bs1 ON bs1.ID = jbr.ENSECTIONID
+        LEFT JOIN CD_PASS.BASE_SECTION bs2 ON bs2.ID = jbr.EXSECTIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID =
+        jbr1.EXITSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID =
+        jbr.ferretOutStationId
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARCOLOUR AND sed6.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed7 ON sed7.ENUM_VALUE = jbr.CARTYPE AND sed7.ENUM_ID = 40
+        WHERE jbr.DELETEFLAG = 1
+        <if test="blackListRequest.logicType != null">
+            AND jbr.LOGICTYPE = #{blackListRequest.logicType,jdbcType=NUMERIC}
+        </if>
+        <if test="deptId != null">
+            AND jbr.REQUESTID IN (SELECT DISTINCT (jdf2.REQUESTID) FROM "CD_JC"."JC_BLACKLIST_FLOWPATH" jdf2 WHERE
+            jdf2.OPERATEDEPTID = #{deptId})
+        </if>
+        <if test="blackListRequest.carNumber != null">
+            AND jbr.CARNUMBER LIKE '%' || #{blackListRequest.carNumber} || '%'
+        </if>
+        <if test="blackListRequest.beginTime != null">
+            <![CDATA[AND jbr.CREATETIME >= #{blackListRequest.beginTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="blackListRequest.endDate != null">
+            <![CDATA[AND jbr.CREATETIME <= #{blackListRequest.endDate,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="blackListRequest.carType != null">
+            AND jbr.CARTYPE = #{blackListRequest.carType,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.exSectionId != null and blackListRequest.exSectionId != ''">
+            AND jbr.EXSECTIONID = #{blackListRequest.exSectionId,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyType != null">
+            AND jbr.ELUDEMONEYTYPE = #{blackListRequest.eludeMoneyType,jdbcType=NUMERIC}
+        </if>
+        <if test="blackListRequest.eludeMoneyTypeItem != null">
+            AND jbr.ELUDEMONEYTYPEITEM = #{blackListRequest.eludeMoneyTypeItem,jdbcType=NUMERIC}
+        </if>
+        <if test="requestStatuss1 != null or requestStatuss2 != null">
+            AND (
+            <if test="requestStatuss1 != null">
+                (jbr.requeststatus IN
+                <foreach item="requestStatus" collection="requestStatuss1" separator="," open="(" close=")" index="">
+                    #{requestStatus,jdbcType=NUMERIC}
+                </foreach>
+                <if test="requestDeptStatus == 1">
+                    AND jbf.OPERATEDEPTID = #{deptId}
+                </if>
+                <if test="requestDeptStatus == 2">
+                    AND jbf.OPERATEDEPTID != #{deptId}
+                </if>
+                )
+            </if>
+            <if test="requestStatuss1 != null and requestStatuss2 != null">
+                OR
+            </if>
+            <if test="requestStatuss2 != null">
+                jbr.requeststatus IN
+                <foreach item="requestStatus" collection="requestStatuss2" separator="," open="(" close=")" index="">
+                    #{requestStatus,jdbcType=NUMERIC}
+                </foreach>
+            </if>
+            )
+        </if>
+        ORDER BY jbf.CREATETIME DESC
+    </select>
+    <select id="getDataByRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		SELECT
+		    jbr.cardLossFee /100 cardLossFee,
+			jbr.REQUESTID,
+			jbr.CARNUMBER,
+			jbr.CARFEATURE,
+			jbr.CARTYPE,
+			vev.ENUM_NAME CARTYPENAME,
+			jbr.EXITSTATIONID,
+			ROUND(jbr.ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,
+			 ROUND(jbr.PAYMONEYNUMBER/100,2) PAYMONEYNUMBER,
+			jbr.ELUDEMONEYTYPE,
+			jbr.REQUESTDESCRIPTION,
+			jbr.CREATETIME,
+			jbr.LOGINUSERID,
+			jbr.CREATEUSERNAME,
+			jbr.REQUESTSTATUS,
+			jbr.CREATEDEPTID,
+			jbr.ENTRYSTATIONID,
+			jbr.ENTRYSTATIONTIME,
+			jbr.EXITSTATIONTIME,
+			jbr.TOTALWEIGHT,
+			ROUND(jbr.FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,
+			jbr.AXLETYPE,
+			jbr.CURRENTFLOWPATHID,
+			jbr.LOGICTYPE,
+			jbr.FERRETOUTSTATIONID,
+			jbr.FERRETOUTSTATIONTIME,
+			ROUND(jbr.DISGORGEMENTMONEYNUMBER/100,2) DISGORGEMENTMONEYNUMBER,
+			jbr.CARDID,
+			jbr.HAVEDAMAGEDEVICE,
+			jbr.HAVEVIDEO,
+			jbr.HAVECARD,
+			jbr.WORKFLOW_DEFINATION_ID WORKFLOWDEFINATIONID,
+		    jbr.eludeMoneyTypeItem,
+			jbr.SUMTOTAL,
+			jbr.CPUCARDID,
+			jbr.OBUID,
+			jbr.RECOVERTIME,
+			jbr.PHYSICALTRUTHSTATUS,
+			jbr.DEVCARNUMBER,
+			jbr.PHONE,
+			jbr.INVESTIGATIONID,
+			jbr.SEAT_NUM SEATNUM,
+			jbr.DELETEFLAG,
+			jbr.CARCOLOUR,
+			vvc.ENUM_NAME carColourName,
+			jbr.MEDIATYPE,
+			jbf.OPERATEDEPTID DEPTID,
+			jbf.FLOWPATHSTATUS FLOWPATHSTATUS,
+			jbf.WORKFLOWNODEID,
+			t.codename ISSUER,
+			to_char(jbf.CREATETIME, 'yyyy-mm-dd hh24:mi:ss' ) AS FlowPathCREATETIME,
+			bd1.DEPT_NAME,
+			bd2.DEPT_NAME AS CreateStationName,
+			(SELECT count(1) FROM "CD_JC"."JC_EVADETOLL_RECORD" jer WHERE jer.BLACKLISTADDID = jbr.REQUESTID ) ADDEVADETOLLCOUNT,
+			bs1.NAME ENSECTIONNAME,
+			bs2.NAME EXSECTIONNAME,
+			bt1.NAME ENTRYSTATIONNAME,
+			bt2.NAME EXITSTATIONNAME,
+			bt3.NAME ferretOutStationName,
+			   sed1.ENUM_NAME ELUDEMONEYTYPENAME,
+        CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN
+        jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END
+        ELUDEMONEYTYPEITEMNAME,
+            sed8.ENUM_NAME HAVECARDNAME,
+            jbr1.EXITSTATIONTIME EXITSTATIONTIME1,
+             bt4.NAME  EXITSTATIONNAME1,
+             jbr1.PHONE PHONE1
+		FROM
+		"CD_JC"."JC_BLACKLIST_REQUEST" jbr
+		 left JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr.SREQUESTID = jbr1.REQUESTID and jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 1
+		left join CD_ETC.etc_system_code t on jbr.issuer=t.codevalue and t.typeid=62 and t.codevalue like '%1001'
+		left join cd_system.V_ENUM_VEHICLETYPE vev on vev.ENUM_VALUE=jbr.CARTYPE
+		left join cd_system.V_VEHICLEPLATE_COLOR vvc on vvc.ENUM_VALUE=jbr.CARCOLOUR
+		INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+		LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+		LEFT JOIN CD_SYSTEM.SYS_DEPT bd2 ON jbr.CREATEDEPTID = bd2.ID
+		LEFT JOIN CD_PASS.BASE_SECTION bs1 ON bs1.ID = jbr.ENSECTIONID
+		LEFT JOIN CD_PASS.BASE_SECTION bs2 ON bs2.ID = jbr.EXSECTIONID
+	 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91
+       LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed8 ON sed8.ENUM_VALUE = jbr1.HAVECARD AND sed8.ENUM_ID = 2025
+		LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt1 ON bt1.ID = jbr.ENTRYSTATIONID
+		LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = jbr.EXITSTATIONID
+				LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = jbr.ferretOutStationId
+		   LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt4 ON bt4.ID =
+        jbr1.EXITSTATIONID
+		WHERE
+		  	jbr.REQUESTID = #{requestId}
+	</select>
+
+    <update id="updateDataByRequestId" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        UPDATE "CD_JC"."JC_BLACKLIST_REQUEST"
+        <set>
+            <if test="currentFlowpathId != null">
+                CURRENTFLOWPATHID = #{currentFlowpathId,jdbcType=NUMERIC},
+            </if>
+            <if test="requestStatus != null">
+                REQUESTSTATUS = #{requestStatus,jdbcType=NUMERIC},
+            </if>
+        </set>
+        WHERE
+        REQUESTID = #{requestId,jdbcType=NUMERIC}
+    </update>
+
+    <insert id="insertData" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        <selectKey resultType="java.lang.Long" keyProperty="requestId" keyColumn="REQUESTID" order="AFTER">
+            select TO_NUMBER(to_char(sysdate,'yyyymmdd')||"CD_JC"."SEQ_JC_BLACKLIST_REQUEST".CURRVAL) FROM DUAL
+        </selectKey>
+        INSERT INTO "CD_JC"."JC_BLACKLIST_REQUEST"
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            REQUESTID,
+            <if test="carNumber != null">
+                CARNUMBER,
+            </if>
+            <if test="carFeature != null">
+                CARFEATURE,
+            </if>
+            <if test="carType != null">
+                CARTYPE,
+            </if>
+            <if test="exitStationId != null">
+                EXITSTATIONID,
+            </if>
+            <if test="eludeMoneyNumber != null">
+                ELUDEMONEYNUMBER,
+            </if>
+            <if test="eludeMoneyType != null">
+                ELUDEMONEYTYPE,
+            </if>
+            <if test="requestDescription != null">
+                REQUESTDESCRIPTION,
+            </if>
+            <if test="createTime != null">
+                CREATETIME,
+            </if>
+            <if test="loginUserId != null">
+                LOGINUSERID,
+            </if>
+            <if test="createUserName != null">
+                CREATEUSERNAME,
+            </if>
+            <if test="requestStatus != null">
+                REQUESTSTATUS,
+            </if>
+            <if test="createDeptid != null">
+                CREATEDEPTID,
+            </if>
+            <if test="entryStationId != null">
+                ENTRYSTATIONID,
+            </if>
+            <if test="entryStationTime != null">
+                ENTRYSTATIONTIME,
+            </if>
+            <if test="exitStationTime != null">
+                EXITSTATIONTIME,
+            </if>
+            <if test="totalWeight != null">
+                TOTALWEIGHT,
+            </if>
+            <if test="factMoneyNumber != null">
+                FACTMONEYNUMBER,
+            </if>
+            <if test="axleType != null">
+                AXLETYPE,
+            </if>
+            <if test="currentFlowpathId != null">
+                CURRENTFLOWPATHID,
+            </if>
+            <if test="logicType != null">
+                LOGICTYPE,
+            </if>
+            <if test="ferretOutStationId != null">
+                FERRETOUTSTATIONID,
+            </if>
+            <if test="ferretOutStationTime != null">
+                FERRETOUTSTATIONTIME,
+            </if>
+            <if test="disgorgementMoneyNumber != null">
+                DISGORGEMENTMONEYNUMBER,
+            </if>
+            <if test="cardId != null">
+                CARDID,
+            </if>
+            <if test="haveDamageDevice != null">
+                HAVEDAMAGEDEVICE,
+            </if>
+            <if test="haveVideo != null">
+                HAVEVIDEO,
+            </if>
+            <if test="haveCard != null">
+                HAVECARD,
+            </if>
+            <if test="workflowDefinationId != null">
+                WORKFLOW_DEFINATION_ID,
+            </if>
+            <if test="eludeMoneyTypeItem != null">
+                ELUDEMONEYTYPEITEM,
+            </if>
+            <if test="sumtotal != null">
+                SUMTOTAL,
+            </if>
+            <if test="cpuCardId != null">
+                CPUCARDID,
+            </if>
+            <if test="obuId != null">
+                OBUID,
+            </if>
+            <if test="recoverTime != null">
+                RECOVERTIME,
+            </if>
+            <if test="physicalTruthStatus != null">
+                PHYSICALTRUTHSTATUS,
+            </if>
+            <if test="devcarNumber != null">
+                DEVCARNUMBER,
+            </if>
+            <if test="phone != null">
+                PHONE,
+            </if>
+            <if test="investigationId != null">
+                INVESTIGATIONID,
+            </if>
+            <if test="seatNum != null">
+                SEAT_NUM,
+            </if>
+            <if test="deleteFlag != null">
+                DELETEFLAG,
+            </if>
+            <if test="carColour != null">
+                CARCOLOUR,
+            </if>
+            <if test="mediaType != null">
+                MEDIATYPE,
+            </if>
+            <if test="enSectionId != null">
+                ENSECTIONID,
+            </if>
+            <if test="exSectionId != null">
+                EXSECTIONID,
+            </if>
+            <if test="payMoneyNumber != null">
+                PAYMONEYNUMBER,
+            </if>
+            <if test="issuer != null">
+                ISSUER,
+            </if>
+            <if test="companyDeptid != null">
+                COMPANYDEPTID,
+            </if>
+            <if test="cardLossFee != null">
+                CARDLOSSFEE,
+            </if>
+            <if test="isApp != null">
+                IS_APP
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            TO_NUMBER(to_char(sysdate,'yyyymmdd')||"CD_JC"."SEQ_JC_BLACKLIST_REQUEST".nextval),
+            <if test="carNumber != null">
+                #{carNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="carFeature != null">
+                #{carFeature,jdbcType=VARCHAR},
+            </if>
+            <if test="carType != null">
+                #{carType,jdbcType=NUMERIC},
+            </if>
+            <if test="exitStationId != null">
+                #{exitStationId,jdbcType=VARCHAR},
+            </if>
+            <if test="eludeMoneyNumber != null">
+                #{eludeMoneyNumber,jdbcType=NUMERIC},
+            </if>
+            <if test="eludeMoneyType != null">
+                #{eludeMoneyType,jdbcType=NUMERIC},
+            </if>
+            <if test="requestDescription != null">
+                #{requestDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginUserId != null">
+                #{loginUserId,jdbcType=NUMERIC},
+            </if>
+            <if test="createUserName != null">
+                #{createUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="requestStatus != null">
+                #{requestStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="createDeptid != null">
+                #{createDeptid,jdbcType=NUMERIC},
+            </if>
+            <if test="entryStationId != null">
+                #{entryStationId,jdbcType=VARCHAR},
+            </if>
+            <if test="entryStationTime != null">
+                #{entryStationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="exitStationTime != null">
+                #{exitStationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalWeight != null">
+                #{totalWeight,jdbcType=NUMERIC},
+            </if>
+            <if test="factMoneyNumber != null">
+                #{factMoneyNumber,jdbcType=NUMERIC},
+            </if>
+            <if test="axleType != null">
+                #{axleType,jdbcType=VARCHAR},
+            </if>
+            <if test="currentFlowpathId != null">
+                #{currentFlowpathId,jdbcType=NUMERIC},
+            </if>
+            <if test="logicType != null">
+                #{logicType,jdbcType=NUMERIC},
+            </if>
+            <if test="ferretOutStationId != null">
+                #{ferretOutStationId,jdbcType=VARCHAR},
+            </if>
+            <if test="ferretOutStationTime != null">
+                #{ferretOutStationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="disgorgementMoneyNumber != null">
+                #{disgorgementMoneyNumber,jdbcType=NUMERIC},
+            </if>
+            <if test="cardId != null">
+                #{cardId,jdbcType=VARCHAR},
+            </if>
+            <if test="haveDamageDevice != null">
+                #{haveDamageDevice,jdbcType=NUMERIC},
+            </if>
+            <if test="haveVideo != null">
+                #{haveVideo,jdbcType=NUMERIC},
+            </if>
+            <if test="haveCard != null">
+                #{haveCard,jdbcType=NUMERIC},
+            </if>
+            <if test="workflowDefinationId != null">
+                #{workflowDefinationId,jdbcType=NUMERIC},
+            </if>
+            <if test="eludeMoneyTypeItem != null">
+                #{eludeMoneyTypeItem,jdbcType=NUMERIC},
+            </if>
+            <if test="sumtotal != null">
+                #{sumtotal,jdbcType=NUMERIC},
+            </if>
+            <if test="cpuCardId != null">
+                #{cpuCardId,jdbcType=VARCHAR},
+            </if>
+            <if test="obuId != null">
+                #{obuId,jdbcType=VARCHAR},
+            </if>
+            <if test="recoverTime != null">
+                #{recoverTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="physicalTruthStatus != null">
+                #{physicalTruthStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="devcarNumber != null">
+                #{devcarNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="investigationId != null">
+                #{investigationId,jdbcType=VARCHAR},
+            </if>
+            <if test="seatNum != null">
+                #{seatNum,jdbcType=NUMERIC},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="carColour != null">
+                #{carColour,jdbcType=NUMERIC},
+            </if>
+            <if test="mediaType != null">
+                #{mediaType,jdbcType=NUMERIC},
+            </if>
+            <if test="enSectionId != null">
+                #{enSectionId,jdbcType=VARCHAR},
+            </if>
+            <if test="exSectionId != null">
+                #{exSectionId,jdbcType=VARCHAR},
+            </if>
+            <if test="payMoneyNumber != null">
+                #{payMoneyNumber,jdbcType=NUMERIC},
+            </if>
+            <if test="issuer != null">
+                #{issuer,jdbcType=VARCHAR},
+            </if>
+            <if test="companyDeptid != null">
+                #{companyDeptid,jdbcType=NUMERIC},
+            </if>
+            <if test="cardLossFee != null">
+                #{cardLossFee,jdbcType=NUMERIC},
+            </if>
+            <if test="isApp != null">
+                #{isApp,jdbcType=NUMERIC},
+            </if>
+        </trim>
+
+    </insert>
+
+    <select id="getExsectionSumData" resultType="HashMap">
+		select * from (
+		SELECT
+		 	jbr1.*,
+				jds.ROADNAME EXSECTIONNAME,--路段名称
+				 jds.GXNAME COMPANYNAME --公司名称
+		FROM (
+			SELECT
+				SUBSTR(jbr.EXITSTATIONID, 0, 11) EXSECTIONID,--路段
+	            COUNT(SUBSTR(jbr.EXITSTATIONID, 0, 11)) submitCount,--提交数量
+				sum( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else jbr.DISGORGEMENTMONEYNUMBER/100 END) submitSum, --提交金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 THEN 1 else 0 END) addRequestSubmitCount,--添加申请提交数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 THEN 1 else 0 END) deleteRequestSubmitCount,--撤销申请提交数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestSubmitSum,--添加申请提交金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestSubmitSum,--撤销申请提交金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN 1 else 0 END) inCount,--流程中数量
+				SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) inSum,--流程中金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) addRequestInCount,--添加申请流程中数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) deleteRequestInCount,--撤销申请流程中数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestInSum,--添加申请流程中金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestInSum,--撤销申请流程中金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN 1 else 0 END) agreeEndCount,--同意办结数量
+				nvl(SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 + jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END),0) agreeEndSum,--同意办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) addRequestAgreeEndCount,--添加申请同意办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) deleteRequestAgreeEndCount,--撤销申请同意办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestAgreeEndSum,--添加申请同意办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestAgreeEndSum,--撤销申请同意办结金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN 1 else 0 END) refuseEndCount,--拒绝办结数量
+				SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) refuseEndSum,--拒绝办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) addRequestRefuseEndCount,--添加申请拒绝办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) deleteRequestRefuseEndCount,--撤销申请拒绝办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestRefuseEndSum,--添加申请拒绝办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestRefuseEndSum--撤销申请拒绝办结金额
+			FROM
+				(
+                 select EXITSTATIONID EXITSTATIONID,LOGICTYPE,DELETEFLAG,REQUESTSTATUS,ELUDEMONEYNUMBER,DISGORGEMENTMONEYNUMBER,CREATETIME from  "CD_JC"."JC_BLACKLIST_REQUEST" jbr where jbr.LOGICTYPE = 1
+                 union
+                 select FERRETOUTSTATIONID EXITSTATIONID,LOGICTYPE,DELETEFLAG,REQUESTSTATUS,ELUDEMONEYNUMBER,DISGORGEMENTMONEYNUMBER,CREATETIME from  "CD_JC"."JC_BLACKLIST_REQUEST" jbr where jbr.LOGICTYPE = 2
+            ) jbr
+			WHERE
+				jbr.CREATETIME &gt;= #{beginTime,jdbcType=TIMESTAMP}
+			AND jbr.CREATETIME &lt;= #{endDate,jdbcType=TIMESTAMP}
+			and jbr.DELETEFLAG = 1
+			GROUP BY SUBSTR(jbr.EXITSTATIONID, 0, 11)
+		) jbr1
+			LEFT JOIN  (SELECT DISTINCT ROADID,ROADNAME,GXNAME,GXID from cd_jc.JC_DEPT_STATION)  jds on  jds.ROADID=jbr1.EXSECTIONID
+			LEFT JOIN CD_JC.JC_DEPT_COMPANY_MAPPING s ON jds.gxid = s.DEPTID
+		ORDER BY s.ORDERINDEX)
+		union all
+			SELECT
+				null EXSECTIONID,--路段
+	            COUNT(SUBSTR(jbr.EXITSTATIONID, 0, 11)) submitCount,--提交数量
+				sum( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else jbr.DISGORGEMENTMONEYNUMBER/100 END) submitSum, --提交金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 THEN 1 else 0 END) addRequestSubmitCount,--添加申请提交数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 THEN 1 else 0 END) deleteRequestSubmitCount,--撤销申请提交数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestSubmitSum,--添加申请提交金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestSubmitSum,--撤销申请提交金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN 1 else 0 END) inCount,--流程中数量
+				SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) inSum,--流程中金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) addRequestInCount,--添加申请流程中数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) deleteRequestInCount,--撤销申请流程中数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestInSum,--添加申请流程中金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestInSum,--撤销申请流程中金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN 1 else 0 END) agreeEndCount,--同意办结数量
+				nvl(SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 + jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END),0) agreeEndSum,--同意办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) addRequestAgreeEndCount,--添加申请同意办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) deleteRequestAgreeEndCount,--撤销申请同意办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestAgreeEndSum,--添加申请同意办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestAgreeEndSum,--撤销申请同意办结金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN 1 else 0 END) refuseEndCount,--拒绝办结数量
+				SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) refuseEndSum,--拒绝办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) addRequestRefuseEndCount,--添加申请拒绝办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) deleteRequestRefuseEndCount,--撤销申请拒绝办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestRefuseEndSum,--添加申请拒绝办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestRefuseEndSum,--撤销申请拒绝办结金额
+				'总计' EXSECTIONNAME,--路段名称
+				 null COMPANYNAME --公司名称
+			FROM
+				(
+                 select EXITSTATIONID EXITSTATIONID,LOGICTYPE,DELETEFLAG,REQUESTSTATUS,ELUDEMONEYNUMBER,DISGORGEMENTMONEYNUMBER,CREATETIME from  "CD_JC"."JC_BLACKLIST_REQUEST" jbr where jbr.LOGICTYPE = 1
+                 union
+                 select FERRETOUTSTATIONID EXITSTATIONID,LOGICTYPE,DELETEFLAG,REQUESTSTATUS,ELUDEMONEYNUMBER,DISGORGEMENTMONEYNUMBER,CREATETIME from  "CD_JC"."JC_BLACKLIST_REQUEST" jbr where jbr.LOGICTYPE = 2
+            ) jbr
+			WHERE
+				jbr.CREATETIME &gt;= #{beginTime,jdbcType=TIMESTAMP}
+			AND jbr.CREATETIME &lt;= #{endDate,jdbcType=TIMESTAMP}
+			and jbr.DELETEFLAG = 1
+
+	</select>
+
+    <select id="getEludeMoneyTypeSumData" resultType="HashMap">
+		SELECT
+		 	jbr1.*,
+			sed1.ENUM_NAME ELUDEMONEYTYPENAME,
+			CASE WHEN jbr1.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr1.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr1.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr1.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME
+		FROM (
+			SELECT
+				jbr.ELUDEMONEYTYPE,--逃费类型
+				jbr.ELUDEMONEYTYPEITEM,--逃费种类
+				 COUNT(SUBSTR(jbr.EXITSTATIONID, 0, 11)) submitCount,--提交数量
+				sum( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else jbr.DISGORGEMENTMONEYNUMBER/100 END) submitSum, --提交金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 THEN 1 else 0 END) addRequestSubmitCount,--添加申请提交数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 THEN 1 else 0 END) deleteRequestSubmitCount,--撤销申请提交数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestSubmitSum,--添加申请提交金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestSubmitSum,--撤销申请提交金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN 1 else 0 END) inCount,--流程中数量
+				SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) inSum,--流程中金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) addRequestInCount,--添加申请流程中数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) deleteRequestInCount,--撤销申请流程中数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestInSum,--添加申请流程中金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestInSum,--撤销申请流程中金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN 1 else 0 END) agreeEndCount,--同意办结数量
+				nvl(SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 + jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END),0) agreeEndSum,--同意办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) addRequestAgreeEndCount,--添加申请同意办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) deleteRequestAgreeEndCount,--撤销申请同意办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestAgreeEndSum,--添加申请同意办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestAgreeEndSum,--撤销申请同意办结金额
+				SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN 1 else 0 END) refuseEndCount,--拒绝办结数量
+				SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) refuseEndSum,--拒绝办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) addRequestRefuseEndCount,--添加申请拒绝办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) deleteRequestRefuseEndCount,--撤销申请拒绝办结数量
+				SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestRefuseEndSum,--添加申请拒绝办结金额
+				SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestRefuseEndSum--撤销申请拒绝办结金额
+			FROM
+				"CD_JC"."JC_BLACKLIST_REQUEST" jbr
+			WHERE
+				jbr.CREATETIME &gt;= #{beginTime,jdbcType=TIMESTAMP}
+			AND jbr.CREATETIME &lt;= #{endDate,jdbcType=TIMESTAMP}
+			AND jbr.DELETEFLAG = 1
+			GROUP BY jbr.ELUDEMONEYTYPE,jbr.ELUDEMONEYTYPEITEM
+					order by ELUDEMONEYTYPE,ELUDEMONEYTYPEITEM
+		) jbr1
+		LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr1.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87
+		LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr1.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88
+		LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr1.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89
+		LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr1.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90
+		LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr1.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91
+        union all
+
+        SELECT
+        null ELUDEMONEYTYPE,--逃费类型
+        null ELUDEMONEYTYPEITEM,--逃费种类
+        COUNT(SUBSTR(jbr.EXITSTATIONID, 0, 11)) submitCount,--提交数量
+        sum( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else jbr.DISGORGEMENTMONEYNUMBER/100 END) submitSum, --提交金额
+        SUM( CASE WHEN jbr.LOGICTYPE=1 THEN 1 else 0 END) addRequestSubmitCount,--添加申请提交数量
+        SUM( CASE WHEN jbr.LOGICTYPE=2 THEN 1 else 0 END) deleteRequestSubmitCount,--撤销申请提交数量
+        SUM( CASE WHEN jbr.LOGICTYPE=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestSubmitSum,--添加申请提交金额
+        SUM( CASE WHEN jbr.LOGICTYPE=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestSubmitSum,--撤销申请提交金额
+        SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN 1 else 0 END) inCount,--流程中数量
+        SUM( CASE WHEN jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) inSum,--流程中金额
+        SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) addRequestInCount,--添加申请流程中数量
+        SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN 1 else 0 END) deleteRequestInCount,--撤销申请流程中数量
+        SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=1 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestInSum,--添加申请流程中金额
+        SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=1 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestInSum,--撤销申请流程中金额
+        SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN 1 else 0 END) agreeEndCount,--同意办结数量
+        nvl(SUM( CASE WHEN jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 + jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END),0) agreeEndSum,--同意办结金额
+        SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) addRequestAgreeEndCount,--添加申请同意办结数量
+        SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN 1 else 0 END) deleteRequestAgreeEndCount,--撤销申请同意办结数量
+        SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=2 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestAgreeEndSum,--添加申请同意办结金额
+        SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=2 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestAgreeEndSum,--撤销申请同意办结金额
+        SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN 1 else 0 END) refuseEndCount,--拒绝办结数量
+        SUM( CASE WHEN jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) refuseEndSum,--拒绝办结金额
+        SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) addRequestRefuseEndCount,--添加申请拒绝办结数量
+        SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN 1 else 0 END) deleteRequestRefuseEndCount,--撤销申请拒绝办结数量
+        SUM( CASE WHEN jbr.LOGICTYPE=1 AND jbr.REQUESTSTATUS=3 THEN jbr.ELUDEMONEYNUMBER/100 else 0 END) addRequestRefuseEndSum,--添加申请拒绝办结金额
+        SUM( CASE WHEN jbr.LOGICTYPE=2 AND jbr.REQUESTSTATUS=3 THEN jbr.DISGORGEMENTMONEYNUMBER/100 else 0 END) deleteRequestRefuseEndSum,--撤销申请拒绝办结金额
+        '总计',null
+
+        FROM
+        "CD_JC"."JC_BLACKLIST_REQUEST" jbr
+        WHERE
+       jbr.CREATETIME &gt;= #{beginTime,jdbcType=TIMESTAMP}
+			AND jbr.CREATETIME &lt;= #{endDate,jdbcType=TIMESTAMP}
+        AND jbr.DELETEFLAG = 1
+
+    </select>
+
+    <select id="getDataByRequestIdList" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        jbr.CARFEATURE,
+        jbr.CARTYPE,
+        jbr.EXITSTATIONID,
+        jbr.ELUDEMONEYNUMBER/100 ELUDEMONEYNUMBER,
+        jbr.ELUDEMONEYTYPE,
+        jbr.REQUESTDESCRIPTION,
+        jbr.CREATETIME,
+        jbr.LOGINUSERID,
+        jbr.CREATEUSERNAME,
+        jbr.REQUESTSTATUS,
+        jbr.CREATEDEPTID,
+        jbr.ENTRYSTATIONID,
+        jbr.ENTRYSTATIONTIME,
+        jbr.EXITSTATIONTIME,
+        jbr.TOTALWEIGHT,
+        jbr.FACTMONEYNUMBER/100 FACTMONEYNUMBER,
+        jbr.AXLETYPE,
+        jbr.CURRENTFLOWPATHID,
+        jbr.LOGICTYPE,
+        jbr.FERRETOUTSTATIONID,
+        jbr.FERRETOUTSTATIONTIME,
+        jbr.DISGORGEMENTMONEYNUMBER,
+        jbr.CARDID,
+        jbr.HAVEDAMAGEDEVICE,
+        jbr.HAVEVIDEO,
+        jbr.HAVECARD,
+        jbr.WORKFLOW_DEFINATION_ID,
+        jbr.ELUDEMONEYTYPEITEM,
+        jbr.SUMTOTAL,
+        jbr.CPUCARDID,
+        jbr.OBUID,
+        jbr.RECOVERTIME,
+        jbr.PHYSICALTRUTHSTATUS,
+        jbr.DEVCARNUMBER,
+        jbr.PHONE,
+        jbr.INVESTIGATIONID,
+        jbr.SEAT_NUM,
+        jbr.DELETEFLAG,
+        jbr.CARCOLOUR,
+        jbr.MEDIATYPE,
+        jbr.ENSECTIONID,
+        jbr.EXSECTIONID,
+        sd1.DEPT_WORK ENTRYSTATIONCODE,
+        sd2.DEPT_WORK EXITSTATIONCODE
+        FROM
+        "CD_JC"."JC_BLACKLIST_REQUEST" jbr
+        LEFT JOIN "CD_SYSTEM"."SYS_DEPT" sd1 ON sd1.DEPT_LONG_ID = jbr.ENTRYSTATIONID
+        LEFT JOIN "CD_SYSTEM"."SYS_DEPT" sd2 ON sd2.DEPT_LONG_ID = jbr.EXITSTATIONID
+        WHERE
+        jbr.REQUESTID IN
+        <foreach item="requestId" collection="list" separator="," open="(" close=")" index="">
+            #{requestId,jdbcType=NUMERIC}
+        </foreach>
+    </select>
+
+    <select id="getConnectData" resultType="HashMap">
+		SELECT
+			jbr1.CARNUMBER,
+			jbr1.CARTYPE,
+			sed1.ENUM_NAME ELUDEMONEYTYPENAME,
+			jbr1.ELUDEMONEYNUMBER/100 ELUDEMONEYNUMBER,
+			bt.NAME EXITSTATIONNAME,
+			jbr3.FERRETOUTSTATIONTIME,
+			jbr3.FERRETOUTSTATIONID,
+			jbr3.DISGORGEMENTMONEYNUMBER/100 DISGORGEMENTMONEYNUMBER,
+			jbr3.DEALCOMPANY,
+			jbr3.FERRETOUTSTATIONNAME
+		FROM
+			"CD_JC"."JC_BLACKLIST_REQUEST" jbr1
+		LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt ON bt.ID = jbr1.EXITSTATIONID
+		LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr1.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87
+		INNER JOIN (SELECT jbr2.CREATETIME, jbr2.SREQUESTID, jbr2.FERRETOUTSTATIONTIME, jbr2.FERRETOUTSTATIONID, jbr2.DISGORGEMENTMONEYNUMBER,
+		(SELECT DEPT_NAME FROM "CD_SYSTEM"."SYS_DEPT" WHERE WORKFLOWDEPTROLE = 5 CONNECT BY PRIOR PARENT_ID = ID START WITH DEPT_LONG_ID = jbr2.FERRETOUTSTATIONID) DEALCOMPANY, bt.NAME FERRETOUTSTATIONNAME FROM "CD_JC"."JC_BLACKLIST_REQUEST" jbr2
+		LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt ON bt.ID = jbr2.FERRETOUTSTATIONID WHERE jbr2.LOGICTYPE = 2) jbr3 ON jbr3.SREQUESTID = jbr1.REQUESTID
+		WHERE
+			jbr1.LOGICTYPE = 1
+		AND	jbr1.DELETEFLAG = 1
+		AND jbr3.CREATETIME &gt;= #{beginTime,jdbcType=TIMESTAMP}
+		AND jbr3.CREATETIME &lt;= #{endDate,jdbcType=TIMESTAMP}
+	</select>
+
+    <update id="uptBlackListAddRequest" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        UPDATE CD_JC.JC_BLACKLIST_REQUEST bst SET
+            bst.INVESTIGATIONID = #{investigationId,jdbcType=VARCHAR},
+            bst.CARFEATURE = #{carFeature,jdbcType=VARCHAR},
+            bst.ELUDEMONEYTYPE = #{eludeMoneyType,jdbcType=NUMERIC},
+            bst.HAVEDAMAGEDEVICE = #{haveDamageDevice,jdbcType=NUMERIC},
+            bst.ELUDEMONEYNUMBER = #{eludeMoneyNumber,jdbcType=NUMERIC},
+            bst.ENTRYSTATIONID = #{entryStationId,jdbcType=NUMERIC},
+            bst.EXITSTATIONID = #{exitStationId,jdbcType=NUMERIC},
+            bst.CREATEUSERNAME = #{ createUserName,jdbcType=VARCHAR },
+            bst.CPUCARDID = #{ cpuCardId,jdbcType=VARCHAR },
+			bst.CARNUMBER = #{ carNumber,jdbcType=VARCHAR },
+			bst.CARCOLOUR = #{ carColour,jdbcType=NUMERIC },
+			bst.SEAT_NUM = #{seatNum,jdbcType=NUMERIC},
+			bst.ELUDEMONEYTYPEITEM = #{eludeMoneyTypeItem,jdbcType=NUMERIC},
+			bst.HAVEVIDEO = #{haveVideo,jdbcType=NUMERIC},
+			bst.FACTMONEYNUMBER = #{factMoneyNumber,jdbcType=NUMERIC},
+			bst.ENTRYSTATIONTIME = #{entryStationTime,jdbcType=TIMESTAMP},
+			bst.EXITSTATIONTIME = #{exitStationTime,jdbcType=TIMESTAMP},
+			bst.PHONE = #{phone,jdbcType=VARCHAR},
+			bst.OBUID = #{ obuId,jdbcType=VARCHAR },
+			bst.CARTYPE = #{carType,jdbcType=NUMERIC},
+			bst.AXLETYPE = #{axleType,jdbcType=VARCHAR},
+			bst.DEVCARNUMBER = #{ devcarNumber,jdbcType=VARCHAR },
+			bst.HAVECARD = #{haveCard,jdbcType=NUMERIC},
+			bst.TOTALWEIGHT = #{totalWeight,jdbcType=NUMERIC},
+			bst.RECOVERTIME = #{recoverTime,jdbcType=TIMESTAMP},
+			bst.PHYSICALTRUTHSTATUS = #{physicalTruthStatus,jdbcType=NUMERIC},
+			bst.SUMTOTAL = #{sumtotal,jdbcType=NUMERIC},
+			bst.CARDID = #{cardId,jdbcType=VARCHAR},
+			bst.REQUESTDESCRIPTION = #{ requestDescription,jdbcType=VARCHAR },
+			bst.MEDIATYPE = #{mediaType,jdbcType=NUMERIC},
+			bst.PAYMONEYNUMBER = #{payMoneyNumber,jdbcType=NUMERIC},
+			bst.ISSUER = #{issuer,jdbcType=VARCHAR},
+			bst.CARDLOSSFEE = #{cardLossFee,jdbcType=NUMERIC}
+		WHERE
+			bst.REQUESTID = #{requestId,jdbcType=INTEGER}
+    </update>
+
+    <!--黑名单撤销申请-添加-->
+    <insert id="addBlackRevoked" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        <selectKey resultType="java.lang.Long" keyProperty="requestId" keyColumn="REQUESTID" order="BEFORE">
+            select TO_NUMBER(to_char(sysdate,'yyyymmdd')|| CD_JC.SEQ_JC_BLACKLIST_REQUEST.nextval) FROM DUAL
+        </selectKey>
+        INSERT INTO CD_JC.JC_BLACKLIST_REQUEST (
+        REQUESTID,
+        CARNUMBER,
+        CARCOLOUR,
+        CREATEUSERNAME,
+        REQUESTSTATUS,
+        CURRENTFLOWPATHID,
+        LOGICTYPE,
+        FERRETOUTSTATIONID,
+        FERRETOUTSTATIONTIME,
+        DISGORGEMENTMONEYNUMBER,
+        WORKFLOW_DEFINATION_ID,
+        CPUCARDID,
+        OBUID,
+        DEVCARNUMBER,
+        REQUESTDESCRIPTION,
+        CREATETIME,
+        LOGINUSERID,
+        CREATEDEPTID,
+        DELETEFLAG,
+        SREQUESTID,
+        CARTYPE,
+        ENTRYSTATIONID,
+        ELUDEMONEYTYPE,
+        ELUDEMONEYTYPEITEM,
+        COMPANYDEPTID,
+        EXITSTATIONID,
+        REPAIRFEEUSERNAME,
+        REPAIRFEEPHONE,
+        ISTICKET,
+        IS_APP
+        )
+        VALUES
+        (
+        #{requestId,jdbcType=NUMERIC},
+        #{ carNumber,jdbcType=VARCHAR },
+        #{ carColour,jdbcType=NUMERIC },
+        #{ createUserName,jdbcType=VARCHAR },
+        #{ requestStatus,jdbcType=NUMERIC },
+        #{ currentFlowpathId,jdbcType=NUMERIC },
+        #{ logicType,jdbcType=NUMERIC },
+        #{ ferretOutStationId,jdbcType=VARCHAR },
+        #{ ferretOutStationTime,jdbcType=TIMESTAMP },
+        #{ disgorgementMoneyNumber,jdbcType=DOUBLE },
+        #{ workflowDefinationId,jdbcType=NUMERIC },
+        #{ cpuCardId,jdbcType=VARCHAR },
+        #{ obuId,jdbcType=VARCHAR },
+        #{ devcarNumber,jdbcType=VARCHAR },
+        #{ requestDescription,jdbcType=VARCHAR },
+        current_date,
+        #{ loginUserId,jdbcType=NUMERIC },
+        #{ createDeptid,jdbcType=NUMERIC },
+        #{ deleteFlag,jdbcType=NUMERIC },
+        #{ sRequestId,jdbcType=NUMERIC },
+
+        #{ carType,jdbcType=NUMERIC },
+        #{ entryStationId,jdbcType=VARCHAR },
+        #{ eludeMoneyType,jdbcType=NUMERIC },
+        #{ eludeMoneyTypeItem,jdbcType=NUMERIC },
+        #{ companyDeptid,jdbcType=NUMERIC },
+        #{ exitStationId,jdbcType=VARCHAR },
+        #{ repairFeeUserName,jdbcType=VARCHAR },
+        #{ repairFeePhone,jdbcType=VARCHAR },
+        #{isTicket,jdbcType=VARCHAR},
+        #{isApp,jdbcType=NUMERIC}
+        )
+    </insert>
+
+    <update id="uptFlowPathId" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		UPDATE CD_JC.JC_BLACKLIST_REQUEST r SET r.CURRENTFLOWPATHID = #{flowpathId,jdbcType=INTEGER} where r.REQUESTID = #{requestId,jdbcType=BIGINT}
+	</update>
+
+    <update id="delBlackRequest">
+        UPDATE CD_JC.JC_BLACKLIST_REQUEST bst
+        SET bst.DELETEFLAG = 0
+        WHERE
+        bst.REQUESTID IN
+        <foreach collection="requestIds" item="requestId" index="index"
+                 open="(" close=")" separator=",">
+            #{requestId}
+        </foreach>
+    </update>
+
+    <update id="uptBlackListRequest" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		UPDATE CD_JC.JC_BLACKLIST_REQUEST bst SET
+			bst.CARNUMBER = #{ carNumber,jdbcType=VARCHAR },
+			bst.CARCOLOUR = #{ carColour,jdbcType=NUMERIC },
+			bst.CREATEUSERNAME = #{ createUserName,jdbcType=VARCHAR },
+			bst.FERRETOUTSTATIONID = #{ ferretOutStationId,jdbcType=VARCHAR },
+			bst.FERRETOUTSTATIONTIME = #{ ferretOutStationTime,jdbcType=TIMESTAMP },
+			bst.DISGORGEMENTMONEYNUMBER = #{ disgorgementMoneyNumber,jdbcType=DOUBLE },
+			bst.CPUCARDID = #{ cpuCardId,jdbcType=VARCHAR },
+			bst.OBUID = #{ obuId,jdbcType=VARCHAR },
+			bst.DEVCARNUMBER = #{ devcarNumber,jdbcType=VARCHAR },
+			bst.REQUESTDESCRIPTION = #{ requestDescription,jdbcType=VARCHAR },
+			bst.SREQUESTID = #{ sRequestId,jdbcType=NUMERIC },
+			bst.ENTRYSTATIONID = #{ entryStationId,jdbcType=VARCHAR },
+		  	bst.EXITSTATIONID = #{ exitStationId,jdbcType=VARCHAR },
+			bst.CARTYPE = #{ carType,jdbcType=NUMERIC },
+			bst.ELUDEMONEYTYPE = #{ eludeMoneyType,jdbcType=NUMERIC },
+			bst.ELUDEMONEYTYPEITEM = #{ eludeMoneyTypeItem,jdbcType=NUMERIC },
+			bst.REPAIRFEEUSERNAME = #{ repairFeeUserName,jdbcType=VARCHAR },
+			bst.REPAIRFEEPHONE = #{ repairFeePhone,jdbcType=VARCHAR }
+		WHERE
+			bst.REQUESTID = #{requestId,jdbcType=BIGINT}
+	</update>
+
+    <select id="findByRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		SELECT * FROM CD_JC.JC_BLACKLIST_REQUEST bst WHERE bst.REQUESTID = #{requestId,jdbcType=BIGINT}
+	</select>
+
+    <select id="getStationByName" resultType="java.util.Map">
+		SELECT
+			x.*
+		FROM
+			CD_PASS.BASIC_BASICINFODOWN_RES x
+			LEFT JOIN "CD_TRADE"."BASE_NETPROVINCE" n ON n.PROVINCEID = x.PROVINCEID
+		WHERE
+			x.downid = ( SELECT max( w.down_id ) FROM "CD_PASS".CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1'
+			AND (x.NAME || ' (' || n.PROVINCENAME || '-' || x.ID || ')') = #{ name,jdbcType=VARCHAR }
+	</select>
+    <select id="newGetStationByName" resultType="java.util.Map">
+		SELECT x.id,x.name,x.regionname,x.STATIONNAME from  CD_SYSTEM.SYS_DEPT s
+LEFT JOIN (SELECT ID,
+            NAME,
+            regionname,
+            NAME || ' (' ||SUBSTR(regionname, 0, 2) || '-' || ID || ')' AS STATIONNAME from cd_pass.base_tollstation where CD_DELETEFLAG = 0) x on s.DEPT_LONG_ID=x.id
+where s.WORKFLOWDEPTROLE = 3 and x.STATIONNAME=#{ name,jdbcType=VARCHAR } CONNECT BY PRIOR s.ID = s.PARENT_ID START WITH s.ID=#{deptId}
+	</select>
+    <select id="selectALLLog" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+        SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        jbr.CARFEATURE,
+        jbr.CARTYPE,
+        jbr.EXITSTATIONID,
+        ROUND(jbr.ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,
+        ROUND(jbr.PAYMONEYNUMBER/100,2) PAYMONEYNUMBER,
+        jbr.ELUDEMONEYTYPE,
+        jbr.REQUESTDESCRIPTION,
+        jbr.CREATETIME,
+        jbr.LOGINUSERID,
+        jbr.CREATEUSERNAME,
+        jbr.REQUESTSTATUS,
+        jbr.CREATEDEPTID,
+        jbr.ENTRYSTATIONID,
+        jbr.ENTRYSTATIONTIME,
+        jbr.EXITSTATIONTIME,
+        jbr.TOTALWEIGHT,
+        ROUND(jbr.FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,
+        jbr.AXLETYPE,
+        jbr.CURRENTFLOWPATHID,
+        jbr.LOGICTYPE,
+        jbr.FERRETOUTSTATIONID,
+        jbr.FERRETOUTSTATIONTIME,
+        ROUND(jbr.DISGORGEMENTMONEYNUMBER/100,2) DISGORGEMENTMONEYNUMBER,
+        jbr.CARDID,
+        jbr.HAVEDAMAGEDEVICE,
+        jbr.HAVEVIDEO,
+        jbr.HAVECARD,
+        jbr.WORKFLOW_DEFINATION_ID,
+        jbr.ELUDEMONEYTYPEITEM,
+        jbr.SUMTOTAL,
+        jbr.CPUCARDID,
+        jbr.OBUID,
+        jbr.RECOVERTIME,
+        jbr.PHYSICALTRUTHSTATUS,
+        jbr.DEVCARNUMBER,
+        jbr.PHONE,
+        jbr.INVESTIGATIONID,
+        jbr.SEAT_NUM,
+        jbr.DELETEFLAG,
+        jbr.CARCOLOUR,
+        jbr.MEDIATYPE,
+        jbr.SREQUESTID,
+        t.codename ISSUER,
+        jbf.OPERATEDEPTID DEPTID,
+        jbf.CREATETIME FlowPathCREATETIME,
+        bd1.DEPT_NAME,
+        bd2.DEPT_NAME AS CreateStationName,
+        (SELECT count(1) FROM "CD_JC"."JC_EVADETOLL_RECORD" jer WHERE jer.BLACKLISTADDID = jbr.REQUESTID )
+        ADDEVADETOLLCOUNT,
+        bs1.NAME ENSECTIONNAME,
+        bs2.NAME EXSECTIONNAME,
+        bt1.NAME ENTRYSTATIONNAME,
+        bt2.NAME EXITSTATIONNAME,
+        bt3.NAME FERRETOUTSTATIONNAME,
+        jbr1.SREQUESTID SREQUESTID1,
+        jbr.REPAIRFEEUSERNAME,
+        jbr.REPAIRFEEPHONE,
+        jbr.CARDLOSSFEE /100 CARDLOSSFEE
+        FROM
+        "CD_JC"."JC_BLACKLIST_REQUEST" jbr
+        left JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID and jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 2
+        left join CD_ETC.etc_system_code t on jbr.issuer=t.codevalue and t.typeid=62 and t.codevalue like '%1001'
+        INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd2 ON jbr.CREATEDEPTID = bd2.ID
+        LEFT JOIN CD_PASS.BASE_SECTION bs1 ON bs1.ID = jbr.ENSECTIONID
+        LEFT JOIN CD_PASS.BASE_SECTION bs2 ON bs2.ID = jbr.EXSECTIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt1 ON bt1.ID =
+        jbr.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID =
+        jbr.EXITSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID =
+        jbr.ferretOutStationId
+        <where>
+            jbr.CARNUMBER=#{carNumber} and jbr.CARCOLOUR=#{carColour} and jbr.DELETEFLAG=1
+            <if test="flag">
+                and jbr.LOGICTYPE=1
+            </if>
+            <if test="flag==false">
+                and jbr.LOGICTYPE=2
+            </if>
+        </where>
+    </select>
+
+    <select id="getRevokeBlackList" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListRequest">
+		SELECT
+			*
+		FROM
+			CD_JC.JC_BLACKLIST_REQUEST bst
+		WHERE
+			bst.CARNUMBER = #{ carNumber,jdbcType=VARCHAR }
+			AND bst.CARCOLOUR = #{ carColour,jdbcType=NUMERIC }
+			and bst.REQUESTSTATUS = 2
+			and bst.LOGICTYPE = 1
+			and bst.DELETEFLAG = 1
+			and bst.requestid = (
+			    select max(t.requestid) from  CD_JC.JC_BLACKLIST_REQUEST t where t.CARNUMBER = bst.CARNUMBER and
+			    t.CARCOLOUR = bst.CARCOLOUR
+			    and t.REQUESTSTATUS = 2
+                and t.LOGICTYPE = 1
+                and t.DELETEFLAG = 1
+
+			)
+			order by requestid desc
+	</select>
+    <select id="searchBlackListNo" parameterType="Map" resultType="Map">
+		  select t.*
+  from (SELECT REQUESTID,
+  CPUCARDID,OBUID,
+               carNumber,
+               to_char(CARCOLOUR) CARCOLOUR,
+               carFeature,
+               to_char(carType) carType,
+               createUserName,
+               createtime,
+               eludeMoneyNumber,
+               ENTRYSTATIONID,
+               EXITSTATIONID,
+               SUMTOTAL
+          FROM CD_JC.JC_BLACKLIST_REQUEST
+          where CARCOLOUR = #{carColour,jdbcType=NUMERIC} and REQUESTSTATUS = 2 and LOGICTYPE = 1 and DELETEFLAG = 1
+        UNION all
+        SELECT REQUESTID,
+        CPUCARDID,OBUID,
+               carNumber,
+               decode(instr(carNumber,'黄'),1,'1',0,'0')  CARCOLOUR,
+               carFeature,
+               to_char(carType) carType,
+               createUserName,
+               createtime,
+               (eludeMoneyNumber*100) eludeMoneyNumber,
+               js.DEPT_LONG_ID ENTRYSTATIONID,
+               js1.DEPT_LONG_ID EXITSTATIONID,
+               t2.SUMTOTAL
+          from JC_BLACKLIST_REQUEST@db_link3628 t2
+         	LEFT JOIN cd_jc.JC_DEPT_STATION js ON to_char(t2.ENTRYSTATIONID) = js.dept_work
+	LEFT JOIN cd_jc.JC_DEPT_STATION js1 ON to_char(t2.EXITSTATIONID) = js1.dept_work
+          where REQUESTSTATUS = 2 and LOGICTYPE = 1
+          ) t
+ where t.CARNUMBER like '%'||#{carNumber,jdbcType=VARCHAR}||'%'
+ and t.CARCOLOUR=#{carColour,jdbcType=NUMERIC} and t.eludeMoneyNumber  = #{eludeMoneyNumber,jdbcType=NUMERIC}*100 order by t.createtime desc
+	</select>
+    <select id="getBlackListAfterPaymentData" parameterType="Map" resultType="Map">
+        SELECT t.* FROM (
+        SELECT
+        ROWNUM NUM,
+        SID,
+        REQUESTID,
+        LISTID,
+        PASSID,
+        VEHICLELICENSE,
+        VEHICLELICENSECOLOR,
+        v1.ENUM_NAME VEHICLELICENSECOLOR_TEXT,
+        VEHICLELICENSE||'_'||v1.ENUM_NAME VEHICLE,
+        TO_CHAR(ENTIME,'yyyy-mm-dd HH24:mi:ss') ENTIME,
+        TO_CHAR(EXTIME,'yyyy-mm-dd HH24:mi:ss') EXTIME,
+        ENSTATIONNAME,
+        EXSTATIONNAME,
+        ENSTATIONID,
+        EXSTATIONID,
+        CARDID,
+        OBUID,
+        VEHICLETYPE,
+        case when v2.ENUM_NAME is not null then v2.ENUM_NAME else d.VEHICLETYPE end VEHICLETYPE_TEXT,
+        CORRECTVEHICLETYPE,
+        v3.ENUM_NAME CORRECTVEHICLETYPE_TEXT,
+        FEE/100 FEE,
+        CORRECTFEE/100 CORRECTFEE,
+        OWEFEE/100 OWEFEE,
+        PAYBACKFEE/100 PAYBACKFEE,
+        v4.ENUM_NAME PAYFLAG_TEXT,
+        ISSURE,
+        INAXLE,
+        OUTAXLE,
+        REALAXLE,
+        VEHICLECLASS,
+        v5.ENUM_NAME VEHICLECLASS_TEXT,
+        TRANSPROVINCIAL
+        FROM
+        CD_JC.JC_BLACKLIST_EVIDENCE_DETAILS d
+        LEFT JOIN CD_SYSTEM.V_VEHICLEPLATE_COLOR v1 ON d.VEHICLELICENSECOLOR=v1.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.V_ENUM_VEHICLETYPE v2 ON d.VEHICLETYPE=v2.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.V_ENUM_VEHICLETYPE v3 ON d.CORRECTVEHICLETYPE=v3.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.V_AFTER_PAYMENT v4 ON d.PAYFLAG=v4.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.V_ENUM_VEHICLECLASS v5 ON d.VEHICLECLASS=v5.ENUM_VALUE
+        <where>
+            <if test="requestId != null and requestId != ''">
+                REQUESTID=#{requestId,jdbcType=NUMERIC}
+            </if>
+            <if test="vehicleLicense !=null and vehicleLicense != ''">
+                AND VEHICLELICENSE like #{vehicleLicense,jdbcType=VARCHAR}||'%'
+            </if>
+            <if test="pageEnd != null and pageEnd != ''">
+                AND ROWNUM  <![CDATA[ <=]]>  #{pageEnd,jdbcType=NUMERIC}
+            </if>
+        </where>
+        ORDER BY EXTIME DESC ) t
+        <where>
+            <if test="pageStart != null and pageStart != ''">
+                t.NUM  <![CDATA[ >=]]>  #{pageStart,jdbcType=NUMERIC}
+            </if>
+        </where>
+    </select>
+    <select id="getBlackListAfterPaymentDataCount" parameterType="Map" resultType="Long">
+        SELECT count(1) FROM CD_JC.JC_BLACKLIST_EVIDENCE_DETAILS
+        <where>
+            <if test="requestId != null and listId != ''">
+                REQUESTID=#{requestId,jdbcType=NUMERIC}
+            </if>
+            <if test="vehicleLicense !=null and vehicleLicense != ''">
+                AND VEHICLELICENSE like #{vehicleLicense,jdbcType=VARCHAR}||'%'
+            </if>
+        </where>
+    </select>
+    <insert id="saveBlackListAfterPaymentData" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListAfterPayment">
+        INSERT INTO CD_JC.JC_BLACKLIST_EVIDENCE_DETAILS (
+        SID,
+        LISTID,
+        PASSID,
+        VEHICLELICENSE,
+        VEHICLELICENSECOLOR,
+        ENTIME,
+        EXTIME,
+        ENSTATIONNAME,
+        EXSTATIONNAME,
+        CARDID,
+        OBUID,
+        VEHICLETYPE,
+        CORRECTVEHICLETYPE,
+        FEE,
+        CORRECTFEE,
+        OWEFEE,
+        INAXLE,
+        OUTAXLE,
+        REALAXLE,
+        TRANSPROVINCIAL,
+        ISSURE,
+        VEHICLECLASS,
+        REQUESTID
+        )
+        VALUES
+        (
+        CD_JC.SEQ_BLACKLISTPAYMENT.nextval,
+        #{listId,jdbcType=VARCHAR},
+        #{passId,jdbcType=VARCHAR},
+        #{vehicleLicense,jdbcType=VARCHAR},
+        #{vehicleLicensecolor,jdbcType=NUMERIC},
+        #{enTime},
+        #{exTime},
+        #{enstationName,jdbcType=VARCHAR},
+        #{exstationName,jdbcType=VARCHAR},
+        #{cardId,jdbcType=VARCHAR},
+        #{obuId,jdbcType=VARCHAR},
+        #{vehicleType,jdbcType=VARCHAR},
+        #{correctVehicleType,jdbcType=NUMERIC},
+        #{fee,jdbcType=NUMERIC} * 100,
+        #{correctFee,jdbcType=NUMERIC} * 100,
+        #{oweFee,jdbcType=NUMERIC} * 100,
+        #{inAxle,jdbcType=VARCHAR},
+        #{outAxle,jdbcType=VARCHAR},
+        #{realAxle,jdbcType=VARCHAR},
+        <choose>
+            <when test="flag==1">
+                #{transprovincial,jdbcType=VARCHAR},
+                #{issure,jdbcType=VARCHAR},
+            </when>
+            <otherwise>
+                #{transprovincial1,jdbcType=VARCHAR},
+                #{issure1,jdbcType=VARCHAR},
+            </otherwise>
+        </choose>
+        #{vehicleClass,jdbcType=VARCHAR},
+        #{requestId,jdbcType=NUMERIC}
+        )
+    </insert>
+
+    <delete id="deleteBlackListAfterPaymentData">
+        delete from CD_JC.JC_BLACKLIST_EVIDENCE_DETAILS where sid in
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getBlackListBySrequestId" resultType="java.util.Map">
+        select s.DEPT_NAME DEPTNAME,jbr.CREATEUSERNAME from cd_jc.JC_BLACKLIST_REQUEST jbr
+         left join cd_system.sys_dept s on jbr.CREATEDEPTID=s.ID
+         where jbr.SREQUESTID=#{sRequestId,jdbcType=NUMERIC}  and jbr.DELETEFLAG=1 and jbr.LOGICTYPE=2
+    </select>
+</mapper>

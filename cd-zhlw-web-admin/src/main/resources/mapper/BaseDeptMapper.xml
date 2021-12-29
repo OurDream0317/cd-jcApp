@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper">
+    <select id="findAllDept" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        SELECT ID,DEPT_NAME,PARENT_ID,DEPT_WORK,WORKFLOWDEPTROLE from CD_SYSTEM.SYS_DEPT
+    </select>
+    <select id="findDeptByDeptId" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        select t.ID,t.DEPT_NAME,t.DEPT_WORK from CD_SYSTEM.SYS_DEPT t where t.DEPT_WORK = #{deptId,jdbcType=VARCHAR}
+        and t.WORKFLOWDEPTROLE in
+        <foreach collection="workflowdeptroles" item="item" index="index"
+                 open="(" separator="," close=")">#{item}
+        </foreach>
+    </select>
+    <select id="findDeptByParentId" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        select t.ID,t.DEPT_NAME,t.DEPT_WORK from CD_SYSTEM.SYS_DEPT t
+        <where>
+            t.PARENT_ID in
+            <foreach collection="parentIds" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+            and t.WORKFLOWDEPTROLE in
+            <foreach collection="workflowdeptroles" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+        </where>
+        order by t.ID
+    </select>
+
+    <select id="findDeptByWorkflowdeptrole" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        select t.ID,t.DEPT_NAME,DEPT_WORK from CD_SYSTEM.SYS_DEPT t
+        <where>
+            t.WORKFLOWDEPTROLE in
+            <foreach collection="workflowdeptroles" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+        </where>
+        order by t.ID
+    </select>
+    <select id="findDeptByDeptId1" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        SELECT ID,DEPT_NAME,PARENT_ID,DEPT_WORK,WORKFLOWDEPTROLE from CD_SYSTEM.SYS_DEPT where DEPT_WORK=#{deptId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAudroadByIdList" resultType="HashMap">
+        SELECT
+        ID,
+        NAME
+        FROM
+        "CD_BASE"."BASE_SECTION"
+        WHERE
+        CD_DELETEFLAG = 0
+        <if test="idList != null">
+            AND ID IN
+            <foreach collection="idList" item="id" index="index" open="(" separator="," close=")">
+                #{id,jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getIssuerByIdList" resultType="HashMap">
+        SELECT
+        ID,
+        NAME
+        FROM
+        "CD_BASE"."BASE_AGENCY"
+        WHERE
+        CD_DELETEFLAG = 0
+        <if test="idList != null">
+            AND ID IN
+            <foreach collection="idList" item="id" index="index" open="(" separator="," close=")">
+                #{id,jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getDataByWorkFlowDeptRole" resultType="String">
+        SELECT
+        WMSYS.WM_CONCAT ( sd.ID ) ID
+        FROM
+        (
+        SELECT
+        ID
+        FROM
+        "CD_SYSTEM"."SYS_DEPT"
+        WHERE
+        WORKFLOWDEPTROLE = #{workFlowDeptRole} CONNECT BY PRIOR ID = PARENT_ID START WITH ID IN (
+        SELECT
+        sd1.ID
+        FROM
+        "CD_SYSTEM"."SYS_DEPT" sd1
+        LEFT JOIN "CD_SYSTEM"."SYS_DEPT" sd2 ON sd2.ID = sd1.PARENT_ID
+        WHERE
+        sd2.DEPT_WORK = '1000002'
+        <if test="highSpeedGroup == true">
+            AND sd1.DEPT_WORK = '1001001'
+        </if>
+        <if test="highSpeedGroup == false">
+            AND sd1.DEPT_WORK != '1001001'
+        </if>
+        )
+        ORDER BY
+        ID
+        ) sd
+    </select>
+
+    <select id="getDataByDeptId" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        SELECT
+            ID,
+            DEPT_NAME,
+            PARENT_ID,
+            TELEPHONE,
+            DEPT_WORK,
+            COMPANY_ID,
+            DEPT_CODE,
+            PRIVILEGE_ID,
+            WORKFLOWDEPTROLE
+        FROM
+            "CD_SYSTEM"."SYS_DEPT"
+        WHERE
+            ID = #{deptId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAllNextDeptDeptLongId" resultType="String">
+        SELECT
+            WMSYS.WM_CONCAT(sd.DEPT_LONG_ID) REALLONGID
+        FROM
+            "CD_SYSTEM"."SYS_DEPT" sd
+        WHERE
+            sd.PARENT_ID = #{deptId,jdbcType=VARCHAR}
+        AND WORKFLOWDEPTROLE = 2
+    </select>
+
+    <select id="getPrevDeptByDeptAndWorkFlowDeptRole" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        SELECT
+            ID,
+            DEPT_NAME,
+            PARENT_ID,
+            TELEPHONE,
+            DEPT_WORK,
+            COMPANY_ID,
+            DEPT_CODE,
+            PRIVILEGE_ID,
+            WORKFLOWDEPTROLE
+        FROM
+            "CD_SYSTEM"."SYS_DEPT"
+        WHERE
+            WORKFLOWDEPTROLE = #{workFlowDeptRole,jdbcType=NUMERIC} START WITH ID = #{deptId,jdbcType=VARCHAR} CONNECT BY PRIOR PARENT_ID = ID
+    </select>
+
+    <select id="getPrevDeptByDeptWrokAndWorkFlowDeptRole" resultType="com.tuozhi.zhlw.admin.jc.entity.BaseDept">
+        SELECT
+            ID,
+            DEPT_NAME,
+            PARENT_ID,
+            TELEPHONE,
+            DEPT_WORK,
+            COMPANY_ID,
+            DEPT_CODE,
+            PRIVILEGE_ID,
+            WORKFLOWDEPTROLE
+        FROM
+            "CD_SYSTEM"."SYS_DEPT"
+        WHERE
+            WORKFLOWDEPTROLE = #{workFlowDeptRole,jdbcType=NUMERIC} START WITH DEPT_WORK = #{deptWrok,jdbcType=VARCHAR} CONNECT BY PRIOR PARENT_ID = ID
+    </select>
+
+    <select id="getDeptId" resultType="java.lang.Long">
+        SELECT ID from sys_dept where WORKFLOWDEPTROLE = 5 CONNECT BY PRIOR PARENT_ID =ID  START WITH ID=#{deptid}
+    </select>
+
+    <select id="getDeptId1" resultType="java.lang.Integer">
+         SELECT count(ID) from cd_system.sys_dept where WORKFLOWDEPTROLE = 1 CONNECT BY PRIOR PARENT_ID =ID  START WITH ID=#{deptid}
+    </select>
+
+    <select id="getDeptIdByRoles" resultType="java.lang.String">
+       SELECT su.DEPT_ID from CD_SYSTEM.SYS_USER_ROLES sur left join CD_SYSTEM.SYS_USERS su on sur.USER_ID=su.id
+       where sur.ROLE_ID in
+       <foreach collection="rangeRoleIds.split(',')" index="index" item="item" open="(" separator="," close=")">
+           #{item}
+       </foreach>
+    </select>
+</mapper>

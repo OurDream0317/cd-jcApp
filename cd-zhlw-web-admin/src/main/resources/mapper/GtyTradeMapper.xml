@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.GtyTradeMapper">
+    <select id="getCarTrade" resultType="com.tuozhi.zhlw.admin.jc.entity.GtyBillingTransaction">
+
+    select gbt.* ,base1.tradeName,base1.sectionName,c4.REALFEE,
+               c4.OWEFEE,
+               c4.NEWVEHICLETYPE from (select t.tradeid,t.gantryid,null FEEVEHICLETYPE,t.gantryordernum,t.gantryhex,t.transtime,ROUND(t.payfee / 100, 2) payfee,ROUND(t.discountfee / 100, 2) discountfee,ROUND(t.transfee / 100, 2) transfee,t.mediatype,t.vehicleplate,t.vehicletype,t.vehicleclass
+   ,t.passstate,t.entolllaneid,t.entollstationhex,t.entime,t.enlanetype,t.passid,t.lastgantryhex,t.lastgantrytime,t.obusn,t.obuvehicleplate,t.obuvehicletype,t.vehicleusertype
+   ,t.vehicleseat,t.axlecount,t.totalweight,t.vehiclelength,t.vehiclewidth,t.vehiclehight,t.cpunetid,t.cpuissueid,t.cpuvehicleplate,t.cpuvehicletype,t.cpucardtype,t.cpucardid
+   ,t.holidaystate,t.traderesult,t.specialtype,t.vehiclepicid,t.vehicletailpicid,ROUND(t.fee / 100, 2) fee,t.vehiclesign,t.chargesspecialtype,t.gantrysectionid,t.TOLLINTERVALID
+   from cd_trade.gty_billing_transaction t where t.passid = #{passid}
+   union
+   select t.tradeid,t.gantryid,cd_system.F_ENUM_VEHICLETYPE(t.FEEVEHICLETYPE) FEEVEHICLETYPE,t.gantryordernum,t.gantryhex,t.transtime,ROUND(t.payfee / 100, 2) payfee,ROUND(t.discountfee / 100, 2) discountfee,ROUND(t.transfee / 100, 2) transfee,t.mediatype,t.vehicleplate,t.vehicletype,t.vehicleclass
+   ,t.passstate,t.entolllaneid,t.entollstationhex,t.entime,t.enlanetype,t.passid,t.lastgantryhex,t.lastgantrytime,t.obusn,t.obuvehicleplate,t.obuvehicletype,t.vehicleusertype
+   ,t.vehicleseat,t.axlecount,t.totalweight,t.vehiclelength,t.vehiclewidth,t.vehiclehight,t.cpunetid,t.cpuissueid,t.cpuvehicleplate,t.cpuvehicletype,t.cpucardtype,t.cpucardid
+   ,t.holidaystate,t.traderesult,t.specialtype,t.vehiclepicid,t.vehicletailpicid,ROUND(t.fee / 100, 2) fee,t.vehiclesign,t.chargesspecialtype,t.gantrysectionid,t.TOLLINTERVALID
+   from cd_pass.gty_billing_transaction t where t.passid = #{passid}) gbt
+  left join (SELECT bt.name tradeName ,bs.name sectionName,bt.id  from
+   CD_pass.BASE_TOLLPOINT bt
+  LEFT JOIN CD_pass.BASE_SECTION bs ON   bs.id= bt.SECTIONID ) base1 on base1.id=gbt.gantryid
+  left join CD_JC.JC_NEWDATAOFPASSID c4 on c4.PASSID = gbt.PASSID and c4.TOLLGANTRYID=gbt.gantryid
+  order by gbt.TRANSTIME asc
+    </select>
+</mapper>

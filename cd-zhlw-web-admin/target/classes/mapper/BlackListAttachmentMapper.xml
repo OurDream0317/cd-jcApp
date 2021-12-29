@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.BlackListAttachmentMapper">
+
+    <select id="getAppDataByRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListAttachment">
+        SELECT
+            jba.ATTACHMENTID,
+            jba.ATTACHMENTNAME,
+            jba.ATTACHMENTSIZE,
+            jba.ATTACHMENTPATH,
+            jba.REQUESTID,
+            jba.FILETYPE,
+            jba.USERID,
+            jba.USERNAME,
+            jba.DEPTID,
+            jba.DEPTNAME,
+            jba.FLOWPATHID
+        FROM
+            "CD_JC"."JC_APP_BLACKLIST_ATTACHMENT" jba
+        WHERE
+            jba.REQUESTID = #{requestId}
+    </select>
+
+    <select id="getBZAppDataByRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListAttachment">
+        SELECT
+        jba.ATTACHMENTID,
+        jba.ATTACHMENTNAME,
+        jba.ATTACHMENTSIZE,
+        jba.ATTACHMENTPATH,
+        jba.REQUESTID,
+        jba.FILETYPE,
+        jba.USERID,
+        jba.USERNAME,
+        jba.DEPTID,
+        jba.DEPTNAME,
+        jba.FLOWPATHID
+        FROM
+        "CD_JC"."JC_APP_ATTACHMENT" jba
+        WHERE
+        jba.TYPE=2
+        <if test="attachmentId!=null">
+            and jba.ATTACHMENTID=#{attachmentId}
+        </if>
+        <if test="requestId!=null">
+            and jba.REQUESTID = #{requestId}
+        </if>
+
+    </select>
+
+    <delete id="deleteDataByAttachmentId">
+        DELETE FROM "CD_JC"."JC_BLACKLIST_ATTACHMENT" WHERE ATTACHMENTID = #{attachmentId,jdbcType=NUMERIC}
+    </delete>
+
+    <select id="getDataByAttachmentId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListAttachment">
+        SELECT
+            jba.ATTACHMENTID,
+            jba.ATTACHMENTNAME,
+            jba.ATTACHMENTSIZE,
+            jba.ATTACHMENTPATH,
+            jba.REQUESTID,
+            jba.FILETYPE,
+            jba.USERID,
+            jba.USERNAME,
+            jba.DEPTID,
+            jba.DEPTNAME,
+            jba.FLOWPATHID
+        FROM
+            "CD_JC"."JC_BLACKLIST_ATTACHMENT" jba
+        WHERE
+            jba.ATTACHMENTID = #{attachmentId}
+    </select>
+</mapper>

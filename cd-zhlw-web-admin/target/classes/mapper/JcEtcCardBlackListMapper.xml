@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.JcEtcCardBlackListMapper">
+
+    <select id="findEtcBlackListAll" resultType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListEntity">
+        SELECT
+        jeb.RCARDTYPE,
+        jeb.ICCISSUER,
+        esc.codename iccIssuerName,
+        jeb.CPUCARDID,
+        jeb.VEHICLELICENSE,
+        jeb.BLACKLISTTYPE,
+        jeb.CREATETIME,
+        jeb.AVT_ID,
+        jeb.FLAG,
+        jeb.TIME,
+        jeb.DELETEFLAG,
+        jeb.DELETETIME,
+        jeb.DEVVEHICLELICENSE,
+        jeb.ELUDEMONEYTYPE,
+        jeb.ELUDEMONEYTYPEITEM,
+        jeb.VEHICLECOLOR,
+        jeb.CARTYPE,
+        jeb.BLACKTYPE,
+        jeb.RECOVERTIME,
+        jeb.SUMMONENY,
+        jeb.SUMTOTAL,
+        jeb.OBUID,
+        jeb.ENTRYSTATIONID,
+        bt1.NAME ENTRYSTATIONNAME,
+        jeb.EXITSTATIONID,
+        bt2.NAME EXITSTATIONNAME,
+        jeb.ENTRYSTATIONTIME,
+        jeb.EXITSTATIONTIME,
+        jeb.PHYSICALTRUTHSTATUS,
+        jeb.REQUESTDESCRIPTION,
+        jeb.CREATENAME,
+        jeb.CREATEDEPT,
+        jeb.CREATEDEPTNAME,
+        jeb.REQUESTID
+        FROM
+        HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 jeb
+        LEFT JOIN (SELECT ID,NAME FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE =
+        '1') bt1 ON bt1.ID = jeb.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE =
+        '1') bt2 ON bt2.ID = jeb.EXITSTATIONID
+        left join etc_system_code@db_link_2310etc esc on esc.codevalue=jeb.ICCISSUER and typeid=62
+        WHERE
+        1 = 1
+        <if test="startTime != null">
+            <![CDATA[and jeb.CREATETIME >= #{startTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[and jeb.CREATETIME <= #{endTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="cpuCardId != ''and cpuCardId != null">
+            AND jeb.CPUCARDID LIKE CONCAT(#{cpuCardId,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="obuId != '' and obuId != null ">
+            AND jeb.OBUID LIKE CONCAT(#{obuId,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="vehicleLicense != null">
+            AND jeb.VEHICLELICENSE LIKE '%' || #{vehicleLicense,jdbcType=VARCHAR} || '%'
+        </if>
+        <if test="blackType != null and blackType == 1">
+            AND jeb.BLACKTYPE = '1'
+        </if>
+        <if test="blackType != null and blackType == 5 ">
+            AND jeb.BLACKTYPE = '5'
+        </if>
+        <if test="eludeMoneyType != '' and eludeMoneyType != null">
+            AND jeb.ELUDEMONEYTYPE = #{eludeMoneyType,jdbcType=VARCHAR}
+        </if>
+        <if test="avtId != '' and avtId != null">
+            AND jeb.AVT_ID = #{avtId,jdbcType=NUMERIC}
+        </if>
+        ORDER BY jeb.CREATETIME DESC
+    </select>
+
+    <select id="findEtcBlackListHistroyAll"
+            resultType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListHistoryEntity">
+        SELECT
+        jeb.ID,
+        jeb.RCARDTYPE,
+        jeb.ICCISSUER,
+        jeb.CPUCARDID,
+        jeb.VEHICLELICENSE,
+        jeb.BLACKLISTTYPE,
+        jeb.CREATETIME,
+        jeb.AVT_ID,
+        jeb.FLAG,
+        jeb.TIME,
+        jeb.DELETEFLAG,
+        jeb.DELETETIME,
+        jeb.DEVVEHICLELICENSE,
+        jeb.ELUDEMONEYTYPE,
+        jeb.ELUDEMONEYTYPEITEM,
+        jeb.VEHICLECOLOR,
+        jeb.CARTYPE,
+        jeb.BLACKTYPE,
+        jeb.RECOVERTIME,
+        jeb.SUMMONENY,
+        jeb.SUMTOTAL,
+        jeb.OBUID,
+        jeb.ENTRYSTATIONID,
+        bt1.NAME ENTRYSTATIONNAME,
+        jeb.EXITSTATIONID,
+        bt2.NAME EXITSTATIONNAME,
+        jeb.ENTRYSTATIONTIME,
+        jeb.EXITSTATIONTIME,
+        jeb.PHYSICALTRUTHSTATUS,
+        jeb.REQUESTDESCRIPTION,
+        jeb.CREATENAME,
+        jeb.CREATEDEPT,
+        jeb.CREATEDEPTNAME,
+        jeb.REQUESTID
+        FROM
+        HW_JZ.JC_ETC_BLACKLIST_HISTORY@DB_LINK3628 jeb
+        LEFT JOIN (SELECT ID,NAME FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE =
+        '1') bt1 ON bt1.ID = jeb.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE =
+        '1') bt2 ON bt2.ID = jeb.EXITSTATIONID
+        WHERE
+        1 = 1
+        <if test="avtId != null">
+            AND jeb.AVT_ID = #{ avtId,jdbcType=NUMERIC }
+        </if>
+        ORDER BY jeb.CREATETIME DESC
+    </select>
+
+    <select id="findBlackByVehicleId" resultType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListEntity">
+        SELECT
+        *
+        FROM
+        HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 etc
+        <trim prefix="where" prefixOverrides="and">
+            <if test="vehicleLicense!=null">
+                and etc.VEHICLELICENSE = #{ vehicleLicense,jdbcType=VARCHAR }
+            </if>
+            <if test="vehicleColor!=null">
+                AND etc.VEHICLECOLOR = #{ vehicleColor,jdbcType=VARCHAR }
+            </if>
+            <if test="sumMoneny!=null">
+                and etc.SUMMONENY=#{sumMoneny,jdbcType=NUMERIC}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addEtcCardBlackList" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListEntity">
+        <selectKey resultType="java.lang.Long" keyProperty="avtId" keyColumn="AVT_ID" order="BEFORE">
+            select HW_JZ.SEQ_JC_ETC_CARD_BLACKLIST.NEXTVAL@DB_LINK3628 FROM DUAL
+        </selectKey>
+        INSERT INTO HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 (
+        AVT_ID,
+        ICCISSUER,
+        CPUCARDID,
+        VEHICLELICENSE,
+        BLACKLISTTYPE,
+        CREATETIME,
+        FLAG,
+        TIME,
+        ELUDEMONEYTYPE,
+        ELUDEMONEYTYPEITEM,
+        VEHICLECOLOR,
+        CARTYPE,
+        BLACKTYPE,
+        RECOVERTIME,
+        SUMMONENY,
+        SUMTOTAL,
+        OBUID,
+        ENTRYSTATIONID,
+        EXITSTATIONID,
+        ENTRYSTATIONTIME,
+        EXITSTATIONTIME,
+        PHYSICALTRUTHSTATUS,
+        REQUESTDESCRIPTION,
+        CREATENAME,
+        CREATEDEPT,
+        CREATEDEPTNAME,
+        DELETEFLAG,
+        DELETETIME,
+        DEVVEHICLELICENSE
+        )
+        VALUES (
+        #{avtId,jdbcType=NUMERIC},
+        #{ iccIssuer,jdbcType=VARCHAR },
+        #{ cpuCardId,jdbcType=VARCHAR },
+        #{ vehicleLicense,jdbcType=VARCHAR },
+        #{ blackListType,jdbcType=NUMERIC },
+        #{ createTime,jdbcType=TIMESTAMP },
+        #{ flag,jdbcType=NUMERIC },
+        #{ time,jdbcType=TIMESTAMP },
+        #{ eludeMoneyType,jdbcType=VARCHAR },
+        #{ eludeMoneyTypeItem,jdbcType=VARCHAR },
+        #{ vehicleColor,jdbcType=VARCHAR },
+        #{ carType,jdbcType=VARCHAR },
+        #{ blackType,jdbcType=VARCHAR },
+        #{ recoverTime,jdbcType=TIMESTAMP },
+        #{ sumMoneny,jdbcType=NUMERIC },
+        #{ sumTotal,jdbcType=NUMERIC },
+        #{ obuId,jdbcType=VARCHAR },
+        #{ entryStationId,jdbcType=VARCHAR },
+        #{ exitStationId,jdbcType=VARCHAR },
+        #{ entryStationTime,jdbcType=TIMESTAMP },
+        #{ exitStationTime,jdbcType=TIMESTAMP },
+        #{ physicalTruthStatus,jdbcType=NUMERIC },
+        #{ requestDescription,jdbcType=VARCHAR },
+        #{ createName,jdbcType=VARCHAR },
+        #{ createDept,jdbcType=VARCHAR },
+        #{ createDeptName,jdbcType=VARCHAR },
+        #{ deleteFlag,jdbcType=NUMERIC },
+        #{ deleteTime,jdbcType=TIMESTAMP },
+        #{ devVehicleLicense,jdbcType=VARCHAR }
+        )
+    </insert>
+
+    <insert id="addEtcBlackListHistory" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListEntity">
+        INSERT INTO HW_JZ.JC_ETC_BLACKLIST_HISTORY@DB_LINK3628 (
+                ID,
+                AVT_ID,
+                ICCISSUER,
+                CPUCARDID,
+                VEHICLELICENSE,
+                BLACKLISTTYPE,
+                CREATETIME,
+                FLAG,
+                TIME,
+                ELUDEMONEYTYPE,
+                ELUDEMONEYTYPEITEM,
+                VEHICLECOLOR,
+                CARTYPE,
+                BLACKTYPE,
+                RECOVERTIME,
+                SUMMONENY,
+                SUMTOTAL,
+                OBUID,
+                ENTRYSTATIONID,
+                EXITSTATIONID,
+                ENTRYSTATIONTIME,
+                EXITSTATIONTIME,
+                PHYSICALTRUTHSTATUS,
+                REQUESTDESCRIPTION,
+                CREATENAME,
+                CREATEDEPT,
+                CREATEDEPTNAME,
+                DELETEFLAG,
+                DELETETIME,
+                DEVVEHICLELICENSE
+        )
+        VALUES (
+                HW_JZ.SEQ_JC_ETC_BLACKLIST_HISTORY.nextval@DB_LINK3628,
+                #{ avtId,jdbcType=NUMERIC },
+                #{ iccIssuer,jdbcType=VARCHAR },
+                #{ cpuCardId,jdbcType=VARCHAR },
+                #{ vehicleLicense,jdbcType=VARCHAR },
+                #{ blackListType,jdbcType=NUMERIC },
+                #{ createTime,jdbcType=TIMESTAMP },
+                #{ flag,jdbcType=NUMERIC },
+                #{ time,jdbcType=TIMESTAMP },
+                #{ eludeMoneyType,jdbcType=VARCHAR },
+                #{ eludeMoneyTypeItem,jdbcType=VARCHAR },
+                #{ vehicleColor,jdbcType=VARCHAR },
+                #{ carType,jdbcType=VARCHAR },
+                #{ blackType,jdbcType=VARCHAR },
+                #{ recoverTime,jdbcType=TIMESTAMP },
+                #{ sumMoneny,jdbcType=NUMERIC },
+                #{ sumTotal,jdbcType=NUMERIC },
+                #{ obuId,jdbcType=VARCHAR },
+                #{ entryStationId,jdbcType=VARCHAR },
+                #{ exitStationId,jdbcType=VARCHAR },
+                #{ entryStationTime,jdbcType=TIMESTAMP },
+                #{ exitStationTime,jdbcType=TIMESTAMP },
+                #{ physicalTruthStatus,jdbcType=NUMERIC },
+                #{ requestDescription,jdbcType=VARCHAR },
+                #{ createName,jdbcType=VARCHAR },
+                #{ createDept,jdbcType=VARCHAR },
+                #{ createDeptName,jdbcType=VARCHAR },
+                #{ deleteFlag,jdbcType=NUMERIC },
+                #{ deleteTime,jdbcType=TIMESTAMP },
+                #{ devVehicleLicense,jdbcType=VARCHAR }
+        )
+    </insert>
+
+    <delete id="delEtcBlackList" parameterType="java.lang.Long">
+        DELETE FROM HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 jeb WHERE jeb.AVT_ID = #{avtId,jdbcType=NUMERIC}
+    </delete>
+
+    <update id="uptEtcBlackList" parameterType="java.lang.Long">
+        UPDATE HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 jeb SET jeb.BLACKTYPE = '1',jeb.DELETEFLAG = '0',jeb.DELETETIME = current_date ,jeb.SUMMONENY = 0,jeb.SUMTOTAL = 0 WHERE jeb.AVT_ID = #{ avtId,jdbcType = NUMERIC}
+    </update>
+
+    <update id="updateBlackToll" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListEntity">
+        UPDATE HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 etc
+        SET etc.SUMMONENY = #{ sumMoneny,jdbcType=NUMERIC },
+        etc.SUMTOTAL = #{ sumTotal,jdbcType=NUMERIC }
+        WHERE
+            etc.VEHICLELICENSE = #{ vehicleLicense,jdbcType=VARCHAR }
+            AND etc.VEHICLECOLOR = #{ vehicleColor,jdbcType=VARCHAR }
+    </update>
+
+    <update id="changeEtcBlackList" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcEtcCardBlackListEntity">
+        update HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 etc set
+        etc.SUMMONENY = #{ sumMoneny,jdbcType=NUMERIC },
+        etc.SUMTOTAL = #{ sumTotal,jdbcType=NUMERIC },
+        etc.ICCISSUER=#{iccIssuer,jdbcType=VARCHAR},
+        etc.CPUCARDID=#{cpuCardId,jdbcType=VARCHAR},
+        etc.OBUID=#{obuId,jdbcType=VARCHAR},
+        etc.CARTYPE=#{carType,jdbcType=NUMERIC},
+        etc.ELUDEMONEYTYPE=#{eludeMoneyType,jdbcType=VARCHAR},
+        etc.ELUDEMONEYTYPEITEM=#{eludeMoneyTypeItem,jdbcType=VARCHAR},
+        etc.DEVVEHICLELICENSE=#{devVehicleLicense,jdbcType=VARCHAR},
+        etc.VEHICLELICENSE=#{vehicleLicense,jdbcType=VARCHAR},
+        etc.VEHICLECOLOR=#{vehicleColor,jdbcType=NUMERIC},
+        etc.RECOVERTIME=#{recoverTime,jdbcType=TIMESTAMP},
+        etc.BLACKTYPE=5,etc.FLAG=0,DELETEFLAG=0
+        where etc.AVT_ID=#{avtId,jdbcType=NUMERIC}
+    </update>
+</mapper>

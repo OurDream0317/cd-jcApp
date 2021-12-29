@@ -1,0 +1,4 @@
+2021/01/25-09:08:57 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2021/01/25-09:08:57 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021/01/25-09:08:57 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2021/01/25-09:08:57 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed

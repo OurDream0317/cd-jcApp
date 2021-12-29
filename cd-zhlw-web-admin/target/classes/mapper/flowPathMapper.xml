@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.FlowPathMapper">
+
+    <insert id="saveFlowPathInform">
+        begin
+        <foreach collection="list" item="item" index="index">
+            insert into CD_JC.JC_INVESTIGATION_FLOWPATH
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                flowPathId,
+                <if test="item.requestId != null">
+                    requestId,
+                </if>
+                <if test="item.flowPathName != null">
+                    flowPathName,
+                </if>
+                <if test="item.loginUserId != null">
+                    loginUserId,
+                </if>
+                <if test="item.handleSuggestion != null">
+                    handleSuggestion,
+                </if>
+                <if test="item.createTime!= null">
+                    createTime,
+                </if>
+                <if test="item.readTime!= null">
+                    readTime,
+                </if>
+                <if test="item.operateTime!= null">
+                    operateTime,
+                </if>
+                <if test="item.operateUserName != null">
+                    operateUserName,
+                </if>
+                <if test="item.deptId!= null">
+                    deptId,
+                </if>
+                <if test="item.sendDirection!= null">
+                    sendDirection,
+                </if>
+                <if test="item.flowPathStatus!= null">
+                    flowPathStatus,
+                </if>
+                <if test="item.workFlowDefinationId!= null">
+                    WORKFLOW_DEFINATION_ID,
+                </if>
+                <if test="item.workFlowNodeId != null">
+                    WORKFLOW_NODE_ID,
+                </if>
+                <if test="item.operatType != null">
+                    OPERATETYPE,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                CD_JC.SEQ_JC_INVESTIGATION_FLOWPATH.NEXTVAL,
+                <if test="item.requestId != null">
+                    #{item.requestId},
+                </if>
+                <if test="item.flowPathName != null">
+                    #{item.flowPathName},
+                </if>
+                <if test="item.loginUserId != null">
+                    #{item.loginUserId},
+                </if>
+                <if test="item.handleSuggestion != null">
+                    #{item.handleSuggestion},
+                </if>
+                <if test="item.createTime!= null">
+                    #{item.createTime},
+                </if>
+                <if test="item.readTime!= null">
+                    #{item.readTime},
+                </if>
+                <if test="item.operateTime!= null">
+                    #{item.operateTime},
+                </if>
+                <if test="item.operateUserName != null">
+                    #{item.operateUserName},
+                </if>
+                <if test="item.deptId!= null">
+                    #{item.deptId},
+                </if>
+                <if test="item.sendDirection!= null">
+                    #{item.sendDirection},
+                </if>
+                <if test="item.flowPathStatus!= null">
+                    #{item.flowPathStatus},
+                </if>
+                <if test="item.workFlowDefinationId!= null">
+                    #{item.workFlowDefinationId},
+                </if>
+                <if test="item.workFlowNodeId != null">
+                    #{item.workFlowNodeId},
+                </if>
+                <if test="item.operatType != null">
+                    #{item.operatType},
+                </if>
+            </trim>
+            ;
+        </foreach>
+        end;
+
+    </insert>
+
+    <insert id="saveFlowPathInformEntiy">
+        <selectKey resultType="java.lang.Integer" keyProperty="flowPathId" keyColumn="FLOWPATHID" order="BEFORE">
+            select CD_JC.SEQ_JC_INVESTIGATION_FLOWPATH.NEXTVAL FROM DUAL
+        </selectKey>
+        insert into CD_JC.JC_INVESTIGATION_FLOWPATH
+        ( flowPathId
+        <if test="requestId != null">
+            ,requestId
+        </if>
+        <if test="flowPathName != null">
+            ,flowPathName
+        </if>
+        <if test="loginUserId != null">
+            , loginUserId
+        </if>
+        <if test="handleSuggestion != null">
+            ,handleSuggestion
+        </if>
+        <if test="createTime!= null">
+            ,createTime
+        </if>
+        <if test="readTime!= null">
+            , readTime
+        </if>
+        <if test="operateTime!= null">
+            ,operateTime
+        </if>
+        <if test="operateUserName != null">
+            , operateUserName
+        </if>
+        <if test="deptId!= null">
+            , deptId
+        </if>
+        <if test="sendDirection!= null">
+            , sendDirection
+        </if>
+        <if test="flowPathStatus!= null">
+            , flowPathStatus
+        </if>
+        <if test="workFlowDefinationId!= null">
+            , WORKFLOW_DEFINATION_ID
+        </if>
+        <if test="workFlowNodeId != null">
+            , WORKFLOW_NODE_ID
+        </if>
+        <if test="operatType != null">
+            , OPERATETYPE
+        </if>
+        ) values (
+        #{flowPathId}
+        <if test="requestId != null">
+            , #{requestId}
+        </if>
+        <if test="flowPathName != null">
+            ,#{flowPathName}
+        </if>
+        <if test="loginUserId != null">
+            , #{loginUserId}
+        </if>
+        <if test="handleSuggestion != null">
+            , #{handleSuggestion}
+        </if>
+        <if test="createTime!= null">
+            , #{createTime}
+        </if>
+        <if test="readTime!= null">
+            , #{readTime}
+        </if>
+        <if test="operateTime!= null">
+            , #{operateTime}
+        </if>
+        <if test="operateUserName != null">
+            , #{operateUserName}
+        </if>
+        <if test="deptId!= null">
+            , #{deptId}
+        </if>
+        <if test="sendDirection!= null">
+            , #{sendDirection}
+        </if>
+        <if test="flowPathStatus!= null">
+            , #{flowPathStatus}
+        </if>
+        <if test="workFlowDefinationId!= null">
+            , #{workFlowDefinationId}
+        </if>
+        <if test="workFlowNodeId != null">
+            , #{workFlowNodeId}
+        </if>
+        <if test="operatType != null">
+            , #{operatType}
+        </if>
+        )
+    </insert>
+    <select id="finaAllFlowPath" resultType="com.tuozhi.zhlw.admin.jc.entity.FlowPathInform">
+        select f.*,d.DEPT_NAME as deptName from CD_JC.JC_INVESTIGATION_FLOWPATH f left join CD_SYSTEM.sys_dept d on to_char(f.DEPTID)=d.DEPT_WORK where requestId=#{requestId} order by f.createTime asc
+    </select>
+
+    <select id="findFlowPathByRequestId" resultType="java.lang.Integer">
+        select deptid from CD_JC.JC_INVESTIGATION_FLOWPATH t where flowpathstatus is null and t.requestid = #{requestId} and t.workflow_node_id = #{workFlowNodeId}
+    </select>
+
+    <update id="editFlowPathInform">
+        update CD_JC.JC_INVESTIGATION_FLOWPATH
+        <trim prefix="set" suffixOverrides=",">
+            <if test="loginUserId!=null">
+                loginUserId=#{loginUserId},
+            </if>
+            <if test="flowPathStatus!=null">
+                FLOWPATHSTATUS =#{flowPathStatus},
+            </if>
+            <if test="operateTime!=null">
+                OPERATETIME =#{operateTime},
+            </if>
+            <if test="handleSuggestion!=null">
+                HANDLESUGGESTION=#{handleSuggestion},
+            </if>
+            <if test="operateUserName!=null">
+                OPERATEUSERNAME=#{operateUserName},
+            </if>
+            <if test="readTime!=null">
+                READTIME=#{readTime},
+            </if>
+        </trim>
+        where 1=1
+        <if test="requestId!=null">
+            and REQUESTID=#{requestId}
+        </if>
+        <if test="flowPathId!=null">
+            and FLOWPATHID=#{flowPathId}
+        </if>
+    </update>
+
+    <select id="findHistoryFlowPath" resultType="com.tuozhi.zhlw.admin.jc.entity.FlowPathInform">
+        select flowpathid,
+               requestid,
+              loginuserid,
+              handlesuggestion,
+              createtime,
+              readtime,
+              operatetime,
+              operateusername,
+              deptid,
+              flowpathstatus,
+              workflow_defination_id,
+              workflow_node_id
+		from CD_JC.JC_investigation_flowpath f
+		where f.requestid = #{requestId} and f.flowpathid != #{flowPathId} and f.FLOWPATHSTATUS is null
+		order by f.flowpathid
+    </select>
+    <delete id="delAllByRequestId">
+       delete from CD_JC.JC_INVESTIGATION_FLOWPATH
+        <where>
+            requestid in
+            <foreach collection="requestIds" item="item" index="index"
+                     open="(" separator="," close=")">#{item}
+            </foreach>
+        </where>
+   </delete>
+
+    <select id="selectReadTime" resultType="com.tuozhi.zhlw.admin.jc.entity.FlowPathInform">
+        select READTIME,FLOWPATHID from CD_JC.JC_INVESTIGATION_FLOWPATH where requestId=#{requestId} AND DEPTID=#{deptId} ORDER BY flowPathId DESC
+    </select>
+    
+    <select id="getDataByFlowPathIdAndRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.FlowPathInform">
+        SELECT
+            flowpathid,
+            requestid,
+            loginuserid,
+            handlesuggestion,
+            createtime,
+            readtime,
+            operatetime,
+            operateusername,
+            deptid,
+            flowpathstatus,
+            workflow_defination_id,
+            workflow_node_id
+        FROM
+            CD_JC.JC_investigation_flowpath f
+        WHERE
+            f.requestid = #{requestId}
+            AND f.flowpathid = #{flowPathId}
+    </select>
+
+    <select id="getDataByRequestIdAndFlowPathId" resultType="com.tuozhi.zhlw.admin.jc.entity.JcWorkFlowNodeEntity">
+        SELECT
+            jwn.NODEID,
+            jwn.DEFINATIONID,
+            jwn.NODENAME,
+            jwn.PREVNODEID,
+            jwn.NEXTNODEID,
+            jwn.WORKFLOWDEPTROLE,
+            jwn.NODETYPE,
+            jwn.CREATETIME,
+            jwn3.WORKFLOWDEPTROLE WORKFLOWDEPTROLEPREV,
+            jwn2.WORKFLOWDEPTROLE WORKFLOWDEPTROLENEXT
+        FROM
+            "CD_JC"."JC_WORKFLOW_NODE" jwn
+        INNER JOIN "CD_JC"."JC_INVESTIGATION_FLOWPATH" jif ON jif.WORKFLOW_DEFINATION_ID = jwn.DEFINATIONID AND jif.WORKFLOW_NODE_ID = jwn.NODEID
+        INNER JOIN "CD_JC"."JC_WORKFLOW_DEFINATION" jwd ON jwd.DEFINATION_ID = jwn.DEFINATIONID
+        LEFT JOIN "CD_JC"."JC_WORKFLOW_NODE" jwn2 ON jwn2.DEFINATIONID = jwn.DEFINATIONID AND jwn2.NODEID = jwn.NEXTNODEID
+        LEFT JOIN "CD_JC"."JC_WORKFLOW_NODE" jwn3 ON jwn3.DEFINATIONID = jwn.DEFINATIONID AND jwn3.NODEID = jwn.PREVNODEID
+        WHERE 1 = 1
+        <if test="status">
+            AND jwd.DEFINATION_STATUS = 4
+        </if>
+        AND jif.FLOWPATHID = #{flowPathId,jdbcType=NUMERIC}
+        AND jif.REQUESTID = #{requestId,jdbcType=NUMERIC}
+    </select>
+
+    <select id="getPrevDataByPrevWorkFlow" resultType="com.tuozhi.zhlw.admin.jc.entity.FlowPathInform">
+		SELECT
+			p.*
+		FROM
+			(
+			SELECT
+				jif.FLOWPATHID,
+				jif.REQUESTID,
+				jif.FLOWPATHNAME,
+				jif.HANDLESUGGESTION,
+				jif.CREATETIME,
+				jif.OPERATETIME,
+				jif.OPERATEUSERNAME,
+				jif.DEPTID,
+				jif.SENDDIRECTION,
+				jif.FLOWPATHSTATUS,
+				jif.WORKFLOW_DEFINATION_ID WORKFLOWDEFINATIONID,
+				jif.WORKFLOW_NODE_ID WORKFLOWNODEID
+			FROM
+				"CD_JC"."JC_INVESTIGATION_FLOWPATH" jif
+			WHERE
+				jif.WORKFLOW_DEFINATION_ID = #{workflowDefinationId,jdbcType=NUMERIC}
+				AND jif.WORKFLOW_NODE_ID = #{workflowNodeId,jdbcType=NUMERIC}
+				AND	jif.REQUESTID = #{requestId,jdbcType=NUMERIC}
+			ORDER BY
+				jif.FLOWPATHID DESC
+			) p
+		WHERE
+			ROWNUM = 1
+	</select>
+</mapper>

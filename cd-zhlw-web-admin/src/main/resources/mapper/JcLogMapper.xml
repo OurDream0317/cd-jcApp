@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.JcLogMapper">
+
+    <insert id="insertJcLog" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcOperationLogEntity">
+        insert into cd_jc.jc_operation_log
+          (vehiclelicense,
+           vehiclelicensecolor,
+           vehicletype,
+           misstolltype,
+           misstollclass,
+           createtime,
+           createuserid,
+           transfersource)
+        values
+          (#{vehiclelicense,jdbcType=VARCHAR},
+           #{vehiclelicenseColor,jdbcType=NUMERIC},
+           #{vehicleType,jdbcType=NUMERIC},
+           #{misstollType,jdbcType=VARCHAR},
+           #{misstollClass,jdbcType=VARCHAR},
+           sysdate,
+           #{createUserId,jdbcType=NUMERIC},
+           #{transferSource,jdbcType=NUMERIC})
+    </insert>
+    <select id="selectOperationLog" resultType="com.tuozhi.zhlw.admin.jc.entity.JcOperationLogEntity">
+        select jol.*,(select count(1) from cd_jc.JC_INVESTIGATION_REQUEST jir where jol.vehiclelicense=jir.CARNUMBER and
+        jol.vehiclelicensecolor=jir.LICENSECOLORID) as assistantNum
+        ,(select count(1) from cd_jc.JC_FUNDS_REQUEST jfr where jol.vehiclelicense=jfr.CARNUMBER and
+        jol.vehiclelicensecolor=jfr.CARCOLOR and jfr.DELETEFLAG=1) as auditFoundsNum
+        ,(select count (1) from cd_jc.JC_GRAYLIST_REQUEST jgr where jol.vehiclelicense=jgr.CARNUMBER and
+        jol.vehiclelicensecolor=jgr.LICENSECOLORID ) as greyNum
+        ,(select count(1) from CD_JC.JC_BLACKLIST_REQUEST jbr where jol.vehiclelicense=jbr.CARNUMBER and
+        jol.vehiclelicensecolor=jbr.CARCOLOUR and jbr.logictype=1 and jbr.DELETEFLAG=1) as blackNum
+        ,(select count(1) from CD_JC.JC_BLACKLIST_REQUEST jbr where jol.vehiclelicense=jbr.CARNUMBER and
+        jol.vehiclelicensecolor=jbr.CARCOLOUR and jbr.logictype=2 and jbr.DELETEFLAG=1) as revokeBlackNum
+        ,(select count(1) from cd_jc.JC_OPERATION_ADDLOG joa where jol.vehiclelicense=joa.VEHICLELICENSE and
+        jol.vehiclelicensecolor=joa.VEHICLELICENSECOLOR ) as operationLogNum
+        from cd_jc.jc_operation_log jol
+        <where>
+            <trim prefixOverrides="and">
+                <if test="vehiclelicense!=null and vehiclelicense!=''">
+                    vehiclelicense like '%'||#{vehiclelicense}||'%'
+                </if>
+                <if test="searchLicensecolorid!=null">
+                    and VEHICLELICENSECOLOR =#{searchLicensecolorid}
+                </if>
+                <if test="searchapplyBeginTime!=null">
+                    and CREATETIME between #{searchapplyBeginTime}
+                </if>
+                <if test="searchapplyEndTime!=null">
+                    AND #{searchapplyEndTime}+1
+                </if>
+            </trim>
+        </where>
+        order by jol.CREATETIME desc
+    </select>
+    <insert id="addOperationLog" parameterType="com.tuozhi.zhlw.admin.jc.entity.JCOperationAddLog">
+        <selectKey resultType="java.lang.Long" keyColumn="ID" keyProperty="id" order="AFTER">
+            SELECT CD_JC.SEQ_JC_OPERATION_ADDLOG.currval from dual
+        </selectKey>
+        insert into CD_JC.JC_OPERATION_ADDLOG
+        (id,
+        vehiclelicense,
+        vehiclelicensecolor,
+        vehicletype,
+        createtime,
+        createDept,
+        createname,
+        detil,vehicleBrand,alexNum,vehicleClass,DEPTID,ELUDEMONEYTYPE,ELUDEMONEYTYPEITEM,ELUDETIME,OBUID,ISSUERBANK,ISSUER,CARDID)
+        values
+        (
+        CD_JC.SEQ_JC_OPERATION_ADDLOG.NEXTVAL,
+        #{vehiclelicense,jdbcType=VARCHAR},
+        #{vehiclelicenseColor,jdbcType=NUMERIC},
+        #{vehicleType,jdbcType=NUMERIC},
+        sysdate,
+        #{createDept,jdbcType=VARCHAR},
+        #{createname,jdbcType=VARCHAR},
+        #{detil,jdbcType=CLOB},#{vehicleBrand,jdbcType=VARCHAR},#{alexNum,jdbcType=NUMERIC},#{vehicleClass,jdbcType=NUMERIC},#{deptId,jdbcType=NUMERIC},
+        #{eludeMoneyType,jdbcType=VARCHAR},
+        #{eludeMoneyTypeItem,jdbcType=VARCHAR},
+        #{eludeTime,jdbcType=TIMESTAMP},
+        #{obuid,jdbcType=VARCHAR},
+        #{issuerBank,jdbcType=VARCHAR},
+        #{issuer,jdbcType=VARCHAR},
+        #{cardid,jdbcType=VARCHAR}
+        )
+    </insert>
+    <select id="selectOperationAddLog" resultType="com.tuozhi.zhlw.admin.jc.entity.JCOperationAddLog">
+        select joa.*,s2.ENUM_NAME as issuername,s3.ENUM_NAME as eludemoneytypename,s.ENUM_NAME as eludemoneytypeitemname,
+        esc.codename as issuerBankName,(select count(1) from cd_jc.JC_OPERATION_ATTCHMENT joa1 where joa1.jid=joa.id) fileNum from
+        CD_JC.JC_OPERATION_ADDLOG joa
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON joa.issuer = s2.ENUM_VALUE and s2.ENUM_ID = 20191
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON joa.ELUDEMONEYTYPE = s3.ENUM_VALUE and s3.ENUM_ID = 43
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON joa.ELUDEMONEYTYPEITEM = s.ENUM_VALUE and s.ENUM_ID = 44
+        LEFT JOIN etc_system_code@db_link_2310etc esc on joa.issuerBank = esc.codevalue and esc.typeid=62
+        <where>
+            joa.CREATEDEPT in (select DEPT_NAME from "CD_SYSTEM"."SYS_DEPT" where 1=1 START WITH ID =#{loginUser.deptId}
+            CONNECT BY PRIOR ID=PARENT_ID)
+            <if test="vehiclelicense!=null and vehiclelicense!=''">
+                and joa.vehiclelicense like '%'||#{vehiclelicense}||'%'
+            </if>
+            <if test="vehiclelicenseColor!=null">
+                and joa.vehiclelicenseColor=#{vehiclelicenseColor}
+            </if>
+            <if test="createTime!=null">
+                and to_char(joa.createtime,'yyyy-mm-dd')=to_char(#{createTime}, 'yyyy-mm-dd')
+            </if>
+        </where>
+        order by joa.createtime desc
+    </select>
+    <update id="updateOperationLog" parameterType="com.tuozhi.zhlw.admin.jc.entity.JCOperationAddLog">
+        update CD_JC.JC_OPERATION_ADDLOG set
+        vehiclelicense=#{vehiclelicense,jdbcType=VARCHAR},
+        vehiclelicenseColor= #{vehiclelicenseColor,jdbcType=NUMERIC},
+        vehicleType=#{vehicleType,jdbcType=NUMERIC},
+        createname=#{createname,jdbcType=VARCHAR},
+        detil=#{detil,jdbcType=CLOB},
+        vehicleBrand=#{vehicleBrand,jdbcType=VARCHAR},
+        alexNum=#{alexNum,jdbcType=NUMERIC},
+        vehicleClass=#{vehicleClass,jdbcType=NUMERIC},
+        ELUDEMONEYTYPE= #{eludeMoneyType,jdbcType=VARCHAR},
+        ELUDEMONEYTYPEITEM= #{eludeMoneyTypeItem,jdbcType=VARCHAR},
+        ELUDETIME= #{eludeTime,jdbcType=TIMESTAMP},
+        OBUID= #{obuid,jdbcType=VARCHAR},
+        ISSUERBANK= #{issuerBank,jdbcType=VARCHAR},
+        ISSUER= #{issuer,jdbcType=VARCHAR},
+        CARDID= #{cardid,jdbcType=VARCHAR}
+        where id=#{id,jdbcType=NUMERIC}
+    </update>
+    <select id="selectOperationLogByCarNum" resultType="com.tuozhi.zhlw.admin.jc.entity.JcOperationLogEntity">
+        select * from cd_jc.jc_operation_log jol where
+        vehiclelicense=#{vehiclelicense,jdbcType=VARCHAR} and
+        vehiclelicenseColor= #{vehiclelicenseColor,jdbcType=NUMERIC}
+    </select>
+    <insert id="addOperationAttchMent">
+        begin
+        <foreach collection="list" item="item" index="index">
+            insert into CD_JC.JC_OPERATION_ATTCHMENT
+            values
+            (
+            CD_JC.SEQ_JC_OPERATION_ATTCHMENT.NEXTVAL,
+            #{item.attachmentName},
+            #{item.attachmentSize},
+            #{item.attachmentPath},
+            #{item.Jid},
+            #{item.type},
+            #{item.upFileUserName},
+            #{item.upFileDept}
+            );
+        </foreach>
+        end;
+    </insert>
+
+    <insert id="addOperationLogFiles">
+        begin
+        <foreach collection="list" item="item" index="index">
+            insert into CD_JC.JC_OPERATIONLOGFILES
+            values
+            (
+            to_number(TO_CHAR(sysdate,'yyyymmdd')||TO_CHAR(CD_JC.SEQ_JC_OPERATIONLOGFILES.NEXTVAL)),
+            #{item.attachmentPath,jdbcType=VARCHAR},
+            #{item.type,jdbcType=NUMERIC},
+            #{item.upFileUserName,jdbcType=VARCHAR},
+            #{item.upFileDept,jdbcType=VARCHAR},
+            #{item.vehicle,jdbcType=VARCHAR},
+            #{item.vehicleColor,jdbcType=NUMERIC},
+            sysdate
+            );
+        </foreach>
+        end;
+    </insert>
+
+    <select id="getOperationLogFiles" resultType="com.tuozhi.zhlw.admin.jc.entity.JCOperationlogFiles">
+        select s.*,s1.enum_name vehicleColorName from (select ATTACHMENTID, TYPE,ATTACHMENTPATH,UPFILEUSERNAME,UPFILEDEPT,VEHICLE,to_char(VEHICLECOLOR) VEHICLECOLOR,CREATETIME,null STARTTIME,null ENDTIME,null STARTHEADOFTRUCKPICPATH,
+        null STARTBODYOFTRUCKPIC1PATH,null STARTBODYOFTRUCKPIC2PATH,null STARTTAILOFTRUCKPICPATH,null WAYBILLPICPATH,null ENDHEADOFTRUCKPICPATH,null ENDBODYOFTRUCKPIC1PATH,
+        null ENDBODYOFTRUCKPIC2PATH,null ENDTAILOFTRUCKPICPATH,null TRUCKPICPATH,null DRIVINGLICENSEPICPATH,null TRANSPORTATIONTRIPPICPATH,null BUSINESSLICENSEPICPATH
+        from CD_JC.JC_OPERATIONLOGFILES jo
+        ) s
+        left join cd_system.SYS_ENUM_DETAILS s1 on s.VEHICLECOLOR=s1.enum_value and s1.enum_id=39
+        <trim prefix="where" prefixOverrides="and">
+            <if test="vehicle!=null">
+                and VEHICLE=#{vehicle,jdbcType=NUMERIC}
+            </if>
+            <if test="vehicleColor!=null">
+                and VEHICLECOLOR=#{vehicleColor,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        order by CREATETIME desc
+    </select>
+
+    <delete id="delOperationLogFiles">
+        delete from CD_JC.JC_OPERATIONLOGFILES where ATTACHMENTID=#{attachmentId}
+    </delete>
+
+    <select id="selectLogAttachmentByJId" resultType="com.tuozhi.zhlw.admin.jc.entity.JCOperationAttachment">
+        select * from CD_JC.JC_OPERATION_ATTCHMENT where jid=#{id}
+    </select>
+    <select id="selectLogAttachmentById" resultType="java.lang.String">
+         select attachmentPath from CD_JC.JC_OPERATION_ATTCHMENT where attachmentId=#{attachmentId}
+    </select>
+    <delete id="deleteLogFile">
+        delete from CD_JC.JC_OPERATION_ATTCHMENT where attachmentId=#{attachmentId}
+    </delete>
+    <delete id="onDelOperationLog">
+        delete from CD_JC.JC_OPERATION_ADDLOG where id in
+        <foreach collection="ids" open="(" close=")" index="item" separator="," item="item">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

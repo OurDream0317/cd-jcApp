@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.BlackListRoadMapper">
+
+    <select id="findBlackListAll" resultType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        SELECT
+        bst.SID,
+        bst.LISTID,
+        bst.STOPSTATUS,
+        bst.TIMERANGE,
+        bst.ROAD,
+       ( select LISTVERSION from CD_JC.JC_ROAD_BLACKLIST_HISTORY  where CREATETIME=(select max(createtime)  from  CD_JC.JC_ROAD_BLACKLIST_HISTORY
+       where vehicleLicense=bst.vehicleLicense and VEHICLELICENSECOLOR=bst.VEHICLELICENSECOLOR) and vehicleLicense=bst.vehicleLicense and VEHICLELICENSECOLOR=bst.VEHICLELICENSECOLOR) LISTVERSION,
+
+        bst.OPERATEFLAG,
+        bst.VEHICLELICENSE,
+        bst.VEHICLELICENSECOLOR,
+        bst.CPUID,
+        bst.OBUID,
+        bst.EVADETOLL,
+        bst.HTMLSTR,
+        bst.REQUESTID,
+        bst.CREATETIME,
+        bst.TRANSFERTAG,
+        bst.GRAYREQUESTID,
+        bst.MESSAGEID_GREY,
+        case when ENUM2.ENUM_NAME is not null then ENUM2.ENUM_NAME
+        when ENUM4.ENUM_NAME is not null then ENUM4.ENUM_NAME  end evasiontypename,
+        case when ENUM3.ENUM_NAME is not null then ENUM3.ENUM_NAME
+        when ENUM5.ENUM_NAME is not null then ENUM5.ENUM_NAME  end evasionkindname,
+        bst.EVADETIME,
+        bst.EVADESITE,
+        bst.PHONENUMBER,
+        bst.LOSTCARD,
+        bst.CASEDESCRIPTION,
+        bst.CD_INSERTTIME,
+        bst.STOPSTATUSTYPE,
+        backlist.cardLossFee,
+        backlist.SUMTOTAL,
+        backlist.CREATEUSERNAME,
+        backlist.CARTYPE,
+        backlist.AXLETYPE,
+        backlist.SEAT_NUM,
+        backlist.CARFEATURE,
+        backlist.ENTRYSTATIONTIME,
+        backlist.EXITSTATIONTIME,
+        bt1.name ENTRYSTATIONNAME,
+        bt2.name EXITSTATIONNAME,
+        s1.ENUM_NAME VEHICLELICENSECOLORNAME,
+        bst.EVASIONTYPE,
+        bst.EVASIONKIND,
+        bst.CXREQUESTID,
+        bst.CXCREATETIME
+        FROM
+        CD_JC.JC_ROAD_BLACKLIST bst
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON bst.VEHICLELICENSECOLOR = s1.ENUM_VALUE and s1.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM2 ON ENUM2.ENUM_ID = 43
+        AND bst.EVASIONTYPE = ENUM2.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM3 ON ENUM3.ENUM_ID = 44
+        AND bst.EVASIONKIND = ENUM3.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM4 ON ENUM4.ENUM_ID = 20509
+        AND bst.EVASIONTYPE = ENUM4.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM5 ON ENUM5.ENUM_ID = 20586
+        AND bst.EVASIONKIND = ENUM5.ENUM_VALUE
+        left join CD_JC.JC_BLACKLIST_REQUEST backlist
+        on bst.requestid=backlist.REQUESTID
+
+
+        LEFT JOIN (SELECT ID,NAME
+        FROM CD_PASS.BASIC_BASICINFODOWN_RES x
+        WHERE x.downid = (
+        SELECT max( w.down_id )
+        FROM CD_PASS.CLEAR_DOWNLOAD_LOG w
+        WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt1
+        ON bt1.ID = backlist.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME
+        FROM CD_PASS.BASIC_BASICINFODOWN_RES x
+        WHERE x.downid = (
+        SELECT max( w.down_id )
+        FROM CD_PASS.CLEAR_DOWNLOAD_LOG w
+        WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2
+        ON bt2.ID = backlist.EXITSTATIONID
+
+        WHERE 1 = 1
+        <if test="sid != null">
+            AND bst.SID = #{ sid,jdbcType=BIGINT }
+        </if>
+        <if test="startTime != null">
+            <![CDATA[and bst.CD_INSERTTIME >= #{startTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[and bst.CD_INSERTTIME <= #{endTime,jdbcType=TIMESTAMP}]]>
+        </if>
+        <if test="cpuId != null and cpuId != ''">
+            AND bst.CPUID LIKE CONCAT(#{cpuId,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="obuId != null and obuId != ''">
+            AND bst.OBUID LIKE CONCAT(#{obuId,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="vehicleLicense != null">
+            AND bst.VEHICLELICENSE LIKE '%' || #{vehicleLicense,jdbcType=VARCHAR} || '%'
+        </if>
+        <if test="vehicleLicenseColor != null">
+            AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=BIGINT}
+        </if>
+        <if test="stopStatus != null and stopStatus == 0 ">
+            AND bst.STOPSTATUS = '0'
+        </if>
+        <if test="stopStatus != null and stopStatus == 1 ">
+            AND (bst.STOPSTATUS = '1' OR bst.STOPSTATUS = '2' OR bst.STOPSTATUS = '3')
+        </if>
+        <if test="evadeToll!=null">
+            and bst.evadeToll=#{evadeToll,jdbcType=NUMERIC}
+        </if>
+        ORDER BY bst.CD_INSERTTIME DESC
+    </select>
+
+    <select id="findBlackListHistroyAll" resultType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListHistoryEntity">
+        SELECT
+        bst.SID,
+        bst.LISTID,
+        bst.STOPSTATUS,
+        bst.TIMERANGE,
+        bst.ROAD,
+        bst.LISTVERSION,
+        bst.OPERATEFLAG,
+        bst.VEHICLELICENSE,
+        bst.VEHICLELICENSECOLOR,
+        bst.CPUID,
+        bst.OBUID,
+        bst.EVADETOLL,
+        bst.HTMLSTR,
+        bst.REQUESTID,
+        bst.CREATETIME,
+        bst.TRANSFERTAG,
+        bst.GRAYREQUESTID,
+        case when ENUM2.ENUM_NAME is not null then ENUM2.ENUM_NAME
+        when ENUM4.ENUM_NAME is not null then ENUM4.ENUM_NAME  end evasiontypename,
+        case when ENUM3.ENUM_NAME is not null then ENUM3.ENUM_NAME
+        when ENUM5.ENUM_NAME is not null then ENUM5.ENUM_NAME  end evasionkindname,
+        bst.EVADETIME,
+        bst.EVADESITE,
+        bst.PHONENUMBER,
+        bst.LOSTCARD,
+        bst.CASEDESCRIPTION,
+        bst.STOPSTATUSTYPE,
+        bst.SUMTOTAL,
+        backlist.CREATEUSERNAME
+        FROM
+        CD_JC.JC_ROAD_BLACKLIST_HISTORY bst
+        left join CD_JC.JC_BLACKLIST_REQUEST backlist
+        on bst.requestid=backlist.REQUESTID
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM2 ON ENUM2.ENUM_ID = 43
+        AND bst.EVASIONTYPE = ENUM2.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM3 ON ENUM3.ENUM_ID = 44
+        AND bst.EVASIONKIND = ENUM3.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM4 ON ENUM4.ENUM_ID = 20509
+        AND bst.EVASIONTYPE = ENUM4.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM5 ON ENUM5.ENUM_ID = 20586
+        AND bst.EVASIONKIND = ENUM5.ENUM_VALUE
+        where
+        <trim prefixOverrides="and">
+            <if test="startTime != null">
+                <![CDATA[and bst.CD_INSERTTIME >= #{startTime,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[and bst.CD_INSERTTIME <= #{endTime,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="cpuId != null and cpuId != ''">
+                AND bst.CPUID LIKE CONCAT(#{cpuId,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="obuId != null and obuId != ''">
+                AND bst.OBUID LIKE CONCAT(#{obuId,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="vehicleLicense != null">
+                AND bst.VEHICLELICENSE LIKE '%' || #{vehicleLicense,jdbcType=VARCHAR} || '%'
+            </if>
+            <if test="vehicleLicenseColor != null">
+                AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=BIGINT}
+            </if>
+            <if test="listId != null">
+                AND bst.LISTID = #{ listId,jdbcType=VARCHAR }
+            </if>
+        </trim>
+        ORDER BY bst.CREATETIME DESC
+    </select>
+
+    <select id="selectBlackGreyAll" parameterType="Map" resultType="java.util.Map">
+        SELECT
+        bst.SID,
+        bst.LISTID,
+        CASE
+        WHEN bst.STOPSTATUS = 0 THEN '不拦截'
+        WHEN bst.STOPSTATUS = 1 THEN '入口拦截'
+        WHEN bst.STOPSTATUS = 2 THEN '出口拦截'
+        WHEN bst.STOPSTATUS = 3 THEN '出入口全部拦截'
+        END STOPSTATUS,
+        CASE
+        WHEN bst.STOPSTATUS = 0 THEN '灰名单'
+        WHEN bst.STOPSTATUS = 1 OR bst.STOPSTATUS = 2 OR bst.STOPSTATUS = 3 THEN '黑名单'
+        END NAMETYPE,
+        bst.TIMERANGE,
+        CASE
+        WHEN bst.ROAD = 0 THEN '拉黑全路段'
+        ELSE ''
+        END ROAD,
+        (select max(h.LISTVERSION) from CD_JC.JC_ROAD_BLACKLIST_HISTORY h where h.vehicleLicense like '%'||
+        bst.vehicleLicense ||'%' and h.VEHICLELICENSECOLOR=bst.VEHICLELICENSECOLOR) LISTVERSION,
+        CASE
+        WHEN bst.OPERATEFLAG = 1 THEN '添加'
+        WHEN bst.OPERATEFLAG = 2 THEN '修改'
+        WHEN bst.OPERATEFLAG = 3 THEN '删除'
+        END OPERATEFLAG,
+        bst.VEHICLELICENSE,
+        ENUM.ENUM_NAME VEHICLELICENSECOLOR,
+        bst.CPUID,
+        bst.OBUID,
+        ROUND(bst.EVADETOLL/100,2) EVADETOLL,
+        bst.HTMLSTR,
+        bst.REQUESTID,
+        to_char( bst.CREATETIME, 'yyyy-mm-dd hh24:mi:ss' ) CREATETIME,
+        CASE
+        WHEN bst.TRANSFERTAG = 0 THEN '未传输'
+        WHEN bst.TRANSFERTAG = 1 THEN '已传输'
+        END TRANSFERTAG,
+        case when ENUM2.ENUM_NAME is not null then ENUM2.ENUM_NAME
+        when ENUM4.ENUM_NAME is not null then ENUM4.ENUM_NAME  end EVASIONTYPE,
+        case when ENUM3.ENUM_NAME is not null then ENUM3.ENUM_NAME
+        when ENUM5.ENUM_NAME is not null then ENUM5.ENUM_NAME  end EVASIONKIND,
+        to_char( bst.EVADETIME, 'yyyy-mm-dd hh24:mi:ss' ) EVADETIME,
+        bst.EVADESITE,
+        bst.PHONENUMBER,
+        CASE
+        WHEN bst.LOSTCARD = 1 THEN '是'
+        WHEN bst.LOSTCARD = 0 THEN '否'
+        END LOSTCARD,
+        bst.CASEDESCRIPTION,
+        to_char( bst.CD_INSERTTIME, 'yyyy-mm-dd hh24:mi:ss' ) CD_INSERTTIME,
+        CASE
+        WHEN bst.STOPSTATUS = 0 THEN '不拦截'
+        WHEN bst.STOPSTATUS = 1 THEN 'ETC拦截'
+        WHEN bst.STOPSTATUS = 2 THEN 'MTC拦截'
+        WHEN bst.STOPSTATUS = 3 THEN 'ETC和MTC全部拦截'
+        END STOPSTATUSTYPE,
+        jbr.SUMTOTAL,
+        jbr.CARFEATURE,
+        cd_system.F_ENUM_VEHICLETYPE(jbr.CARTYPE) CARTYPE,
+        jbr.AXLETYPE,
+        jbr.SEAT_NUM
+        FROM
+        CD_JC.JC_ROAD_BLACKLIST bst
+        left join (select CARNUMBER,CARCOLOUR,CARFEATURE,CARTYPE,AXLETYPE,SEAT_NUM,SUMTOTAL from CD_JC.JC_BLACKLIST_REQUEST ) jbr on jbr.CARNUMBER||'_'||jbr.CARCOLOUR
+        =bst.VEHICLELICENSE||'_'||bst.VEHICLELICENSECOLOR
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM ON ENUM.ENUM_ID = 39
+        AND bst.VEHICLELICENSECOLOR = ENUM.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM2 ON ENUM2.ENUM_ID = 43
+        AND bst.EVASIONTYPE = ENUM2.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM3 ON ENUM3.ENUM_ID = 44
+        AND bst.EVASIONKIND = ENUM3.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM4 ON ENUM4.ENUM_ID = 20509
+        AND bst.EVASIONTYPE = ENUM4.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS ENUM5 ON ENUM5.ENUM_ID = 20586
+        AND bst.EVASIONKIND = ENUM5.ENUM_VALUE
+        <where>
+            <if test="startTime != null">
+                <![CDATA[and bst.CD_INSERTTIME >= to_date(#{startTime},'yyyy-mm-dd hh24:mi:ss')]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[and bst.CD_INSERTTIME <= to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')]]>
+            </if>
+            <if test="cpuId != null and cpuId != ''">
+                AND bst.CPUID LIKE CONCAT(#{cpuId,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="obuId != null and obuId != ''">
+                AND bst.OBUID LIKE CONCAT(#{obuId,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="vehicleLicense != null and vehicleLicense != ''">
+                AND bst.VEHICLELICENSE LIKE '%' || #{vehicleLicense,jdbcType=VARCHAR} || '%'
+            </if>
+            <if test="vehicleLicenseColor != null">
+                AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=NUMERIC}
+            </if>
+            <if test="stopStatus != null and stopStatus == 0 ">
+                AND bst.STOPSTATUS = '0'
+            </if>
+            <if test="stopStatus != null and stopStatus == 1 ">
+                AND (bst.STOPSTATUS = '1' OR bst.STOPSTATUS = '2' OR bst.STOPSTATUS = '3')
+            </if>
+        </where>
+        ORDER BY bst.CD_INSERTTIME DESC
+    </select>
+
+    <delete id="deleteLocalGreyList" parameterType="java.util.Arrays">
+        delete from CD_JC.JC_ROAD_BLACKLIST where SID in
+        <foreach collection="sids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <select id="getDataByRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListAttachment">
+        SELECT
+            jba.ATTACHMENTID,
+            jba.ATTACHMENTNAME,
+            jba.ATTACHMENTSIZE,
+            jba.ATTACHMENTPATH,
+            jba.REQUESTID,
+            jba.FILETYPE,
+            jba.USERID,
+            jba.USERNAME,
+            jba.DEPTID,
+            jba.DEPTNAME,
+            jba.FLOWPATHID
+        FROM
+            "CD_JC"."JC_BLACKLIST_ATTACHMENT" jba
+            LEFT JOIN CD_JC.JC_ROAD_BLACKLIST bst ON bst.REQUESTID = jba.REQUESTID
+        WHERE
+            bst.REQUESTID = #{requestId,jdbcType=NUMERIC}
+    </select>
+
+    <select id="getGreyAttachmentById" resultType="com.tuozhi.zhlw.admin.jc.entity.grayListEntity.JCGrayListAttachment">
+        SELECT
+            jba.ATTACHMENTID,
+            jba.ATTACHMENTNAME,
+            jba.ATTACHMENTSIZE,
+            jba.ATTACHMENTPATH,
+            jba.REQUESTID,
+            jba.FILETYPE,
+            jba.UPFILEUSERNAME,
+            jba.UPFILEDEPT
+        FROM
+            "CD_JC"."JC_GRAYLIST_ATTACHMENT" jba
+            LEFT JOIN CD_JC.JC_ROAD_BLACKLIST bst ON bst.GRAYREQUESTID = jba.REQUESTID
+        WHERE
+            bst.GRAYREQUESTID = #{grayRequestId,jdbcType=NUMERIC}
+    </select>
+
+    <select id="findListId" resultType="java.lang.String">
+        SELECT LOWER(SYS_GUID()) FROM DUAL
+    </select>
+
+    <insert id="addRoadBlackList" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        <selectKey resultType="java.lang.Long" keyProperty="sid" keyColumn="SID" order="AFTER">
+            select CD_JC.SEQ_JC_ROAD_BLACKLIST.CURRVAL FROM DUAL
+        </selectKey>
+        INSERT INTO CD_JC.JC_ROAD_BLACKLIST (
+        SID,
+        LISTID,
+        STOPSTATUS,
+        TIMERANGE,
+        ROAD,
+        LISTVERSION,
+        OPERATEFLAG,
+        VEHICLELICENSE,
+        VEHICLELICENSECOLOR,
+        CPUID,
+        OBUID,
+        EVADETOLL,
+        HTMLSTR,
+        REQUESTID,
+        CREATETIME,
+        TRANSFERTAG,
+        GRAYREQUESTID,
+        MESSAGEID_GREY,
+        EVASIONTYPE,
+        EVASIONKIND,
+        EVADETIME,
+        EVADESITE,
+        PHONENUMBER,
+        LOSTCARD,
+        CASEDESCRIPTION,
+        CD_INSERTTIME,
+        STOPSTATUSTYPE,
+        SUMTOTAL
+        )
+        VALUES (
+        CD_JC.SEQ_JC_ROAD_BLACKLIST.nextval,
+        #{ listId,jdbcType=VARCHAR },
+        #{ stopStatus,jdbcType=NUMERIC },
+        #{ timeRange,jdbcType=VARCHAR },
+        #{ road,jdbcType=VARCHAR },
+        #{ listVersion,jdbcType=VARCHAR },
+        #{ operateFlag,jdbcType=NUMERIC },
+        #{ vehicleLicense,jdbcType=VARCHAR },
+        #{ vehicleLicenseColor,jdbcType=BIGINT },
+        #{ cpuId,jdbcType=VARCHAR },
+        #{ obuId,jdbcType=VARCHAR },
+        #{ evadeToll,jdbcType=NUMERIC },
+        #{ htmlStr,jdbcType=VARCHAR },
+        #{ requestId,jdbcType=NUMERIC },
+        #{ createTime,jdbcType=TIMESTAMP },
+        #{ transFertag,jdbcType=NUMERIC },
+        #{ grayRequestId,jdbcType=NUMERIC },
+        #{ messageIdGrey,jdbcType=NUMERIC },
+        #{ evasionType,jdbcType=NUMERIC },
+        #{ evasionKind,jdbcType=VARCHAR },
+        #{ evadeTime,jdbcType=TIMESTAMP },
+        #{ evadeSite,jdbcType=VARCHAR },
+        #{ phoneNumber,jdbcType=NUMERIC },
+        #{ lostCard,jdbcType=NUMERIC },
+        #{ caseDescription,jdbcType=VARCHAR },
+        #{ cdInsertTime,jdbcType=TIMESTAMP },
+        #{ stopStatusType,jdbcType=INTEGER },
+        #{ sumTotal,jdbcType=INTEGER }
+        )
+    </insert>
+
+    <insert id="addBlackListHistory" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        INSERT INTO CD_JC.JC_ROAD_BLACKLIST_HISTORY (
+                SID,
+                LISTID,
+                STOPSTATUS,
+                ROAD,
+                LISTVERSION,
+                OPERATEFLAG,
+                VEHICLELICENSE,
+                VEHICLELICENSECOLOR,
+                CPUID,
+                OBUID,
+                EVADETOLL,
+                HTMLSTR,
+                REQUESTID,
+                CREATETIME,
+                TRANSFERTAG,
+                GRAYREQUESTID,
+                EVASIONTYPE,
+                EVASIONKIND,
+                EVADETIME,
+                EVADESITE,
+                PHONENUMBER,
+                LOSTCARD,
+                CASEDESCRIPTION,
+                CD_INSERTTIME,
+                STOPSTATUSTYPE,
+                SUMTOTAL,
+                CXREQUESTID,
+                CXCREATETIME
+        )
+        VALUES (
+                CD_JC.SEQ_JC_ROAD_BLACKLIST_HISTORY.nextval,
+                #{ listId,jdbcType=VARCHAR },
+                #{ stopStatus,jdbcType=NUMERIC },
+                #{ road,jdbcType=VARCHAR },
+                 0,
+                #{ operateFlag,jdbcType=NUMERIC },
+                #{ vehicleLicense,jdbcType=VARCHAR },
+                #{ vehicleLicenseColor,jdbcType=NUMERIC },
+                #{ cpuId,jdbcType=VARCHAR },
+                #{ obuId,jdbcType=VARCHAR },
+                #{ evadeToll,jdbcType=NUMERIC },
+                #{ htmlStr,jdbcType=VARCHAR },
+                #{ requestId,jdbcType=NUMERIC },
+                #{ createTime,jdbcType=TIMESTAMP },
+                #{ transFertag,jdbcType=NUMERIC },
+                #{ grayRequestId,jdbcType=NUMERIC },
+                #{ evasionType,jdbcType=NUMERIC },
+                #{ evasionKind,jdbcType=VARCHAR },
+                #{ evadeTime,jdbcType=TIMESTAMP },
+                #{ evadeSite,jdbcType=VARCHAR },
+                #{ phoneNumber,jdbcType=NUMERIC },
+                #{ lostCard,jdbcType=NUMERIC },
+                #{ caseDescription,jdbcType=VARCHAR },
+                sysdate,
+                #{ stopStatusType,jdbcType=INTEGER },
+                #{ sumTotal,jdbcType=INTEGER },
+                #{ cxRequestId,jdbcType=NUMERIC },
+                SYSDATE
+        )
+    </insert>
+
+    <update id="uptIsGreyList">
+        UPDATE CD_JC.JC_ROAD_BLACKLIST
+        SET OPERATEFLAG = 2,
+        STOPSTATUS = 0,
+        EVADETOLL = 0,
+        STOPSTATUSTYPE = 0,
+        SUMTOTAL = 0,
+        CREATETIME = current_date,
+        htmlStr=#{htmlStr,jdbcType = VARCHAR},
+        CXREQUESTID=#{requestId,jdbcType=NUMERIC},
+        CXCREATETIME=sysdate
+        WHERE
+            LISTID = #{ listId,jdbcType = VARCHAR }
+    </update>
+
+    <delete id="delBlackList" parameterType="java.lang.String">
+        DELETE FROM CD_JC.JC_ROAD_BLACKLIST WHERE LISTID = #{ listId,jdbcType=VARCHAR }
+    </delete>
+
+    <select id="findByVehicleId" resultType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        SELECT
+            *
+        FROM
+            CD_JC.JC_ROAD_BLACKLIST bst
+        WHERE
+            bst.VEHICLELICENSE = #{vehicleLicense,jdbcType=VARCHAR}
+            AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=NUMERIC}
+    </select>
+
+    <update id="updateBlackList" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        UPDATE CD_JC.JC_ROAD_BLACKLIST bst
+        SET bst.EVADETOLL = #{ evadeToll,jdbcType=NUMERIC },
+        bst.TRANSFERTAG = #{ transFertag,jdbcType=BIGINT },
+        bst.CREATETIME = #{ createTime,jdbcType=TIMESTAMP },
+          bst.EVADESITE = #{ evadeSite,jdbcType=VARCHAR },
+          bst.EVASIONTYPE = #{ evasionType,jdbcType=NUMERIC },
+        bst.EVASIONKIND = #{ evasionKind,jdbcType=VARCHAR },
+        bst.PHONENUMBER = #{ phoneNumber,jdbcType=NUMERIC },
+        bst.OPERATEFLAG = #{ operateFlag,jdbcType=BIGINT },
+         bst.STOPSTATUS = #{ stopStatus,jdbcType=INTEGER },
+        bst.STOPSTATUSTYPE = #{ stopStatusType,jdbcType=INTEGER },
+          bst.LOSTCARD = #{ lostCard,jdbcType=NUMERIC },
+        bst.CPUID = #{ cpuId,jdbcType=VARCHAR },
+        bst.OBUID = #{ obuId,jdbcType=VARCHAR },
+         bst.LISTVERSION = #{ listVersion,jdbcType=VARCHAR },
+         bst.CASEDESCRIPTION = #{ caseDescription,jdbcType=VARCHAR },
+        bst.SUMTOTAL = #{ sumTotal,jdbcType=INTEGER },
+        bst.htmlStr=#{htmlStr,jdbcType = VARCHAR}
+        WHERE
+            bst.VEHICLELICENSE = #{vehicleLicense,jdbcType=VARCHAR}
+            AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=NUMERIC}
+    </update>
+
+    <update id="updateGreyList" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        UPDATE CD_JC.JC_ROAD_BLACKLIST bst
+        SET bst.EVASIONTYPE = #{ evasionType,jdbcType=NUMERIC },
+        bst.EVASIONKIND = #{ evasionKind,jdbcType=VARCHAR },
+        bst.EVADETOLL = #{ evadeToll,jdbcType=NUMERIC },
+        bst.EVADETIME = #{ evadeTime,jdbcType=TIMESTAMP },
+        bst.EVADESITE = #{ evadeSite,jdbcType=VARCHAR },
+        bst.PHONENUMBER = #{ phoneNumber,jdbcType=NUMERIC },
+        bst.LOSTCARD = #{ lostCard,jdbcType=NUMERIC },
+        bst.CPUID = #{ cpuId,jdbcType=VARCHAR },
+        bst.OBUID = #{ obuId,jdbcType=VARCHAR },
+        bst.TRANSFERTAG = #{ transFertag,jdbcType=NUMERIC },
+        bst.CREATETIME = #{ createTime,jdbcType=TIMESTAMP },
+        bst.OPERATEFLAG = #{ operateFlag,jdbcType=NUMERIC },
+        bst.SUMTOTAL = #{ sumTotal,jdbcType=INTEGER }
+        WHERE
+            bst.VEHICLELICENSE = #{vehicleLicense,jdbcType=VARCHAR}
+            AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=NUMERIC}
+    </update>
+
+    <update id="newUpdateGreyList" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListEntity">
+        UPDATE CD_JC.JC_ROAD_BLACKLIST bst
+        SET bst.EVASIONTYPE = #{ evasionType,jdbcType=NUMERIC },
+        bst.EVASIONKIND = #{ evasionKind,jdbcType=VARCHAR },
+        bst.EVADETOLL = #{ evadeToll,jdbcType=NUMERIC },
+        bst.EVADETIME = #{ evadeTime,jdbcType=TIMESTAMP },
+        bst.EVADESITE = #{ evadeSite,jdbcType=VARCHAR },
+        bst.PHONENUMBER = #{ phoneNumber,jdbcType=NUMERIC },
+        bst.LOSTCARD = #{ lostCard,jdbcType=NUMERIC },
+        bst.CPUID = #{ cpuId,jdbcType=VARCHAR },
+        bst.OBUID = #{ obuId,jdbcType=VARCHAR },
+        bst.CREATETIME = #{ createTime,jdbcType=TIMESTAMP },
+        bst.OPERATEFLAG = #{ operateFlag,jdbcType=NUMERIC },
+        bst.LISTVERSION = #{ listVersion,jdbcType=VARCHAR },
+         bst.CASEDESCRIPTION = #{ caseDescription,jdbcType=VARCHAR },
+         bst.htmlStr=#{htmlStr,jdbcType = VARCHAR}
+        WHERE
+            bst.VEHICLELICENSE = #{vehicleLicense,jdbcType=VARCHAR}
+            AND bst.VEHICLELICENSECOLOR = #{vehicleLicenseColor,jdbcType=NUMERIC}
+    </update>
+
+    <select id="getLocalBlackListQueryDetailsBySid"
+            resultType="com.tuozhi.zhlw.admin.jc.entity.JcRoadBlackListTempEntity">
+        SELECT
+	VEHICLELICENSE,
+	s1.ENUM_NAME VEHICLELICENSECOLOR,
+	decode( STOPSTATUS, 0, '灰名单', 1, '黑名单', 2, '黑名单', 3, '黑名单', '' ) TYPE,
+	DECODE( STOPSTATUS, 0, '不拦截', 1, '入口拦截', 2, '出口拦截', 3, '出入口全部拦截', '' ) STOPSTATUS,
+	decode( STOPSTATUSTYPE, 0, '不拦截', 1, 'ETC拦截', 2, 'MTC拦截', 3, 'ETC和MTC全部拦截', '' ) STOPSTATUSTYPE,
+	CPUID,
+	OBUID,
+	decode( ROAD, '0', '代表拉黑全路段', '' ) ROAD,
+	LISTVERSION,
+	to_char( CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME,
+	s2.enum_name EVASIONTYPE,
+	s3.enum_name EVASIONKIND,
+	to_char( EVADETIME, 'yyyy-mm-dd HH24:mi:ss' ) EVADETIME,
+	EVADESITE,
+	decode( OPERATEFLAG, 1, '添加', 2, '修改' ,3, '删除', '' ) OPERATEFLAG,
+	decode( LOSTCARD, 0, '否', 1, '是',''  ) LOSTCARD,
+	PHONENUMBER,
+	round(EVADETOLL/100,2) EVADETOLL,
+	HTMLSTR
+FROM
+	cd_jc.JC_ROAD_BLACKLIST jrb
+	LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON jrb.VEHICLELICENSECOLOR = s1.ENUM_VALUE
+	AND s1.ENUM_ID = 39
+	LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON jrb.EVASIONTYPE = s2.ENUM_VALUE
+	AND s2.ENUM_ID = 43
+	LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON jrb.EVASIONKIND = s3.ENUM_VALUE
+	AND s3.ENUM_ID = 44
+ where sid=#{sid}
+
+    </select>
+
+    <insert id="addJCBlacklistPayment" parameterType="com.tuozhi.zhlw.admin.jc.entity.JCBlacklistPayment">
+        insert into CD_JC.JC_BLACKLIST_PAYMENT(
+        SID,
+        VEHICLEID,
+        PAYBACKUSER,
+        PAYBACKUSERPHONE,
+        TRANSACTIONTYPE,
+        PAYBACKTYPE,
+        OPERATOR,
+        OWEFEE,
+        PAYBACKFEE,
+        PAYBACKTIME,
+        PAYBACKDESCRIPTION,
+        ETCCARDID,
+        CARTYPE,
+        OWNERNAME,
+        OWNERIDNUM,
+        ENGINENUM,
+        CREATEUSERID
+        ) values
+        (
+          CD_JC.SEQ_JC_BLACKLIST_PAYMENT.nextval,
+         #{vehicle,jdbcType=VARCHAR}||'_'||#{vehicleColor,jdbcType=NUMERIC},
+          #{paybackuser,jdbcType=VARCHAR},
+           #{paybackuserphone,jdbcType=VARCHAR},
+            #{transactiontype,jdbcType=NUMERIC},
+             #{paybacktype,jdbcType=NUMERIC},
+              #{operator,jdbcType=VARCHAR},
+               #{owefee,jdbcType=NUMERIC}*100,
+                #{paybackfee,jdbcType=NUMERIC}*100,
+                sysdate,
+                 #{paybackdescription,jdbcType=VARCHAR},
+                  #{etccardid,jdbcType=VARCHAR},
+                   #{cartype,jdbcType=NUMERIC},
+                    #{ownername,jdbcType=VARCHAR},
+                      #{owneridnum,jdbcType=VARCHAR},
+                       #{enginenum,jdbcType=VARCHAR},
+                        #{createuserid,jdbcType=NUMERIC}
+        )
+    </insert>
+    <select id="getJCBlacklistPayment" parameterType="java.lang.String"
+            resultType="com.tuozhi.zhlw.admin.jc.entity.JCBlacklistPayment">
+        select SID,cd_system.F_ENUM_VEHICLE(VEHICLEID)
+        VEHICLEID,PAYBACKUSER,PAYBACKUSERPHONE,TRANSACTIONTYPE,PAYBACKTYPE,OPERATOR,OWEFEE,PAYBACKFEE,PAYBACKTIME,PAYBACKDESCRIPTION,ETCCARDID,
+        CARTYPE,OWNERNAME,OWNERIDNUM,su.USER_NAME from cd_jc.JC_BLACKLIST_PAYMENT jbp
+        left join cd_system.sys_users su on jbp.CREATEUSERID=su.id
+        <trim prefix="where" prefixOverrides="and">
+            <if test="vehicle!=null">
+                and VEHICLEID like #{vehicle}||'%'
+            </if>
+            <if test="vehicleColor!=null">
+                and VEHICLEID like '%'||#{vehicleColor}
+            </if>
+        </trim>
+    </select>
+</mapper>

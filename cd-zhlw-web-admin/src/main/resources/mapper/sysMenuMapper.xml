@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.mapper.MenuMapper">
+
+    <select id="findAppAllMenus" resultType="com.tuozhi.zhlw.admin.pojo.SysMenu" parameterType="Long">
+        SELECT
+                DISTINCT a.id,a.FUNCTION_CODE ,
+                a.FUNCTION_NAME ,
+        a.PARENT_CODE,
+        a.DESCRIPTION,
+        a.ORDER_INDEX,
+        a.LEAF_NODE_STATUS ,
+        aa.FUNCTION_NAME AS PARENT_NAME,
+        a.ICONCLS ,
+        a.MENU_TYPE ,
+        a.URL,a.APP_ID
+        FROM
+        SYS_MENU a LEFT OUTER JOIN SYS_MENU aa
+        ON a.PARENT_CODE = aa.FUNCTION_CODE
+        WHERE
+        a.valid_STATUS = 1 AND a.DELETE_FLAG = 0
+        <if test="appId != null">
+            AND a.APP_ID = #{appId,jdbcType=NUMERIC}
+     </if>
+        ORDER BY
+        a.PARENT_CODE,
+        a.ORDER_INDEX
+   </select>
+
+
+    <select id="getSysMenuTreeIsNotLeafNode" resultType="com.tuozhi.zhlw.admin.pojo.SysMenu" parameterType="Long">
+        SELECT
+            DISTINCT a.FUNCTION_CODE ,
+            a.FUNCTION_NAME ,
+            a.PARENT_CODE,
+            a.DESCRIPTION,
+            a.ORDER_INDEX,
+            a.LEAF_NODE_STATUS ,
+            aa.FUNCTION_NAME AS PARENT_NAME ,
+            a.ICONCLS,a.MENU_TYPE ,a.URL
+            FROM
+            SYS_MENU a
+            LEFT OUTER JOIN SYS_MENU aa
+            ON a.PARENT_CODE = aa.FUNCTION_CODE
+            WHERE
+            a.valid_STATUS = 1 AND
+            a.leaf_node_STATUS= 0
+        <if test="appId != null">
+            AND a.APP_ID = #{appId,jdbcType=NUMERIC}
+        </if>
+            ORDER BY
+            a.PARENT_CODE,
+            a.ORDER_INDEX
+    </select>
+
+    <select id="queryMenusCodeByParentCode" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+                FUNCTION_CODE
+        FROM
+                SYS_MENU
+        WHERE PARENT_CODE = #{functionCode,jdbcType=VARCHAR}
+    </select>
+    <select id="getPredefineMenuTreeByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+       SELECT
+        a.FUNCTIONID,
+        a.FUNCTIONNAME,
+        a.PARENTID,
+        a.DESCRIPTION,
+        a.ORDERINDEX,
+        a.ISLEAFNODE,
+        a.ICONCLS,
+        aa.FUNCTIONNAME AS PARENTNAME,
+        a.ISSQLFUNCTION,
+        a.SQLSCRIPT,
+        a.AUTOLOADDATA,
+        a.DATASOURCE,
+        a.PRIMARYKEY
+        FROM
+        PREDEFINE_MENU a LEFT JOIN PREDEFINE_MENU aa ON a.PARENTID = aa.FUNCTIONID
+
+				<where>
+		a.isvalid = 1  and a.ISLEAFNODE != 2
+			<if test="FUNCTIONID!=null">
+			<![CDATA[
+			and	a.FUNCTIONID=#{FUNCTIONID}
+				]]>
+			</if>
+			<if test="FUNCTIONNAME!=null">
+			<![CDATA[
+			and	a.FUNCTIONNAME LIKE '%' || #{FUNCTIONNAME} || '%'
+				]]>
+			</if>
+			</where>
+			ORDER BY
+			a.FUNCTIONNAME DESC <!-- ,
+				a.PARENTID,
+				a.ORDERINDEX -->
+    </select>
+
+
+</mapper>

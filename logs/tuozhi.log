@@ -1,0 +1,420 @@
+2021/02/01-09:35:00 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on tz002-PC with PID 5340 (D:\JCAPP\cd-jcApp\cd-zhlw-web-admin\target\classes started by tz008 in D:\JCAPP\cd-jcApp)
+2021/02/01-09:35:00 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2021/02/01-09:35:00 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2021/02/01-09:35:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/02/01-09:35:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021/02/01-09:35:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 115ms. Found 3 JPA repository interfaces.
+2021/02/01-09:35:01 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2021/02/01-09:35:01 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2021/02/01-09:35:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/02/01-09:35:01 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021/02/01-09:35:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021/02/01-09:35:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021/02/01-09:35:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021/02/01-09:35:02 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 80ms. Found 0 Redis repository interfaces.
+2021/02/01-09:35:02 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/02/01-09:35:03 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2021/02/01-09:35:03 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2021/02/01-09:35:03 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2021/02/01-09:35:03 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021/02/01-09:35:03 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021/02/01-09:35:03 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2021/02/01-09:35:03 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 3177 ms
+2021/02/01-09:35:03 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2021/02/01-09:35:03 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2021/02/01-09:35:03 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2021/02/01-09:35:07 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2021/02/01-09:35:07 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021/02/01-09:35:07 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2021/02/01-09:35:07 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2021/02/01-09:35:07 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2021/02/01-09:35:15 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021/02/01-09:35:15 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021/02/01-09:35:18 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021/02/01-09:35:19 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2021/02/01-09:35:19 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2021/02/01-09:35:19 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2021/02/01-09:35:20 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2021/02/01-09:35:20 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2021/02/01-09:35:20 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2021/02/01-09:35:20 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 20.832 seconds (JVM running for 23.236)
+2021/02/01-09:35:20 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2021/02/01-09:35:20 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2021/02/01-09:35:20 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2021/02/01-09:35:20 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2021/02/01-09:35:20 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2021/02/01-09:35:20 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 16 ms
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[51] 方法执行前执行。。。。。before
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[52] <============================================
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[53] 请求来源： =》192.168.3.3
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[54] 请求URL：=》/JC/APP/getNewVersionFilePath
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[55] 请求方式：=》POST
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[56] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAppETCCardController.getNewVersionFilePath
+2021/02/01-09:35:21 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[57] 请求参数：=》[]
+2021/02/01-09:35:21 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAppETCCardMapper.getNewVersionFilePath-[159] ==>  Preparing: SELECT VERSION,URLPATH FROM CD_JC.JC_APP_VERSION where rownum=1 ORDER BY VERSION desc 
+2021/02/01-09:35:21 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAppETCCardMapper.getNewVersionFilePath-[159] ==> Parameters: 
+2021/02/01-09:35:21 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAppETCCardMapper.getNewVersionFilePath-[159] <==      Total: 1
+2021/02/01-09:35:22 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] ==>  Preparing: select t.ID as deptId,t.PARENT_ID as deptParentId,t.DEPT_NAME as deptName,t.DEPT_WORK as deptWork,u.LOGIN_NAME as loginName,u.USER_NAME as userName,u.PASSWORD as password,u.ID as userId,u.LAST_PASSWORD_MODIFY_TIME lastPasswordModifyTime,u.PASSWORD_HISTORY passwordHistory, t.PRIVILEGE_ID as privilegeId ,u.VALID_STATUS as validStatus,(select wm_concat(ROLE_ID) from SYS_USER_ROLES where USER_ID= u.ID) roleIds,t.DEPT_LONG_ID deptLongId, t.WORKFLOWDEPTROLE workFlowDeptRole from SYS_USERS u left join SYS_DEPT t on t.ID = u.DEPT_ID where u.LOGIN_NAME = ? 
+2021/02/01-09:35:22 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] ==> Parameters: 1111111(String)
+2021/02/01-09:35:22 [http-nio-317-exec-2] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] <==      Total: 1
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[51] 方法执行前执行。。。。。before
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[52] <============================================
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[53] 请求来源： =》192.168.3.3
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[54] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[55] 请求方式：=》POST
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[56] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2021/02/01-09:35:22 [http-nio-317-exec-10] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[57] 请求参数：=》[null]
+2021/02/01-09:35:22 [http-nio-317-exec-10] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 and jbr.CREATETIME>=? and jbr.CREATETIME<=sysdate ORDER BY jbr.CREATETIME desc 
+2021/02/01-09:35:22 [http-nio-317-exec-10] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 2021-02-01 00:00:00.0(Timestamp)
+2021/02/01-09:35:23 [http-nio-317-exec-10] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] <==      Total: 0
+2021/02/01-09:35:23 [http-nio-317-exec-10] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==>  Preparing: select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,to_char(EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME, nvl(TOTALWEIGHT,'') TOTALWEIGHT, decode(HAVECARD,1,'是',0,'否','') HAVECARD, decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE, decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO, nvl(CPUCARDID,'') CPUCARDID, nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION, to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME, CREATEUSERNAME, s4.dept_name CREATEDEPTID, nvl(SUMTOTAL,0) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME from cd_jc.JC_GRAYLIST_REQUEST t INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = t.ENTRYSTATIONID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = t.EXITSTATIONID where t.CREATETIME>=? and t.CREATETIME<=sysdate order by t.CREATETIME desc 
+2021/02/01-09:35:23 [http-nio-317-exec-10] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==> Parameters: 2021-02-01 00:00:00.0(Timestamp)
+2021/02/01-09:35:25 [http-nio-317-exec-10] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] <==      Total: 0
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[51] 方法执行前执行。。。。。before
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[52] <============================================
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[53] 请求来源： =》192.168.3.3
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[54] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[55] 请求方式：=》POST
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[56] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2021/02/01-09:35:47 [http-nio-317-exec-6] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[57] 请求参数：=》[津C10S30]
+2021/02/01-09:35:47 [http-nio-317-exec-6] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 and jbr.CARNUMBER like '%'||?||'%' ORDER BY jbr.CREATETIME desc 
+2021/02/01-09:35:47 [http-nio-317-exec-6] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 津C10S30(String)
+2021/02/01-09:35:47 [http-nio-317-exec-6] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] <==      Total: 0
+2021/02/01-09:35:47 [http-nio-317-exec-6] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==>  Preparing: select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,to_char(EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME, nvl(TOTALWEIGHT,'') TOTALWEIGHT, decode(HAVECARD,1,'是',0,'否','') HAVECARD, decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE, decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO, nvl(CPUCARDID,'') CPUCARDID, nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION, to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME, CREATEUSERNAME, s4.dept_name CREATEDEPTID, nvl(SUMTOTAL,0) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME from cd_jc.JC_GRAYLIST_REQUEST t INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = t.ENTRYSTATIONID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = t.EXITSTATIONID where t.CARNUMBER like '%'||?||'%' order by t.CREATETIME desc 
+2021/02/01-09:35:47 [http-nio-317-exec-6] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==> Parameters: 津C10S30(String)
+2021/02/01-09:35:48 [http-nio-317-exec-6] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] <==      Total: 0
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[51] 方法执行前执行。。。。。before
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[52] <============================================
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[53] 请求来源： =》192.168.3.3
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[54] 请求URL：=》/JC/APP/getBlackOrGreyListByVehicle
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[55] 请求方式：=》POST
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[56] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.getBlackListByVehicle
+2021/02/01-09:38:07 [http-nio-317-exec-5] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[57] 请求参数：=》[津C10S30]
+2021/02/01-09:38:07 [http-nio-317-exec-5] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==>  Preparing: SELECT jbr.REQUESTID, jbr.CARNUMBER, sed.ENUM_NAME CARCOLOUR, jbr.CARFEATURE, round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER, round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed6.ENUM_NAME CARTYPE, jbr.AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME, to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME, nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT, decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD, decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE, decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO, nvl( jbr.CPUCARDID, '' ) CPUCARDID, nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION, to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME, jbr.CREATEUSERNAME, sed7.dept_name CREATEDEPTID, nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME, jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销 jbr.IS_APP, jbr.REQUESTSTATUS FROM cd_jc.JC_BLACKLIST_REQUEST jbr LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID AND jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 2 INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR AND sed.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE AND sed6.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID LEFT JOIN ( SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1' ) bt3 ON bt3.ID = jbr.EXITSTATIONID WHERE jbr.DELETEFLAG = 1 AND jbr.LOGICTYPE =1 and jbr.CARNUMBER like '%'||?||'%' ORDER BY jbr.CREATETIME desc 
+2021/02/01-09:38:07 [http-nio-317-exec-5] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] ==> Parameters: 津C10S30(String)
+2021/02/01-09:38:07 [http-nio-317-exec-5] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalBlackList-[159] <==      Total: 0
+2021/02/01-09:38:07 [http-nio-317-exec-5] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==>  Preparing: select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE, bt2.NAME ENTRYSTATIONID, bt3.NAME EXITSTATIONID, to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,to_char(EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME, nvl(TOTALWEIGHT,'') TOTALWEIGHT, decode(HAVECARD,1,'是',0,'否','') HAVECARD, decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE, decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO, nvl(CPUCARDID,'') CPUCARDID, nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION, to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME, CREATEUSERNAME, s4.dept_name CREATEDEPTID, nvl(SUMTOTAL,0) SUMTOTAL, bd1.DEPT_NAME SERVICEDEPTNAME from cd_jc.JC_GRAYLIST_REQUEST t INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40 LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = t.ENTRYSTATIONID LEFT JOIN (SELECT x.* FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = t.EXITSTATIONID where t.CARNUMBER like '%'||?||'%' order by t.CREATETIME desc 
+2021/02/01-09:38:07 [http-nio-317-exec-5] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] ==> Parameters: 津C10S30(String)
+2021/02/01-09:38:07 [http-nio-317-exec-5] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper.getLocalGreyList-[159] <==      Total: 0
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[51] 方法执行前执行。。。。。before
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[52] <============================================
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[53] 请求来源： =》192.168.3.3
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[54] 请求URL：=》/JC/APP/findEtcBlackList
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[55] 请求方式：=》POST
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[56] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.OwerController.findEtcBlackList
+2021/02/01-09:39:26 [http-nio-317-exec-8] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[57] 请求参数：=》[津C10S30]
+2021/02/01-09:39:26 [http-nio-317-exec-8] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.OwerMapper.findEtcBlackList-[159] ==>  Preparing: SELECT jeb.RCARDTYPE, jeb.ICCISSUER, esc.codename iccIssuerName, jeb.CPUCARDID, jeb.VEHICLELICENSE, decode(jeb.BLACKLISTTYPE,1,'白名单',5,'黑名单','')BLACKLISTTYPE, to_char(jeb.CREATETIME,'yyyy-MM-dd HH24:mi:ss') CREATETIME, jeb.AVT_ID, decode(jeb.FLAG,1,'已下发',0,'未下发')FLAG, jeb.TIME, decode(jeb.DELETEFLAG,1,'已下发',0,'未下发','此卡已消失/已入黑') DELETEFLAG, to_char(jeb.DELETETIME,'yyyy-MM-dd HH24:mi:ss') DELETETIME, jeb.DEVVEHICLELICENSE, sed1.ENUM_NAME ELUDEMONEYTYPE, CASE WHEN jeb.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jeb.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jeb.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jeb.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEM, s2.enum_name VEHICLECOLOR, sed6.enum_name CARTYPE, jeb.BLACKTYPE, to_char(jeb.RECOVERTIME,'yyyy-MM-dd HH24:mi:ss') RECOVERTIME, jeb.SUMMONENY, jeb.SUMTOTAL, jeb.OBUID, jeb.ENTRYSTATIONID, bt1.NAME ENTRYSTATIONNAME, jeb.EXITSTATIONID, bt2.NAME EXITSTATIONNAME, to_char(jeb.ENTRYSTATIONTIME,'yyyy-MM-dd HH24:mi:ss') ENTRYSTATIONTIME, to_char(jeb.EXITSTATIONTIME,'yyyy-MM-dd HH24:mi:ss') EXITSTATIONTIME, jeb.PHYSICALTRUTHSTATUS, jeb.REQUESTDESCRIPTION, jeb.CREATENAME, jeb.CREATEDEPT, jeb.CREATEDEPTNAME, jeb.REQUESTID FROM HW_JZ.JC_ETC_CARD_BLACKLIST@DB_LINK3628 jeb LEFT JOIN (SELECT x.* FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE = '1') bt1 ON bt1.ID = jeb.ENTRYSTATIONID LEFT JOIN (SELECT x.* FROM HW_JZ.BASIC_BASICINFODOWN_RES@DB_LINK3628 x WHERE x.downid = '27412820' AND x.TYPE = '1') bt2 ON bt2.ID = jeb.EXITSTATIONID left join etc_system_code@db_link_2310etc esc on esc.codevalue=jeb.ICCISSUER and typeid=62 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON jeb.VEHICLECOLOR = s2.ENUM_VALUE and s2.ENUM_ID = 39 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jeb.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jeb.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jeb.CARTYPE AND sed6.ENUM_ID = 40 WHERE jeb.BLACKTYPE = 5 AND ( jeb.CPUCARDID LIKE CONCAT( ?, '%' ) OR jeb.OBUID LIKE CONCAT( ?, '%' ) OR jeb.VEHICLELICENSE LIKE '%' || ? || '%') ORDER BY jeb.CREATETIME DESC 
+2021/02/01-09:39:26 [http-nio-317-exec-8] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.OwerMapper.findEtcBlackList-[159] ==> Parameters: 津C10S30(String), 津C10S30(String), 津C10S30(String)
+2021/02/01-09:39:26 [http-nio-317-exec-8] DEBUG com.tuozhi.zhlw.admin.jcApp.mapper.OwerMapper.findEtcBlackList-[159] <==      Total: 0
+2021/09/16-15:31:10 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[55] Starting MyApplication on LAPTOP-KV41TLVK with PID 18984 (D:\project_zhlw\jichaApp\cd-jcApp\cd-zhlw-web-admin\target\classes started by wang in D:\project_zhlw\jichaApp\cd-jcApp)
+2021/09/16-15:31:10 [main] DEBUG com.tuozhi.zhlw.admin.MyApplication-[56] Running with Spring Boot v2.2.2.RELEASE, Spring v5.2.2.RELEASE
+2021/09/16-15:31:10 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[655] The following profiles are active: dev
+2021/09/16-15:31:12 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/09/16-15:31:12 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021/09/16-15:31:12 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 52ms. Found 3 JPA repository interfaces.
+2021/09/16-15:31:13 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[239] Skipping MapperFactoryBean with name 'workFlowNodeMapper' and 'com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper' mapperInterface. Bean already defined with the same name!
+2021/09/16-15:31:13 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner-[166] No MyBatis mapper was found in '[com.tuozhi.zhlw.admin]' package. Please check your configuration.
+2021/09/16-15:31:13 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/09/16-15:31:13 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021/09/16-15:31:13 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysAppDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021/09/16-15:31:13 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysLogDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021/09/16-15:31:13 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport-[348] Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.tuozhi.zhlw.admin.dao.SysMenuDao. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2021/09/16-15:31:13 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate-[187] Finished Spring Data repository scanning in 27ms. Found 0 Redis repository interfaces.
+2021/09/16-15:31:13 [main] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker-[330] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/09/16-15:31:13 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[92] Tomcat initialized with port(s): 317 (http)
+2021/09/16-15:31:13 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Initializing ProtocolHandler ["http-nio-317"]
+2021/09/16-15:31:13 [main] INFO  org.apache.catalina.core.StandardService-[173] Starting service [Tomcat]
+2021/09/16-15:31:13 [main] INFO  org.apache.catalina.core.StandardEngine-[173] Starting Servlet engine: [Apache Tomcat/9.0.29]
+2021/09/16-15:31:13 [main] INFO  org.apache.jasper.servlet.TldScanner-[173] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021/09/16-15:31:13 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring embedded WebApplicationContext
+2021/09/16-15:31:13 [main] INFO  org.springframework.web.context.ContextLoader-[284] Root WebApplicationContext: initialization completed in 3595 ms
+2021/09/16-15:31:14 [main] INFO  org.springframework.boot.web.servlet.RegistrationBean-[110] Filter characterEncodingFilter was not registered (possibly already registered?)
+2021/09/16-15:31:14 [main] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure-[56] Init DruidDataSource
+2021/09/16-15:31:14 [main] WARN  com.alibaba.druid.pool.DruidAbstractDataSource-[1216] oracle.jdbc.driver.OracleDriver is deprecated.Having use oracle.jdbc.OracleDriver.
+2021/09/16-15:31:15 [main] INFO  com.alibaba.druid.pool.DruidDataSource-[1003] {dataSource-1} inited
+2021/09/16-15:31:15 [main] INFO  org.hibernate.jpa.internal.util.LogHelper-[31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021/09/16-15:31:15 [main] INFO  org.hibernate.Version-[46] HHH000412: Hibernate Core {5.4.9.Final}
+2021/09/16-15:31:15 [main] INFO  org.hibernate.annotations.common.Version-[66] HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2021/09/16-15:31:15 [main] INFO  org.hibernate.dialect.Dialect-[172] HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2021/09/16-15:31:17 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-[52] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021/09/16-15:31:17 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[416] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021/09/16-15:31:19 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration-[220] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021/09/16-15:31:19 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2021/09/16-15:31:19 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[60] Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2021/09/16-15:31:19 [main] INFO  tk.mybatis.mapper.autoconfigure.MapperCacheDisabler-[83] Clear EntityHelper entityTableMap cache.
+2021/09/16-15:31:19 [main] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[171] Initializing ExecutorService 'taskScheduler'
+2021/09/16-15:31:19 [main] INFO  org.apache.coyote.http11.Http11NioProtocol-[173] Starting ProtocolHandler ["http-nio-317"]
+2021/09/16-15:31:19 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer-[204] Tomcat started on port(s): 317 (http) with context path ''
+2021/09/16-15:31:19 [main] INFO  com.tuozhi.zhlw.admin.MyApplication-[61] Started MyApplication in 9.988 seconds (JVM running for 10.822)
+2021/09/16-15:31:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = '1000002' 
+2021/09/16-15:31:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] ==> Parameters: 
+2021/09/16-15:31:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getJCBDeptId-[159] <==      Total: 1
+2021/09/16-15:31:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==>  Preparing: SELECT ID FROM CD_SYSTEM.SYS_DEPT WHERE DEPT_WORK = 'FX' 
+2021/09/16-15:31:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] ==> Parameters: 
+2021/09/16-15:31:19 [main] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getIssuerDeptId-[159] <==      Total: 1
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]-[173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[525] Initializing Servlet 'dispatcherServlet'
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet-[547] Completed initialization in 7 ms
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] ==>  Preparing: select t.ID as deptId,t.PARENT_ID as deptParentId,t.DEPT_NAME as deptName,t.DEPT_WORK as deptWork,u.LOGIN_NAME as loginName,u.USER_NAME as userName,u.PASSWORD as password,u.ID as userId,u.LAST_PASSWORD_MODIFY_TIME lastPasswordModifyTime,u.PASSWORD_HISTORY passwordHistory, t.PRIVILEGE_ID as privilegeId ,u.VALID_STATUS as validStatus,(select wm_concat(ROLE_ID) from SYS_USER_ROLES where USER_ID= u.ID) roleIds,t.DEPT_LONG_ID deptLongId, t.WORKFLOWDEPTROLE workFlowDeptRole ,jud.GXID gxId,jud.GXNAME gxName from SYS_USERS u left join SYS_DEPT t on t.ID = u.DEPT_ID left join cd_jc.jc_user_dept jud on u.id = jud.USER_ID where u.LOGIN_NAME = ? 
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] ==> Parameters: 1010112(String)
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] <==      Total: 1
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[51] 方法执行前执行。。。。。before
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[52] <============================================
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[53] 请求来源： =》127.0.0.1
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[54] 请求URL：=》/JC/APP/insertJCBlackOrdersRevoked/1010112
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[55] 请求方式：=》POST
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[56] 响应方法：=》com.tuozhi.zhlw.admin.jcApp.controller.JCAuditStatusController.insertJCBlackOrdersRevoked
+2021/09/16-15:33:35 [http-nio-317-exec-1] INFO  com.tuozhi.zhlw.admin.jcApp.config.SysLoginAspect-[57] 请求参数：=》[{
+	"sRequestId": 202103096764,
+	"carNumber": "津DRJ888",
+	"carColour": 0,
+	"ferretOutStationId": "S0031120010010",
+	"ferretOutStationTime": "2021-03-08 18:23:58",
+	"disgorgementMoneyNumber": 30.9,
+	"createUserName": "ceshi",
+    "repairFeeUserName":"ceshi",
+    "repairFeePhone":33,
+    "isTicket":1
+}, [Lorg.springframework.web.multipart.MultipartFile;@33a41746, 1010112]
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] ==>  Preparing: select t.ID as deptId,t.PARENT_ID as deptParentId,t.DEPT_NAME as deptName,t.DEPT_WORK as deptWork,u.LOGIN_NAME as loginName,u.USER_NAME as userName,u.PASSWORD as password,u.ID as userId,u.LAST_PASSWORD_MODIFY_TIME lastPasswordModifyTime,u.PASSWORD_HISTORY passwordHistory, t.PRIVILEGE_ID as privilegeId ,u.VALID_STATUS as validStatus,(select wm_concat(ROLE_ID) from SYS_USER_ROLES where USER_ID= u.ID) roleIds,t.DEPT_LONG_ID deptLongId, t.WORKFLOWDEPTROLE workFlowDeptRole ,jud.GXID gxId,jud.GXNAME gxName from SYS_USERS u left join SYS_DEPT t on t.ID = u.DEPT_ID left join cd_jc.jc_user_dept jud on u.id = jud.USER_ID where u.LOGIN_NAME = ? 
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] ==> Parameters: 1010112(String)
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.mapper.LoginMapper.findBaseUserByLoginName-[159] <==      Total: 1
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.getDataByRequestId-[159] ==>  Preparing: SELECT jbr.cardLossFee /100 cardLossFee, jbr.REQUESTID, jbr.CARNUMBER, jbr.CARFEATURE, jbr.CARTYPE, vev.ENUM_NAME CARTYPENAME, jbr.EXITSTATIONID, ROUND(jbr.ELUDEMONEYNUMBER/100,2) ELUDEMONEYNUMBER, ROUND(jbr.PAYMONEYNUMBER/100,2) PAYMONEYNUMBER, jbr.ELUDEMONEYTYPE, jbr.REQUESTDESCRIPTION, jbr.CREATETIME, jbr.LOGINUSERID, jbr.CREATEUSERNAME, jbr.REQUESTSTATUS, jbr.CREATEDEPTID, jbr.ENTRYSTATIONID, jbr.ENTRYSTATIONTIME, jbr.EXITSTATIONTIME, jbr.TOTALWEIGHT, ROUND(jbr.FACTMONEYNUMBER/100,2) FACTMONEYNUMBER, jbr.AXLETYPE, jbr.CURRENTFLOWPATHID, jbr.LOGICTYPE, jbr.FERRETOUTSTATIONID, jbr.FERRETOUTSTATIONTIME, ROUND(jbr.DISGORGEMENTMONEYNUMBER/100,2) DISGORGEMENTMONEYNUMBER, jbr.CARDID, jbr.HAVEDAMAGEDEVICE, jbr.HAVEVIDEO, jbr.HAVECARD, jbr.WORKFLOW_DEFINATION_ID WORKFLOWDEFINATIONID, jbr.eludeMoneyTypeItem, jbr.SUMTOTAL, jbr.CPUCARDID, jbr.OBUID, jbr.RECOVERTIME, jbr.PHYSICALTRUTHSTATUS, jbr.DEVCARNUMBER, jbr.PHONE, jbr.INVESTIGATIONID, jbr.SEAT_NUM SEATNUM, jbr.DELETEFLAG, jbr.CARCOLOUR, vvc.ENUM_NAME carColourName, jbr.MEDIATYPE, jbf.OPERATEDEPTID DEPTID, jbf.FLOWPATHSTATUS FLOWPATHSTATUS, jbf.WORKFLOWNODEID, t.codename ISSUER, to_char(jbf.CREATETIME, 'yyyy-mm-dd hh24:mi:ss' ) AS FlowPathCREATETIME, bd1.DEPT_NAME, bd2.DEPT_NAME AS CreateStationName, (SELECT count(1) FROM "CD_JC"."JC_EVADETOLL_RECORD" jer WHERE jer.BLACKLISTADDID = jbr.REQUESTID ) ADDEVADETOLLCOUNT, bs1.NAME ENSECTIONNAME, bs2.NAME EXSECTIONNAME, bt1.NAME ENTRYSTATIONNAME, bt2.NAME EXITSTATIONNAME, bt3.NAME ferretOutStationName, sed1.ENUM_NAME ELUDEMONEYTYPENAME, CASE WHEN jbr.ELUDEMONEYTYPE = 1001 THEN sed2.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1002 THEN sed3.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1003 THEN sed4.ENUM_NAME WHEN jbr.ELUDEMONEYTYPE = 1004 THEN sed5.ENUM_NAME END ELUDEMONEYTYPEITEMNAME, sed8.ENUM_NAME HAVECARDNAME, jbr1.EXITSTATIONTIME EXITSTATIONTIME1, bt4.NAME EXITSTATIONNAME1, jbr1.PHONE PHONE1 FROM "CD_JC"."JC_BLACKLIST_REQUEST" jbr left JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr.SREQUESTID = jbr1.REQUESTID and jbr1.DELETEFLAG = 1 AND jbr1.LOGICTYPE = 1 left join CD_ETC.etc_system_code t on jbr.issuer=t.codevalue and t.typeid=62 and t.codevalue like '%1001' left join cd_system.V_ENUM_VEHICLETYPE vev on vev.ENUM_VALUE=jbr.CARTYPE left join cd_system.V_VEHICLEPLATE_COLOR vvc on vvc.ENUM_VALUE=jbr.CARCOLOUR INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID LEFT JOIN CD_SYSTEM.SYS_DEPT bd2 ON jbr.CREATEDEPTID = bd2.ID LEFT JOIN CD_PASS.BASE_SECTION bs1 ON bs1.ID = jbr.ENSECTIONID LEFT JOIN CD_PASS.BASE_SECTION bs2 ON bs2.ID = jbr.EXSECTIONID LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE AND sed1.ENUM_ID = 87 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed2.ENUM_ID = 88 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed3.ENUM_ID = 89 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed4.ENUM_ID = 90 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM AND sed5.ENUM_ID = 91 LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed8 ON sed8.ENUM_VALUE = jbr1.HAVECARD AND sed8.ENUM_ID = 2025 LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt1 ON bt1.ID = jbr.ENTRYSTATIONID LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID = jbr.EXITSTATIONID LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID = jbr.ferretOutStationId LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt4 ON bt4.ID = jbr1.EXITSTATIONID WHERE jbr.REQUESTID = ? 
+2021/09/16-15:33:35 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.getDataByRequestId-[159] ==> Parameters: 202103096764(Long)
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.getDataByRequestId-[159] <==      Total: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.JcWorkFlowNodeMapper.getDataByDefinationInitDept-[159] ==>  Preparing: SELECT p.* FROM ( SELECT jwn.NODEID, jwn.DEFINATIONID, jwn.NODENAME, jwn.PREVNODEID, jwn.NEXTNODEID, jwn.WORKFLOWDEPTROLE, jwn.NODETYPE, jwn.CREATETIME FROM "CD_JC"."JC_WORKFLOW_NODE" jwn LEFT JOIN (SELECT * FROM(SELECT jwd.DEFINATION_ID,jwd.DEFINATION_STATUS,jwd.DEFINATION_MENU,jwd.CREATE_TIME,regexp_substr( DEFINATION_INIT_DEPT, '[^,]+', 1, LEVEL ) definationInitDept FROM "CD_JC".JC_WORKFLOW_DEFINATION jwd CONNECT BY LEVEL <= regexp_count ( jwd.DEFINATION_INIT_DEPT, ',' ) + 1 and jwd.DEFINATION_ID = prior jwd.DEFINATION_ID and prior dbms_random.value is not null) WHERE definationInitDept = ?) jwd2 ON jwd2.DEFINATION_ID = jwn.DEFINATIONID WHERE jwn.NODETYPE = 1 AND jwd2.DEFINATION_STATUS = 4 AND jwd2.DEFINATION_MENU = ? ORDER BY jwd2.CREATE_TIME DESC ) p WHERE ROWNUM = 1 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.JcWorkFlowNodeMapper.getDataByDefinationInitDept-[159] ==> Parameters: 67(String), 1(Integer)
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.JcWorkFlowNodeMapper.getDataByDefinationInitDept-[159] <==      Total: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getDeptId-[159] ==>  Preparing: SELECT ID from sys_dept where WORKFLOWDEPTROLE = 5 CONNECT BY PRIOR PARENT_ID =ID START WITH ID=? 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getDeptId-[159] ==> Parameters: 67(Long)
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BaseDeptMapper.getDeptId-[159] <==      Total: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.addBlackRevoked!selectKey-[159] ==>  Preparing: select TO_NUMBER(to_char(sysdate,'yyyymmdd')|| CD_JC.SEQ_JC_BLACKLIST_REQUEST.nextval) FROM DUAL 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.addBlackRevoked!selectKey-[159] ==> Parameters: 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.addBlackRevoked!selectKey-[159] <==      Total: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.addBlackRevoked-[159] ==>  Preparing: INSERT INTO CD_JC.JC_BLACKLIST_REQUEST ( REQUESTID, CARNUMBER, CARCOLOUR, CREATEUSERNAME, REQUESTSTATUS, CURRENTFLOWPATHID, LOGICTYPE, FERRETOUTSTATIONID, FERRETOUTSTATIONTIME, DISGORGEMENTMONEYNUMBER, WORKFLOW_DEFINATION_ID, CPUCARDID, OBUID, DEVCARNUMBER, REQUESTDESCRIPTION, CREATETIME, LOGINUSERID, CREATEDEPTID, DELETEFLAG, SREQUESTID, CARTYPE, ENTRYSTATIONID, ELUDEMONEYTYPE, ELUDEMONEYTYPEITEM, COMPANYDEPTID, EXITSTATIONID, REPAIRFEEUSERNAME, REPAIRFEEPHONE, ISTICKET, IS_APP ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, current_date, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.addBlackRevoked-[159] ==> Parameters: 2021091616942(Long), 津DRJ888(String), 0(Integer), ceshi(String), 1(Integer), null, 2(Integer), S0031120010010(String), 2021-03-08 18:23:58.0(Timestamp), 3090.0(Double), 1(Integer), null, null, null, null, 102(Long), 67(Long), 1(Integer), 202103096764(Long), 1(Integer), S0051120010070(String), 1002(Integer), 5(Integer), 6(Long), S0040120010010(String), ceshi(String), 33(String), 1(String), 1(Integer)
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.addBlackRevoked-[159] <==    Updates: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper.addBlackFlowPath!selectKey-[159] ==>  Preparing: select CD_JC.SEQ_JC_BLACKLIST_FLOWPATH.nextval FROM DUAL 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper.addBlackFlowPath!selectKey-[159] ==> Parameters: 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper.addBlackFlowPath!selectKey-[159] <==      Total: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper.addBlackFlowPath-[159] ==>  Preparing: INSERT INTO CD_JC.JC_BLACKLIST_FLOWPATH ( FLOWPATHID, REQUESTID, FLOWPATHNAME, CREATETIME, OPERATEDEPTID, WORKFLOWDEFINATIONID, WORKFLOWNODEID ) VALUES ( ?, ?, ?, CURRENT_DATE, ?, ?, ? ) 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper.addBlackFlowPath-[159] ==> Parameters: 48823(Integer), 2021091616942(Long), 黑名单撤销申请(String), 67(Long), 1(Integer), 3(Integer)
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper.addBlackFlowPath-[159] <==    Updates: 1
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.uptFlowPathId-[159] ==>  Preparing: UPDATE CD_JC.JC_BLACKLIST_REQUEST r SET r.CURRENTFLOWPATHID = ? where r.REQUESTID = ? 
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.uptFlowPathId-[159] ==> Parameters: 48823(Integer), 2021091616942(Long)
+2021/09/16-15:33:36 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.BlackListRequestMapper.uptFlowPathId-[159] <==    Updates: 1
+2021/09/16-15:33:37 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.JcLogMapper.selectOperationLogByCarNum-[159] ==>  Preparing: select * from cd_jc.jc_operation_log jol where vehiclelicense=? and vehiclelicenseColor= ? 
+2021/09/16-15:33:37 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.JcLogMapper.selectOperationLogByCarNum-[159] ==> Parameters: 津DRJ888(String), 0(Integer)
+2021/09/16-15:33:37 [http-nio-317-exec-1] DEBUG com.tuozhi.zhlw.admin.jc.mapper.JcLogMapper.selectOperationLogByCarNum-[159] <==      Total: 1
+2021/09/16-16:15:58 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2021/09/16-16:15:58 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021/09/16-16:15:58 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2021/09/16-16:15:58 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2021/09/16-16:15:58 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2021/09/16-16:15:58 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2021/09/16-16:15:58 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2021/09/16-16:15:58 [SpringContextShutdownHook] WARN  com.alibaba.druid.pool.DruidDataSource-[2012] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:2010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:339)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:273)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1072)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1065)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1060)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1029)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:948)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 20 common frames omitted
+2021/09/16-16:15:58 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed

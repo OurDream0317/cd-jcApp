@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tuozhi.zhlw.admin.jc.mapper.BlackListFlowpathMapper">
+	
+	<insert id="saveBlacklistFlowpath" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+	    <selectKey keyProperty="flowpathId" resultType="java.lang.Integer" order="AFTER">
+			select CD_JC.SEQ_JC_BLACKLIST_FLOWPATH.CURRVAL from dual
+		</selectKey>
+		INSERT INTO CD_JC.JC_BLACKLIST_FLOWPATH (
+		FLOWPATHID,
+		REQUESTID,
+		CREATETIME,
+		SENDDIRECTION,
+		LOGINUSERID,
+		OPERATEUSERNAME,
+		DEPTID
+		)
+		VALUES
+		( 
+		CD_JC.SEQ_JC_BLACKLIST_FLOWPATH.nextval,
+		#{requestId,jdbcType=NUMERIC},
+		#{createTime,jdbcType=DATE},
+		#{sendDirection,jdbcType=NUMERIC},
+		#{loginUserId,jdbcType=NUMERIC},
+		#{operateUserName,jdbcType=VARCHAR},
+		#{deptId,jdbcType=NUMERIC}
+		)
+	</insert>
+	
+	<select id="getDataByRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+		SELECT
+			jbf.FLOWPATHID,
+			jbf.REQUESTID,
+			jbf.FLOWPATHNAME,
+			jbf.HANDLESUGGESTION,
+			jbf.CREATETIME,
+			jbf.OPERATETIME,
+			jbf.OPERATEUSERNAME,
+			jbf.OPERATEDEPTID,
+			jbf.SENDDIRECTION,
+			jbf.FLOWPATHSTATUS,
+			jbf.WORKFLOWDEFINATIONID,
+			jbf.WORKFLOWNODEID,
+			bd.DEPT_NAME
+		FROM
+			"CD_JC"."JC_BLACKLIST_FLOWPATH" jbf
+			LEFT JOIN CD_SYSTEM.SYS_DEPT bd ON jbf.OPERATEDEPTID = bd.ID
+		WHERE
+			jbf.REQUESTID = #{requestId,jdbcType=NUMERIC}
+		ORDER BY
+			jbf.CREATETIME
+	</select>
+
+	<select id="getFlowPathByRequestId" resultType="java.lang.Integer">
+		SELECT
+			jbf.OPERATEDEPTID
+		FROM
+			"CD_JC"."JC_BLACKLIST_FLOWPATH" jbf
+		WHERE
+			jbf.FLOWPATHSTATUS IS NULL
+			AND jbf.REQUESTID = #{requestId}
+			AND jbf.WORKFLOWNODEID = #{workFlowNodeId}
+	</select>
+
+	<insert id="insertData" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+		<selectKey keyProperty="flowpathId" resultType="java.lang.Integer" order="AFTER">
+			select CD_JC.SEQ_JC_BLACKLIST_FLOWPATH.CURRVAL from dual
+		</selectKey>
+		INSERT INTO CD_JC.JC_BLACKLIST_FLOWPATH (
+		FLOWPATHID
+		<if test="requestId != null">
+			,REQUESTID
+		</if>
+		<if test="flowpathName != null">
+			,FLOWPATHNAME
+		</if>
+		<if test="handleSuggestion != null">
+			,HANDLESUGGESTION
+		</if>
+		<if test="createTime != null">
+			,CREATETIME
+		</if>
+		<if test="operateTime != null">
+			,OPERATETIME
+		</if>
+		<if test="operateUserName != null">
+			,OPERATEUSERNAME
+		</if>
+		<if test="operateDeptId != null">
+			,OPERATEDEPTID
+		</if>
+		<if test="sendDirection != null">
+			,SENDDIRECTION
+		</if>
+		<if test="flowpathStatus != null">
+			,FLOWPATHSTATUS
+		</if>
+		<if test="workflowDefinationId != null">
+			,WORKFLOWDEFINATIONID
+		</if>
+		<if test="workflowNodeId != null">
+			,WORKFLOWNODEID
+		</if>
+		)
+		VALUES
+		(
+		CD_JC.SEQ_JC_BLACKLIST_FLOWPATH.nextval
+		<if test="requestId != null">
+			,#{requestId,jdbcType=NUMERIC}
+		</if>
+		<if test="flowpathName != null">
+			,#{flowpathName,jdbcType=VARCHAR}
+		</if>
+		<if test="handleSuggestion != null">
+			,#{handleSuggestion,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime != null">
+			,#{createTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="operateTime != null">
+			,#{operateTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="operateUserName != null">
+			,#{operateUserName,jdbcType=VARCHAR}
+		</if>
+		<if test="operateDeptId != null">
+			,#{operateDeptId,jdbcType=NUMERIC}
+		</if>
+		<if test="sendDirection != null">
+			,#{sendDirection,jdbcType=NUMERIC}
+		</if>
+		<if test="flowpathStatus != null">
+			,#{flowpathStatus,jdbcType=NUMERIC}
+		</if>
+		<if test="workflowDefinationId != null">
+			,#{workflowDefinationId,jdbcType=NUMERIC}
+		</if>
+		<if test="workflowNodeId != null">
+			,#{workflowNodeId,jdbcType=NUMERIC}
+		</if>
+		)
+	</insert>
+
+	<update id="updateDataByFlowpathIdAndRequestId" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+		UPDATE CD_JC.JC_BLACKLIST_FLOWPATH
+		<set>
+			<if test="operateTime != null">
+				OPERATETIME = #{operateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="handleSuggestion != null">
+				HANDLESUGGESTION = #{handleSuggestion,jdbcType=VARCHAR},
+			</if>
+			<if test="operateUserName != null">
+				OPERATEUSERNAME = #{operateUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="flowpathStatus != null">
+				FLOWPATHSTATUS = #{flowpathStatus,jdbcType=NUMERIC},
+			</if>
+			<if test="sendDirection != null">
+				SENDDIRECTION = #{sendDirection,jdbcType=NUMERIC},
+			</if>
+		</set>
+		WHERE
+		FLOWPATHID = #{flowpathId,jdbcType=NUMERIC}
+		AND REQUESTID = #{requestId,jdbcType=NUMERIC}
+	</update>
+
+	<select id="getPrevDataByPrevWorkFlow" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+		SELECT
+			p.*
+		FROM
+			(
+			SELECT
+				jbf.FLOWPATHID,
+				jbf.REQUESTID,
+				jbf.FLOWPATHNAME,
+				jbf.HANDLESUGGESTION,
+				jbf.CREATETIME,
+				jbf.OPERATETIME,
+				jbf.OPERATEUSERNAME,
+				jbf.OPERATEDEPTID,
+				jbf.SENDDIRECTION,
+				jbf.FLOWPATHSTATUS,
+				jbf.WORKFLOWDEFINATIONID,
+				jbf.WORKFLOWNODEID
+			FROM
+				"CD_JC"."JC_BLACKLIST_FLOWPATH" jbf
+			WHERE
+				jbf.WORKFLOWDEFINATIONID = #{workflowDefinationId,jdbcType=NUMERIC}
+				AND jbf.WORKFLOWNODEID = #{workflowNodeId,jdbcType=NUMERIC}
+				AND	jbf.REQUESTID = #{requestId,jdbcType=NUMERIC}
+			ORDER BY
+				jbf.FLOWPATHID DESC
+			) p
+		WHERE
+			ROWNUM = 1
+	</select>
+
+	<select id="getDataByFlowPathIdAndRequestId" resultType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+		SELECT
+			FLOWPATHID,
+			REQUESTID,
+			FLOWPATHNAME,
+			HANDLESUGGESTION,
+			CREATETIME,
+			OPERATETIME,
+			OPERATEUSERNAME,
+			OPERATEDEPTID,
+			SENDDIRECTION,
+			FLOWPATHSTATUS,
+			WORKFLOWDEFINATIONID,
+			WORKFLOWNODEID
+		FROM
+			"CD_JC"."JC_BLACKLIST_FLOWPATH"
+		WHERE
+			FLOWPATHID = #{flowPathId,jdbcType=NUMERIC}
+			AND REQUESTID = #{requestId,jdbcType=NUMERIC}
+	</select>
+
+	<insert id="addBlackFlowPath" parameterType="com.tuozhi.zhlw.admin.jc.entity.BlackListFlowpath">
+		<selectKey resultType="java.lang.Integer" keyProperty="flowpathId" keyColumn="FLOWPATHID" order="BEFORE" >
+			select CD_JC.SEQ_JC_BLACKLIST_FLOWPATH.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO CD_JC.JC_BLACKLIST_FLOWPATH (
+			FLOWPATHID,
+			REQUESTID,
+			FLOWPATHNAME,
+			CREATETIME,
+			OPERATEDEPTID,
+			WORKFLOWDEFINATIONID,
+			WORKFLOWNODEID
+		)
+		VALUES
+			(
+				#{flowpathId,jdbcType=NUMERIC},
+				#{ requestId,jdbcType=NUMERIC },
+				#{ flowpathName,jdbcType=VARCHAR },
+				CURRENT_DATE,
+				#{ operateDeptId,jdbcType=NUMERIC },
+				#{ workflowDefinationId,jdbcType=NUMERIC },
+				#{ workflowNodeId,jdbcType=NUMERIC }
+		)
+	</insert>
+	<delete id="delBlackFlowPath" parameterType="java.lang.Integer">
+		DELETE FROM CD_JC.JC_BLACKLIST_FLOWPATH bft WHERE bft.FLOWPATHID = #{flowpathId,jdbcType=INTEGER}
+	</delete>
+
+	<select id="getDataByRequestIdAndFlowPathId" resultType="com.tuozhi.zhlw.admin.jc.entity.JcWorkFlowNodeEntity">
+		SELECT
+		jwn.NODEID,
+		jwn.DEFINATIONID,
+		jwn.NODENAME,
+		jwn.PREVNODEID,
+		jwn.NEXTNODEID,
+		jwn.WORKFLOWDEPTROLE,
+		jwn.NODETYPE,
+		jwn.CREATETIME,
+		jwn3.WORKFLOWDEPTROLE WORKFLOWDEPTROLEPREV,
+		jwn2.WORKFLOWDEPTROLE WORKFLOWDEPTROLENEXT
+		FROM
+		"CD_JC"."JC_WORKFLOW_NODE" jwn
+		INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbf.WORKFLOWDEFINATIONID = jwn.DEFINATIONID AND jbf.WORKFLOWNODEID = jwn.NODEID
+		INNER JOIN "CD_JC"."JC_WORKFLOW_DEFINATION" jwd ON jwd.DEFINATION_ID = jwn.DEFINATIONID
+		LEFT JOIN "CD_JC"."JC_WORKFLOW_NODE" jwn2 ON jwn2.DEFINATIONID = jwn.DEFINATIONID AND jwn2.NODEID = jwn.NEXTNODEID
+		LEFT JOIN "CD_JC"."JC_WORKFLOW_NODE" jwn3 ON jwn3.DEFINATIONID = jwn.DEFINATIONID AND jwn3.NODEID = jwn.PREVNODEID
+		WHERE 1 = 1
+		<if test="status">
+			AND jwd.DEFINATION_STATUS = 4
+		</if>
+		AND jbf.FLOWPATHID = #{flowPathId,jdbcType=NUMERIC}
+		AND jbf.REQUESTID = #{requestId,jdbcType=NUMERIC}
+	</select>
+</mapper>

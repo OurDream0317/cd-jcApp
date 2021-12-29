@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.ExitPassDataMapper">
+    <select id="getTradePassDataByParams" resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity"
+            parameterType="java.util.Map">
+        SELECT
+        PASS.EXID,
+        vehicleSignId,
+        PASS.PASSID,
+        cd_system.F_ENUM_MEDIATYPE(PASS.MEDIATYPE) MEDIATYPE,
+        PASS.ENTIME,
+        ROUND(jnw.realfee,2) realfee,
+        ROUND(jnw.owefee,2) owefee,
+        CD_SYSTEM.F_ENUM_VEHICLETYPE(jnw.NEWVEHICLETYPE) as NEWVEHICLETYPE,
+        ROUND(PASS.FEE/100,2) FEE,
+        ROUND(PASS.DISCOUNTFEE/100,2) DISCOUNTFEE,
+        ROUND(PASS.PAYFEE/100,2) PAYFEE,
+        ROUND(PASS.SHORTFEE/100,2) SHORTFEE,
+        PASS.VEHICLELENGTH,
+        PASS.VEHICLEWIDTH,
+        PASS.VEHICLEHIGHT,
+        PASS.EXWEIGHT,
+        PASS.EXAXLECOUNT,
+        decode(PASS.CD_PATHFITTINGCLASS,2,decode(PASS.TRANSPAYTYPE,1,'现金',2,'其他第三方',3,'银联',6,'支付宝',7,'微信',''),3,decode(PASS.TRANSPAYTYPE,1,'出口ETC通行',2,'出口ETC刷卡通行',''),'')
+        paytype,
+        PASS.CD_PATHFITTINGCLASS,
+        PASS.CD_INSERTTIME,
+        PASS.ENTOLLLANEID,
+        PASS.ENPROVINCEID,
+        PASS.CD_PATHFITTINGID,
+        PASS.EXPROVINCEID,
+        PASS.EXTIME,
+        PASS.EXTOLLLANEID,
+        PASS.ENTOLLSTATIONID,
+        PASS.EXTOLLSTATIONID,
+        ENTOLLSTATIONNAME,
+        EXTOLLSTATIONNAME,
+        SECTION.NAME ENSECTIONID,
+        SECTION1.NAME EXSECTIONID,
+        cd_system.F_ENUM_VEHICLE(PASS.ENVEHICLEID) ENVEHICLENAME,
+        cd_system.F_ENUM_VEHICLE(PASS.EXVEHICLEID) EXVEHICLENAME,
+        PASS.EXVEHICLEID,
+        PASS.MEDIANO,
+        PASS.OBUID,
+        CD_SYSTEM.F_ENUM_VEHICLETYPE(PASS.EXVEHICLETYPE) as EXVEHICLETYPE,
+        CD_SYSTEM.F_ENUM_VEHICLECLASS(PASS.EXVEHICLECLASS) as EXVEHICLECLASS,
+        PASS.SPECIALTYPE,
+        CD_SYSTEM.F_ENUM_VEHICLETYPE(PASS.ENVEHICLETYPE) as ENVEHICLETYPE,
+        CD_SYSTEM.F_ENUM_VEHICLECLASS(PASS.ENVEHICLECLASS) as ENVEHICLECLASS,
+        PASS.SECTIONIDGROUP,
+        PASS.CD_ETCDISCOUNTTYPE,
+        PASS.CD_ETCDISCOUNTID,
+        PASS.CD_ETCDISCOUTTIME,
+        PASS.CD_REFITTING,
+        PASS.CD_REFITTINGBYTRADETIME,
+        PROVINCE.PROVINCENAME as ENPROVINCENAME,
+        PROVINCE1.PROVINCENAME as EXPROVINCENAME,
+        PASS.EXITFEETYPE,
+        sed1.ENUM_NAME exitFeeTypeName,
+        sed.ENUM_NAME issuerName,
+        ROUND( jnw.allfee,2) allfee,
+        ROUND(jnw.owerfee,2) owerfee,
+        (SELECT to_char(wm_concat( DISTINCT cd_system.F_ENUM_VEHICLETYPE(VEHICLETYPE)))   FROM cd_pass.TRANSACTION_PASSTU_DETAIL WHERE PASSID=PASS.passid) FEEVEHICLETYPE
+        FROM
+        "CD_PASS"."TRADE_PASS" PASS
+        left join (SELECT realfee ,owefee,owerfee,allfee,passid,NEWVEHICLETYPE from cd_jc.JC_NEWTRADEPASSVEHICLETYPE) jnw on jnw.passid=pass.passid
+        LEFT JOIN CD_TRADE.BASE_SECTION SECTION ON PASS.ENSECTIONID = SECTION.ID
+        LEFT JOIN CD_TRADE.BASE_SECTION SECTION1 ON PASS.EXSECTIONID = SECTION1.ID
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON PASS.issuerId = sed.ENUM_VALUE and sed.ENUM_ID = 20191
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON PASS.EXITFEETYPE = sed1.ENUM_VALUE and sed1.ENUM_ID = 20446
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON PASS.ENPROVINCEID = PROVINCE.PROVINCEID
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE1 ON PASS.EXPROVINCEID = PROVINCE1.PROVINCEID
+
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+                <when test="isOutProvincce==1">
+                    and PASS.CD_PATHFITTINGCLASS in (1,2,3)
+                </when>
+                <otherwise>
+                    and PASS.CD_PATHFITTINGCLASS in (2,3)
+                </otherwise>
+            </choose>
+            <if test="carNumber != null and carNumber !='' ">
+                AND (PASS.EXVEHICLEID like #{carNumber}||'%' or pass.mediano  like #{carNumber})
+            </if>
+            <if test="startDate!=null">
+                and PASS.EXTIME>= #{startDate}
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+	                and	PASS.EXTIME<= #{endDate}
+	                    ]]>
+            </if>
+            ORDER BY PASS.EXTIME DESC
+        </trim>
+    </select>
+    <select id="selectNewTradePassListExport" resultType="java.util.Map"
+            parameterType="java.util.Map">
+
+        SELECT
+        PASS.EXID,
+        vehicleSignId,
+        PASS.PASSID,
+        cd_system.F_ENUM_MEDIATYPE(PASS.MEDIATYPE) MEDIATYPE,
+        PASS.ENTIME,
+        ROUND(jnw.realfee,2) realfee,
+        ROUND(jnw.owefee,2) owefee,
+        ROUND( jnw.allfee,2) allfee,
+        ROUND(jnw.owerfee,2) owerfee,
+        cd_system.F_ENUM_VEHICLETYPE(jnw.NEWVEHICLETYPE) NEWVEHICLETYPE,
+        ROUND(PASS.FEE/100,2) FEE,
+        ROUND(PASS.DISCOUNTFEE/100,2) DISCOUNTFEE,
+        ROUND(PASS.PAYFEE/100,2) PAYFEE,
+        ROUND(PASS.SHORTFEE/100,2) SHORTFEE,
+        PASS.VEHICLELENGTH,
+        PASS.VEHICLEWIDTH,
+        PASS.VEHICLEHIGHT,
+        PASS.EXWEIGHT,
+        PASS.EXAXLECOUNT,
+        decode(PASS.CD_PATHFITTINGCLASS,2,decode(PASS.TRANSPAYTYPE,1,'现金',2,'其他第三方',3,'银联',6,'支付宝',7,'微信',''),3,decode(PASS.TRANSPAYTYPE,1,'出口ETC通行',2,'出口ETC刷卡通行',''),'')
+        paytype,
+        sed2.ENUM_NAME CD_PATHFITTINGCLASS,
+        PASS.CD_INSERTTIME,
+        PASS.ENTOLLLANEID,
+        PASS.ENPROVINCEID,
+        PASS.CD_PATHFITTINGID,
+        PASS.EXPROVINCEID,
+        PASS.EXTIME,
+        PASS.EXTOLLLANEID,
+        PASS.ENTOLLSTATIONID,
+        PASS.EXTOLLSTATIONID,
+        ENTOLLSTATIONNAME,
+        EXTOLLSTATIONNAME,
+        SECTION.NAME ENSECTIONID,
+        SECTION1.NAME EXSECTIONID,
+        cd_system.F_ENUM_VEHICLE(pass.ENVEHICLEID) ENVEHICLEID,
+        cd_system.F_ENUM_VEHICLE(pass.EXVEHICLEID) EXVEHICLEID,
+        PASS.MEDIANO,
+        PASS.OBUID,
+        cd_system.F_ENUM_VEHICLETYPE(PASS.EXVEHICLETYPE) EXVEHICLETYPE,
+        cd_system.F_ENUM_VEHICLECLASS(PASS.EXVEHICLECLASS) EXVEHICLECLASS,
+        PASS.SPECIALTYPE,
+        cd_system.F_ENUM_VEHICLETYPE(PASS.ENVEHICLETYPE) ENVEHICLETYPE,
+        cd_system.F_ENUM_VEHICLECLASS(PASS.ENVEHICLECLASS) ENVEHICLECLASS,
+        PASS.SECTIONIDGROUP,
+        PASS.CD_ETCDISCOUNTTYPE,
+        PASS.CD_ETCDISCOUNTID,
+        PASS.CD_ETCDISCOUTTIME,
+        PASS.CD_REFITTING,
+        PASS.CD_REFITTINGBYTRADETIME,
+        PROVINCE.PROVINCENAME as ENPROVINCENAME,
+        PROVINCE1.PROVINCENAME as EXPROVINCENAME,
+        sed1.ENUM_NAME EXITFEETYPE,
+        pass.MULTIPROVINCE,
+        sed.ENUM_NAME issuerName,
+        pass.EXID,
+        pass.ENAXLECOUNT,
+        (SELECT to_char(wm_concat( DISTINCT cd_system.F_ENUM_VEHICLETYPE(VEHICLETYPE)))   FROM cd_pass.TRANSACTION_PASSTU_DETAIL WHERE PASSID=PASS.passid) FEEVEHICLETYPE
+        FROM
+        "CD_PASS"."TRADE_PASS" PASS
+        left join (SELECT realfee,owefee,owerfee,allfee,passid,NEWVEHICLETYPE from cd_jc.JC_NEWTRADEPASSVEHICLETYPE) jnw on
+        jnw.passid=pass.passid
+        LEFT JOIN CD_TRADE.BASE_SECTION SECTION ON PASS.ENSECTIONID = SECTION.ID
+        LEFT JOIN CD_TRADE.BASE_SECTION SECTION1 ON PASS.EXSECTIONID = SECTION1.ID
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON PASS.issuerId = sed.ENUM_VALUE and sed.ENUM_ID = 20191
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON PASS.EXITFEETYPE = sed1.ENUM_VALUE and sed1.ENUM_ID = 20446
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON PASS.EXITFEETYPE = sed2.ENUM_VALUE and sed2.ENUM_ID = 20041
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON PASS.ENPROVINCEID = PROVINCE.PROVINCEID
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE1 ON PASS.EXPROVINCEID = PROVINCE1.PROVINCEID
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+                <when test="isOutProvincce==1">
+                    and CD_PATHFITTINGCLASS in (1,2,3)
+                </when>
+                <otherwise>
+                    and CD_PATHFITTINGCLASS in (2,3)
+                </otherwise>
+            </choose>
+            <if test="exstationid!=null">
+                and EXTOLLSTATIONID=#{exstationid}
+            </if>
+            <if test="enstationid!=null">
+                and ENTOLLSTATIONID =#{enstationid}
+            </if>
+            <if test="mediano != null and mediano != ''">
+                AND MEDIANO = #{mediano,jdbcType=VARCHAR}
+            </if>
+            <if test="obuid != null and obuid != ''">
+                AND OBUID = #{obuid,jdbcType=VARCHAR}
+            </if>
+            <if test="mediatype != null">
+                AND MEDIATYPE = #{mediatype,jdbcType=NUMERIC}
+            </if>
+            <if test="enStationTradePass!= null">
+                AND ENSECTIONID = #{enStationTradePass}
+            </if>
+            <if test="exStationTradePass!= null">
+                AND EXSECTIONID = #{exStationTradePass}
+            </if>
+            <if test="exitCarType!= null">
+                AND EXVEHICLETYPE = #{exitCarType}
+            </if>
+            <if test="exAxlecount!= null">
+                AND EXAXLECOUNT = #{exAxlecount}
+            </if>
+            <if test="passid!= null">
+                AND pass.passid = #{passid}
+            </if>
+            <if test="carNumber != null and carNumber !='' ">
+                AND EXVEHICLEID like #{carNumber}||'%'
+            </if>
+            <if test="carColor != null and carColor !='' ">
+                AND EXVEHICLEID like '%'||#{carColor}
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[
+	           and	EXTIME>= to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss')
+	                    ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+	          and	EXTIME<= to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+	                    ]]>
+            </if>
+        </trim>
+        ORDER BY PASS.EXTIME DESC
+    </select>
+    <select id="selectAllDataCount" resultType="Long" parameterType="java.util.Map">
+        select
+        count(PASSID) count
+        FROM
+        "CD_PASS"."TRADE_PASS" PASS
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+                <when test="isOutProvincce==1">
+                    and CD_PATHFITTINGCLASS in (1,2,3)
+                </when>
+                <otherwise>
+                    and CD_PATHFITTINGCLASS in (2,3)
+                </otherwise>
+            </choose>
+            <if test="exstationid!=null">
+                and EXTOLLSTATIONID=#{exstationid}
+            </if>
+            <if test="enstationid!=null">
+                and ENTOLLSTATIONID =#{enstationid}
+            </if>
+            <if test="mediano != null and mediano != ''">
+                AND MEDIANO = #{mediano,jdbcType=VARCHAR}
+            </if>
+            <if test="obuid != null and obuid != ''">
+                AND OBUID = #{obuid,jdbcType=VARCHAR}
+            </if>
+            <if test="mediatype != null">
+                AND MEDIATYPE = #{mediatype,jdbcType=NUMERIC}
+            </if>
+            <if test="enStationTradePass!= null">
+                AND ENSECTIONID = #{enStationTradePass}
+            </if>
+            <if test="exStationTradePass!= null">
+                AND EXSECTIONID = #{exStationTradePass}
+            </if>
+            <if test="exitCarType!= null">
+                AND EXVEHICLETYPE = #{exitCarType}
+            </if>
+            <if test="exAxlecount!= null">
+                AND EXAXLECOUNT = #{exAxlecount}
+            </if>
+            <if test="passid!= null">
+                AND pass.passid = #{passid}
+            </if>
+            <if test="carNumber != null and carNumber !='' ">
+                AND EXVEHICLEID like #{carNumber}||'%'
+            </if>
+            <if test="carColor != null and carColor !='' ">
+                AND EXVEHICLEID like '%'||#{carColor}
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[
+	           and	EXTIME>= to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss')
+	                    ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+	          and	EXTIME<= to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+	                    ]]>
+            </if>
+        </trim>
+    </select>
+    <select id="getNewDataByPassId" resultType="java.lang.Integer">
+        select count(1) from cd_jc.JC_NEWTRADEPASSVEHICLETYPE where passid=#{passId}
+    </select>
+    <insert id="insertTransactionPasstuDetail" parameterType="java.lang.String">
+            insert into CD_JC.JC_NEWTRADEPASSVEHICLETYPE (PASSID) values(
+            #{passId,jdbcType=VARCHAR}
+            )
+    </insert>
+    <update id="updateDataByPassId" parameterType="com.tuozhi.zhlw.admin.jc.entity.JCNewTradePassDate">
+
+        update CD_JC.JC_NEWTRADEPASSVEHICLETYPE set
+        <trim suffixOverrides=",">
+            <if test="realFee!=null">
+                REALFEE=#{realFee,jdbcType=NUMERIC},
+            </if>
+            <if test="newVehicleType!=null">
+                NEWVEHICLETYPE=#{newVehicleType,jdbcType=NUMERIC},
+            </if>
+            <if test="oweFee!=null">
+                OWEFEE=#{oweFee,jdbcType=NUMERIC},
+            </if>
+            <if test="owerFee!=null">
+                OWERFEE=#{owerFee,jdbcType=NUMERIC},
+            </if>
+            <if test="allFee!=null">
+                ALLFEE=#{allFee,jdbcType=NUMERIC},
+            </if>
+        </trim>
+        where PASSID=#{passId,jdbcType=VARCHAR}
+
+    </update>
+    <select id="selectMinFee" resultType="java.util.Map" parameterType="java.util.Map">
+        select ttt.本省最小通行费 OWERFEE,ttt.全省最小通行费 ALLFEE from "CD_PASS"."TRADE_PASS" PASS
+        left join (select
+         y.pindex,
+         y.prov,
+         y.pfee / 100 本省最小通行费,
+         y.pfee95 / 100 本省折后最小通行费,
+         y.pm,
+         x.version,
+         x.enprov 入省id,
+         x.enid,
+         x.exprov 出省id,
+         x.exid,
+         x.vtype,
+         x.fee / 100  全省最小通行费,
+         x.fee95 / 100 全省最小折后通行费,
+         x.m
+    from cd_pass.fp_minfd_mf x
+    left join cd_pass.fp_minfd_mf_splitprovince y
+      on x.enid = y.enid
+     and x.exid = y.exid
+     and x.vtype = y.vtype
+     where y.prov=12 and x.version = (SELECT max(version) from cd_pass.BASIC_STATION_FPMINFD_VERS) and y.version = (SELECT max(version) from cd_pass.BASIC_STATION_FPMINFD_VERS)
+  ) ttt
+    on  ttt.enid=pass.ENTOLLSTATIONID
+   and  ttt.exid=pass.EXTOLLSTATIONID
+   and  ttt.vtype = #{realVehicleType} where PASS.passid=#{passid} and rownum=1
+
+    </select>
+
+    <select id="getMultiprovince" resultType="java.util.Map" parameterType="java.lang.String">
+        select MULTIPROVINCE,round(PAYFEE/100,2) PAYFEE from cd_pass.trade_pass where passid=#{passId}
+    </select>
+
+    <select id="getFeeSP" resultType="java.lang.Double">
+        select nvl(round((t2.tollfee/95),2),0) from cd_pass.etcts_exitetctu_SP T2 where T2.passid=#{passId} and  SUBSTR(serprovinceid, 1, 2)=12
+    </select>
+
+
+    <select id="splitAmountByProvinceOfETC" resultType="java.util.Map">
+        select PROVINCE.PROVINCENAME PROVINCENAME,nvl(round((t2.tollfee/100),2),0) tollfee from cd_pass.etcts_exitetctu_SP T2
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON SUBSTR(serprovinceid, 1, 2) = PROVINCE.PROVINCEID
+         where T2.passid=#{passId}
+    </select>
+
+
+    <select id="splitAmountByProvinceOfCPC" resultType="java.util.Map">
+        select PROVINCE.PROVINCENAME PROVINCENAME,nvl(round((t2.tollfee/100),2),0) tollfee from cd_pass.CPCTS_EXOTU_SP T2
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON SUBSTR(serprovinceid, 1, 2) = PROVINCE.PROVINCEID
+         where T2.SLE_ID=#{listId}
+    </select>
+</mapper>

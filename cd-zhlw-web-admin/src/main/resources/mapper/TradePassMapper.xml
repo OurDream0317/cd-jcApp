@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.TradePassMapper">
+
+    <select id="selectCount" resultType="Integer">
+        SELECT count(*)
+        FROM "CD_TRADE"."TRADE_PASS"
+        <where>
+            <if test="mediaNo!=null">
+                MEDIANO=#{mediaNo}
+            </if>
+            <if test="obuid!=null">
+                <![CDATA[
+			and	OBUID=#{obuid}
+				]]>
+            </if>
+            <if test="vehicleid!=null">
+                <![CDATA[
+			 AND EXVEHICLEID = #{vehicleid,jdbcType=VARCHAR} 
+				]]>
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[
+			and	EXTIME>= to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+			and	EXTIME<=to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+
+            <if test="exstationid!=null">
+                <![CDATA[
+			and	EXTOLLSTATIONID=#{exstationid}
+				]]>
+            </if>
+
+            <if test="enstationid!=null">
+                <![CDATA[
+			and	ENTOLLSTATIONID =#{enstationid}
+				]]>
+            </if>
+
+            <if test="mediatype!=null">
+                <![CDATA[
+			and	MEDIATYPE=#{mediatype}
+				]]>
+            </if>
+            <if test="cdpathfittingclass!=null">
+                <![CDATA[
+			and	CD_PATHFITTINGID=#{cdpathfittingclass}
+				]]>
+            </if>
+            <if test="enStationTradePass!= null">
+                <![CDATA[
+                AND ENSECTIONID = #{enStationTradePass}
+                  ]]>
+            </if>
+            <if test="exStationTradePass!= null">
+                <![CDATA[
+                AND EXSECTIONID = #{exStationTradePass}
+                  ]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTradePass" resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity" parameterType="Map">
+        SELECT
+        c.NAME as enStationname,
+        C1.NAME as exStationName,
+        C2.NAME as enSectionName,
+        C3.NAME as exSectionName,
+        a.PASSID,
+        a.MEDIATYPE,
+        a.ENTIME,
+        a.CD_PATHFITTINGCLASS,
+        a.CD_INSERTTIME,
+        a.ENTOLLLANEID,
+        a.ENPROVINCEID,
+        a.ENTOLLSTATIONID,
+        a.CD_PATHFITTINGID,
+        a.EXPROVINCEID,
+        a.EXTIME,
+        a.EXTOLLLANEID,
+        a.EXTOLLSTATIONID,
+        a.ENSECTIONID,
+        a.EXSECTIONID,
+        a.ENVEHICLEID,
+        a.EXVEHICLEID,
+        a.MEDIANO,
+        a.OBUID,
+        a.EXVEHICLETYPE,
+        a.EXVEHICLECLASS,
+        a.SPECIALTYPE,
+        a.ENVEHICLETYPE,
+        a.ENVEHICLECLASS
+        FROM
+        "CD_TRADE"."TRADE_PASS" a
+        left join (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') c on c.ID
+        =a.EXTOLLSTATIONID
+        left join (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') c1 on c1.ID
+        =a.ENTOLLSTATIONID
+        left join CD_PASS.BASE_SECTION c2 on c2.ID =a.ENSECTIONID
+        left join CD_PASS.BASE_SECTION c3 on c3.ID =a.EXSECTIONID
+        <where>
+            <if test="mediaNo!=null">
+                MEDIANO=#{mediaNo}
+            </if>
+            <if test="passId!=null">
+                <![CDATA[
+			and	PASSID=#{passId}
+				]]>
+            </if>
+            <if test="color!=null">
+                <![CDATA[
+			and	EXVEHICLEID LIKE CONCAT('%',#{color})
+				]]>
+            </if>
+            <if test="vehicleid!=null">
+                <![CDATA[
+			 AND EXVEHICLEID = #{vehicleid,jdbcType=VARCHAR}
+				]]>
+            </if>
+            <if test="startTimeEx!=null">
+                <![CDATA[
+			and	EXTIME>=#{startTimeEx}
+				]]>
+            </if>
+            <if test="endTimeEx!=null">
+                <![CDATA[
+			and	EXTIME<=#{endTimeEx}
+				]]>
+            </if>
+            <if test="startTimeEn!=null">
+                <![CDATA[
+			and	ENTIME>=#{startTimeEn}
+				]]>
+            </if>
+            <if test="endTimeEn!=null">
+                <![CDATA[
+			and	ENTIME<=#{endTimeEn}
+				]]>
+            </if>
+            <if test="section!=null">
+                <![CDATA[
+			and	EXSECTIONID=#{section}
+				]]>
+            </if>
+
+            <if test="station!=null">
+                <![CDATA[
+			and	EXTOLLSTATIONID=#{station}
+				]]>
+            </if>
+
+            <if test="specialtype!=null">
+                <![CDATA[
+			and	SPECIALTYPE=#{specialtype}
+				]]>
+            </if>
+
+            <if test="exvehicleclass!=null">
+                <![CDATA[
+			and	EXVEHICLECLASS=#{exvehicleclass}
+				]]>
+            </if>
+
+            <if test="exvehicletype!=null">
+                <![CDATA[
+			and	EXVEHICLETYPE=#{exvehicletype}
+				]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="selecTradePassListExport" resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity"
+            parameterType="Map">
+        SELECT
+        b.*,
+        d2.ENUM_NAME envehicleColor,
+        d3.ENUM_NAME exvehicleColor
+        FROM
+        (
+        SELECT
+        c.NAME as exStationname,
+        C1.NAME as enStationName,
+        c.ID as xid,
+        C1.ID as nid,
+        C2.NAME as enSectionName,
+        C3.NAME as exSectionName,
+        a.PASSID,
+        d6.ENUM_NAME MEDIATYPE,
+        a.ENTIME,
+        a.ENTOLLLANEID,
+        a.ENPROVINCEID,
+        a.ENTOLLSTATIONID,
+        a.CD_PATHFITTINGID,
+        a.EXPROVINCEID,
+        a.EXTIME,
+        jnw.realfee,
+        jnw.owefee,
+        ROUND(sledata.otherfee/100,2) otherfee,
+        ROUND(tg.countfee/100,2) countfee,
+        jnw.NEWVEHICLETYPE,
+        ROUND(a.FEE/100,2) FEE,
+        ROUND(a.DISCOUNTFEE/100,2) DISCOUNTFEE,
+        ROUND(a.DISCOUNTFEE/100,2) PAYFEE,
+        d11.ENUM_NAME PAYTYPE,
+        a.EXTOLLLANEID,
+        a.EXTOLLSTATIONID,
+        a.ENSECTIONID,
+        a.EXSECTIONID,
+        a.ENVEHICLEID,
+        a.EXVEHICLEID,
+        a.MEDIANO,
+        a.OBUID,
+        d1.ENUM_NAME EXVEHICLETYPE,
+        d9.ENUM_NAME EXVEHICLECLASS,
+        d5.ENUM_NAME SPECIALTYPE,
+        d8.ENUM_NAME ENVEHICLETYPE,
+        d4.ENUM_NAME ENVEHICLECLASS,
+        d7.ENUM_NAME CD_REFITTING,
+        PROVINCE.PROVINCENAME as ENPROVINCENAME,
+        PROVINCE1.PROVINCENAME as EXPROVINCENAME,
+        regexp_substr(a.ENVEHICLEID, '[^_]+', 1, 2) ENVEHICLEIDColor,
+        regexp_substr(a.EXVEHICLEID, '[^_]+', 1, 2) EXVEHICLEIDColor,
+        (select sed.ENUM_NAME from CD_TRADE.STA_LANE_EXITETCPASSDATA sle LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON
+        sle.issuer = sed.ENUM_VALUE and sed.ENUM_ID = 20191 where sle.PASSID=a.passid) issuerName
+        FROM
+        "CD_TRADE"."TRADE_PASS" a
+        left join (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') c on c.ID
+        =a.EXTOLLSTATIONID
+        left join (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') c1 on c1.ID
+        =a.ENTOLLSTATIONID
+        left join (SELECT sum(realfee) realfee ,sum(owefee) owefee,passid,NEWVEHICLETYPE from cd_jc.JC_NEWDATAOFPASSID
+        group by passID,NEWVEHICLETYPE) jnw on jnw.passid=a.passid
+        left join (SELECT sum(fee) otherfee,passid from cd_trade.STA_LANE_EXITOTHERTRANSAD group by passid) sledata on
+        sledata.passid=a.passid
+        left join (SELECT sum(fee) countfee,passid from cd_trade.TRADE_GANTRY group by passid) tg on tg.passid=a.passid
+        left join CD_TRADE.BASE_SECTION c2 on c2.ID =a.ENSECTIONID
+        left join CD_TRADE.BASE_SECTION c3 on c3.ID =a.EXSECTIONID
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON a.ENPROVINCEID = PROVINCE.PROVINCEID
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE1 ON a.EXPROVINCEID = PROVINCE1.PROVINCEID
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d1 on d1.ENUM_ID = 40 and a.EXVEHICLETYPE=d1.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d8 on d8.ENUM_ID = 40 and a.ENVEHICLETYPE=d8.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d9 on d9.ENUM_ID = 41 and a.EXVEHICLECLASS=d9.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d4 on d4.ENUM_ID = 41 and a.ENVEHICLECLASS=d4.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d5 on d5.ENUM_ID = 20104 and a.SPECIALTYPE=d5.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d6 on d6.ENUM_ID = 20042 and a.MEDIATYPE=d6.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d7 on d7.ENUM_ID = 20041 and a.CD_REFITTING=d7.ENUM_VALUE
+        left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d11 on d11.ENUM_ID = 1111 and a.PAYTYPE=d11.ENUM_VALUE
+        <where>
+            <if test="passId!=null">
+                AND a.PASSID = #{passId}
+            </if>
+            <if test="mediaNo!=null">
+                MEDIANO=#{mediaNo}
+            </if>
+            <if test="obuid!=null">
+                <![CDATA[
+                and	OBUID=#{obuid}
+                    ]]>
+            </if>
+            <if test="carNumber != null">
+                <![CDATA[
+               AND EXVEHICLEID like #{carNumber}||'%'
+                ]]>
+            </if>
+            <if test="carColor != null">
+                <![CDATA[
+               AND EXVEHICLEID like '%'||#{carColor}
+                ]]>
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[
+                and	EXTIME>= to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss')
+                    ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+                and	EXTIME<= to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+                    ]]>
+            </if>
+
+            <if test="exstationid!=null">
+                <![CDATA[
+                and	EXTOLLSTATIONID=#{exstationid}
+                    ]]>
+            </if>
+
+            <if test="enstationid!=null">
+                <![CDATA[
+                and	ENTOLLSTATIONID =#{enstationid}
+                    ]]>
+            </if>
+
+            <if test="mediatype!=null">
+                <![CDATA[
+                and	MEDIATYPE=#{mediatype}
+                    ]]>
+            </if>
+            <if test="cdpathfittingclass!=null">
+                <![CDATA[
+                and	CD_PATHFITTINGID=#{cdpathfittingclass}
+                    ]]>
+            </if>
+            <if test="enStationTradePass!= null">
+                <![CDATA[
+                    AND ENSECTIONID = #{enStationTradePass}
+                      ]]>
+            </if>
+            <if test="exStationTradePass!= null">
+                <![CDATA[
+                    AND EXSECTIONID = #{exStationTradePass}
+                      ]]>
+            </if>
+        </where>
+        ) b
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS d2 ON d2.ENUM_ID = 39
+        AND b.ENVEHICLEIDColor = d2.ENUM_VALUE
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS d3 ON d3.ENUM_ID = 39
+        AND b.EXVEHICLEIDColor = d3.ENUM_VALUE
+
+        order by EXTIME desc
+    </select>
+    <select id="selectSection" resultType="java.util.Map">
+        SELECT ID,
+               NAME
+        FROM "CD_BASE"."BASE_SECTION"
+    </select>
+
+        <!--只能查询本省的收费站-->
+        <select id="selectOwerStation" resultType="java.util.Map" parameterType="java.lang.Long">
+          SELECT x.id,x.name,x.regionname,x.STATIONNAME from  CD_SYSTEM.SYS_DEPT s
+LEFT JOIN (SELECT ID,
+            NAME,
+            regionname,
+            NAME || ' (' ||SUBSTR(regionname, 1, 2) || '-' || ID || ')' AS STATIONNAME from cd_pass.base_tollstation where CD_DELETEFLAG = 0) x on s.DEPT_LONG_ID=x.id
+where s.WORKFLOWDEPTROLE = 3 CONNECT BY PRIOR s.ID = s.PARENT_ID START WITH s.ID=#{deptId}
+        </select>
+
+    <!--查询全国的收费站-->
+    <select id="selectStation" resultType="java.util.Map">
+        SELECT
+            x.ID,
+            x.NAME,
+            n.PROVINCENAME,
+            x.NAME || ' (' || n.PROVINCENAME || '-' || x.ID || ')' AS STATIONNAME
+         FROM
+            CD_PASS.BASIC_BASICINFODOWN_RES x
+            LEFT JOIN "CD_TRADE"."BASE_NETPROVINCE" n ON n.PROVINCEID = x.PROVINCEID
+         WHERE
+          x.downid = ( SELECT max( w.down_id ) FROM "CD_PASS".CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1'
+    </select>
+    <!--查询全国特定路段下的收费站-->
+    <select id="selectStationByCondition" resultType="java.util.Map" parameterType="Map">
+        SELECT
+        x.ID,
+        x.NAME
+        FROM
+        CD_PASS.BASE_TOLLSTATION x
+        <where>
+            <if test="section!=null">
+                SECTIONID=#{section}
+            </if>
+        </where>
+    </select>
+
+    <select id="getDataByParam" parameterType="Map" resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity">
+        select * from(select rownum rn,g.* from (
+        SELECT
+        PASS.EXID,
+        ( select vehiclesignid from CD_TRADE.STA_LANE_EXITOTHERTRANSAD where id=PASS.EXID) vehicleSignId,
+        PASS.PASSID,
+        PASS.MEDIATYPE,
+        PASS.ENTIME,
+        jnw.realfee,
+        jnw.owefee,
+        ROUND(sledata.otherfee/100,2) otherfee,
+        jnw.NEWVEHICLETYPE,
+        ROUND(PASS.FEE/100,2) FEE,
+        ROUND(PASS.DISCOUNTFEE/100,2) DISCOUNTFEE,
+        ROUND(PASS.PAYFEE/100,2) PAYFEE,
+        ROUND(tg.countfee/100,2) countfee,
+        PASS.PAYTYPE,
+        PASS.CD_PATHFITTINGCLASS,
+        PASS.CD_INSERTTIME,
+        PASS.ENTOLLLANEID,
+        PASS.ENPROVINCEID,
+        PASS.CD_PATHFITTINGID,
+        PASS.EXPROVINCEID,
+        PASS.EXTIME,
+        PASS.VEHICLELENGTH,
+        PASS.VEHICLEWIDTH,
+        PASS.VEHICLEHIGHT,
+        PASS.EXAXLECOUNT,
+        PASS.EXTOLLLANEID,
+        TOllSTATION1.NAME ENTOLLSTATIONID,
+        TOllSTATION.NAME EXTOLLSTATIONID,
+        TOllSTATION1.ID as nid,
+        TOllSTATION.ID as xid,
+        SECTION.NAME ENSECTIONID,
+        SECTION1.NAME EXSECTIONID,
+        pass.ENVEHICLEID,
+        pass.EXVEHICLEID,
+        PASS.MEDIANO,
+        PASS.OBUID,
+        PASS.EXVEHICLETYPE,
+        PASS.EXVEHICLECLASS,
+        PASS.SPECIALTYPE,
+        PASS.ENVEHICLETYPE,
+        PASS.ENVEHICLECLASS,
+        PASS.SECTIONIDGROUP,
+        PASS.CD_ETCDISCOUNTTYPE,
+        PASS.CD_ETCDISCOUNTSTATE,
+        PASS.CD_ETCDISCOUNTID,
+        PASS.CD_ETCDISCOUTTIME,
+        PASS.CD_ETCFREEID,
+        PASS.CD_ETCFREESTATE,
+        PASS.CD_ETCFREETIME,
+        PASS.CD_REFITTING,
+        PASS.CD_REFITTINGBYTRADETIME,
+        PROVINCE.PROVINCENAME as ENPROVINCENAME,
+        PROVINCE1.PROVINCENAME as EXPROVINCENAME,
+        (select sed.ENUM_NAME from CD_TRADE.STA_LANE_EXITETCPASSDATA sle LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON
+        sle.issuer = sed.ENUM_VALUE and sed.ENUM_ID = 20191 where sle.PASSID=PASS.passid) issuerName
+
+        FROM
+        "CD_TRADE"."TRADE_PASS" PASS
+        left join (SELECT sum(realfee) realfee ,sum(owefee) owefee,passid,NEWVEHICLETYPE from cd_jc.JC_NEWDATAOFPASSID
+        group by passID,NEWVEHICLETYPE) jnw on jnw.passid=pass.passid
+        left join (SELECT sum(fee) otherfee,passid from cd_trade.STA_LANE_EXITOTHERTRANSAD group by passid) sledata on
+        sledata.passid=pass.passid
+        left join (SELECT sum(fee) countfee,passid from cd_trade.TRADE_GANTRY group by passid) tg on
+        tg.passid=pass.passid
+        LEFT JOIN CD_TRADE.BASE_SECTION SECTION ON PASS.ENSECTIONID = SECTION.ID
+        LEFT JOIN CD_TRADE.BASE_SECTION SECTION1 ON PASS.EXSECTIONID = SECTION1.ID
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE ON PASS.ENPROVINCEID = PROVINCE.PROVINCEID
+        LEFT JOIN CD_TRADE.BASE_NETPROVINCE PROVINCE1 ON PASS.EXPROVINCEID = PROVINCE1.PROVINCEID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') TOllSTATION ON
+        PASS.EXTOLLSTATIONID = TOllSTATION.ID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') TOllSTATION1 ON
+        PASS.ENTOLLSTATIONID = TOllSTATION1.ID
+        <where>
+            <if test="passId!=null">
+                AND PASS.PASSID = #{passId}
+            </if>
+            <if test="carNumber != null">
+                <![CDATA[
+               AND EXVEHICLEID like #{carNumber}||'%'
+                ]]>
+            </if>
+            <if test="carColor != null">
+                <![CDATA[
+               AND EXVEHICLEID like '%'||#{carColor}
+                ]]>
+            </if>
+            <if test="cdpathfittingclass != null">
+                <![CDATA[
+                AND CD_PATHFITTINGCLASS = #{cdpathfittingclass,jdbcType=NUMERIC}
+                ]]>
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[
+                and	EXTIME>= to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss')
+                    ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+                and	EXTIME<= to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+                    ]]>
+            </if>
+            <if test="exstationid!=null">
+                <![CDATA[
+			and	EXTOLLSTATIONID=#{exstationid}
+				]]>
+            </if>
+            <if test="enstationid!=null">
+                <![CDATA[
+			and	ENTOLLSTATIONID =#{enstationid}
+				]]>
+            </if>
+            <if test="mediano != null">
+                <![CDATA[
+                AND MEDIANO = #{mediano,jdbcType=VARCHAR}
+                  ]]>
+            </if>
+            <if test="obuid != null">
+                <![CDATA[
+                AND OBUID = #{obuid,jdbcType=VARCHAR}
+                  ]]>
+            </if>
+            <if test="mediatype != null">
+                <![CDATA[
+                AND MEDIATYPE = #{mediatype,jdbcType=NUMERIC}
+                  ]]>
+            </if>
+            <if test="enStationTradePass!= null">
+                <![CDATA[
+                AND ENSECTIONID = #{enStationTradePass}
+                  ]]>
+            </if>
+            <if test="exStationTradePass!= null">
+                <![CDATA[
+                AND EXSECTIONID = #{exStationTradePass}
+                  ]]>
+            </if>
+        </where>
+        ORDER BY PASS.EXTIME DESC
+        )g
+        <if test="pageEnd!=null">
+            where rownum  <![CDATA[ <=]]>  #{pageEnd}
+        </if>
+        )
+        <if test="pageStart!=null">
+            where rn  <![CDATA[ >]]>  #{pageStart}
+        </if>
+    </select>
+
+
+    <select id="selectAllDataCount" resultType="java.lang.Long">
+        SELECT
+        count(1) count
+        FROM
+        "CD_TRADE"."TRADE_PASS" PASS
+        <where>
+            <if test="passId!=null">
+                AND PASSID = #{passId}
+            </if>
+            <if test="carNumber != null">
+                <![CDATA[
+               AND EXVEHICLEID like #{carNumber}||'%'
+                ]]>
+            </if>
+            <if test="carColor != null">
+                <![CDATA[
+               AND EXVEHICLEID like '%'||#{carColor}
+                ]]>
+            </if>
+            <if test="cdpathfittingclass != null">
+                <![CDATA[
+                AND CD_PATHFITTINGCLASS = #{cdpathfittingclass,jdbcType=NUMERIC}
+                ]]>
+            </if>
+            <if test="startDate!=null">
+                <![CDATA[
+                and	EXTIME>= to_date(#{startDate},'yyyy-MM-dd HH24:mi:ss')
+                    ]]>
+            </if>
+            <if test="endDate!=null">
+                <![CDATA[
+                and	EXTIME<= to_date(#{endDate},'yyyy-MM-dd HH24:mi:ss')
+                    ]]>
+            </if>
+            <if test="exstationid!=null">
+                <![CDATA[
+			and	EXTOLLSTATIONID=#{exstationid}
+				]]>
+            </if>
+            <if test="enstationid!=null">
+                <![CDATA[
+			and	ENTOLLSTATIONID =#{enstationid}
+				]]>
+            </if>
+            <if test="mediano != null">
+                <![CDATA[
+                AND MEDIANO = #{mediano,jdbcType=VARCHAR}
+                  ]]>
+            </if>
+            <if test="obuid != null">
+                <![CDATA[
+                AND OBUID = #{obuid,jdbcType=VARCHAR}
+                  ]]>
+            </if>
+            <if test="mediatype != null">
+                <![CDATA[
+                AND MEDIATYPE = #{mediatype,jdbcType=NUMERIC}
+                  ]]>
+            </if>
+            <if test="enStationTradePass!= null">
+                <![CDATA[
+                AND ENSECTIONID = #{enStationTradePass}
+                  ]]>
+            </if>
+            <if test="exStationTradePass!= null">
+                <![CDATA[
+                AND EXSECTIONID = #{exStationTradePass}
+                  ]]>
+            </if>
+        </where>
+        ORDER BY PASS.EXTIME DESC
+    </select>
+
+    <select id="getSpecialDataByParam"  resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity">
+        select * from(select rownum rn,g.* from (SELECT
+        tp.PASSID,
+        tp.MEDIATYPE,
+        tp.ENTIME,
+        tp.CD_PATHFITTINGCLASS,
+        tp.CD_INSERTTIME,
+        tp.ENTOLLLANEID,
+        tp.ENPROVINCEID,
+        tp.ENTOLLSTATIONID,
+        tp.CD_PATHFITTINGID,
+        tp.EXPROVINCEID,
+        tp.EXTIME,
+        tp.EXTOLLLANEID,
+        tp.EXTOLLSTATIONID,
+        tp.ENSECTIONID,
+        tp.EXSECTIONID,
+        tp.ENVEHICLEID,
+        tp.EXVEHICLEID,
+        tp.MEDIANO,
+        tp.OBUID,
+        tp.EXVEHICLETYPE,
+        tp.EXVEHICLECLASS,
+        tp.SPECIALTYPE,
+        tp.ENVEHICLETYPE,
+        tp.ENVEHICLECLASS,
+        tp.EXID,
+        regexp_substr(tp.ENVEHICLEID, '[^_]+', 1, 1) ENVEHICLENO,
+        regexp_substr(tp.ENVEHICLEID, '[^_]+', 1, 2) ENVEHICLECOLOR,
+        regexp_substr(tp.EXVEHICLEID, '[^_]+', 1, 1) EXVEHICLENO,
+        regexp_substr(tp.EXVEHICLEID, '[^_]+', 1, 2) EXVEHICLECOLOR,
+        CASE WHEN jsr.PASSID IS NOT NULL THEN 1 ELSE 2 END ISDISPOSE,
+        tp.ENTOLLSTATIONNAME,
+        tp.EXTOLLSTATIONNAME
+        FROM
+        "CD_PASS"."TRADE_PASS" tp
+        LEFT JOIN "CD_JC"."JC_SPECIAL_REQUEST" jsr ON jsr.PASSID = tp.PASSID
+        WHERE
+        SPECIALTYPE != '0'
+        <if test="tradePassEntity.exvehicleNo != null and tradePassEntity.exvehicleNo != ''">
+            AND tp.EXVEHICLEID LIKE '%' || #{tradePassEntity.exvehicleNo,jdbcType=VARCHAR} || '%'
+        </if>
+        <if test="tradePassEntity.cdpathfittingclass != null">
+            AND tp.CD_PATHFITTINGCLASS = #{tradePassEntity.cdpathfittingclass,jdbcType=NUMERIC}
+        </if>
+        <if test="tradePassEntity.startDate != null">
+            AND tp.EXTIME &gt;= #{tradePassEntity.startDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tradePassEntity.endDate != null">
+            AND tp.EXTIME &lt;= #{tradePassEntity.endDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tradePassEntity.ensectionid != null and tradePassEntity.ensectionid != ''">
+            AND tp.ENSECTIONID = #{tradePassEntity.ensectionid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.exsectionid != null and tradePassEntity.exsectionid != ''">
+            AND tp.EXSECTIONID = #{tradePassEntity.exsectionid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.mediano != null and tradePassEntity.mediano != ''">
+            AND tp.MEDIANO = #{tradePassEntity.mediano,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.obuid != null and tradePassEntity.obuid != ''">
+            AND tp.OBUID = #{tradePassEntity.obuid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.mediatype != null and tradePassEntity.mediatype!=''">
+            AND tp.MEDIATYPE = #{tradePassEntity.mediatype,jdbcType=NUMERIC}
+        </if>
+        <if test="tradePassEntity.exvehicletype != null and tradePassEntity.exvehicletype!=''">
+            AND tp.EXVEHICLETYPE = #{tradePassEntity.exvehicletype,jdbcType=NUMERIC}
+        </if>
+        <if test="tradePassEntity.exvehicleclass != null and tradePassEntity.exvehicleclass != ''">
+            AND tp.EXVEHICLECLASS = #{tradePassEntity.exvehicleclass,jdbcType=VARCHAR}
+        </if>
+        <if test="isDispose != null and isDispose != ''">
+            AND jsr.PASSID ${isDispose} NULL
+        </if>
+        ORDER BY EXTIME)g
+        <if test="pageEnd!=null">
+            where rownum  <![CDATA[ <=]]>  #{pageEnd}
+        </if>
+        )
+        <if test="pageStart!=null">
+            where rn  <![CDATA[ >]]>  #{pageStart}
+        </if>
+    </select>
+
+    <select id="selectAllSpecialDataCount" resultType="java.lang.Long">
+        SELECT
+        count(*)
+        FROM
+        "CD_PASS"."TRADE_PASS" tp
+        LEFT JOIN "CD_JC"."JC_SPECIAL_REQUEST" jsr ON jsr.PASSID = tp.PASSID
+        WHERE
+        SPECIALTYPE != '0'
+        <if test="tradePassEntity.exvehicleNo != null and tradePassEntity.exvehicleNo!=''">
+            AND tp.EXVEHICLEID LIKE '%' || #{tradePassEntity.exvehicleNo,jdbcType=VARCHAR} || '%'
+        </if>
+        <if test="tradePassEntity.cdpathfittingclass != null">
+            AND tp.CD_PATHFITTINGCLASS = #{tradePassEntity.cdpathfittingclass,jdbcType=NUMERIC}
+        </if>
+        <if test="tradePassEntity.startDate != null">
+            AND tp.EXTIME &gt;= #{tradePassEntity.startDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tradePassEntity.endDate != null">
+            AND tp.EXTIME &lt;= #{tradePassEntity.endDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tradePassEntity.ensectionid != null and tradePassEntity.ensectionid != ''">
+            AND tp.ENSECTIONID = #{tradePassEntity.ensectionid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.exsectionid != null and tradePassEntity.exsectionid != ''">
+            AND tp.EXSECTIONID = #{tradePassEntity.exsectionid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.mediano != null and tradePassEntity.mediano != ''">
+            AND tp.MEDIANO = #{tradePassEntity.mediano,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.obuid != null and tradePassEntity.obuid != ''">
+            AND tp.OBUID = #{tradePassEntity.obuid,jdbcType=VARCHAR}
+        </if>
+        <if test="tradePassEntity.mediatype != null and tradePassEntity.mediatype!=''">
+            AND tp.MEDIATYPE = #{tradePassEntity.mediatype,jdbcType=NUMERIC}
+        </if>
+        <if test="tradePassEntity.exvehicletype != null and tradePassEntity.exvehicletype!=''">
+            AND tp.EXVEHICLETYPE = #{tradePassEntity.exvehicletype,jdbcType=NUMERIC}
+        </if>
+        <if test="tradePassEntity.exvehicleclass != null and tradePassEntity.exvehicleclass != ''">
+            AND tp.EXVEHICLECLASS = #{tradePassEntity.exvehicleclass,jdbcType=VARCHAR}
+        </if>
+        <if test="isDispose != null and isDispose != ''">
+            AND jsr.PASSID ${isDispose} NULL
+        </if>
+    </select>
+
+    <select id="getDataByPassId" resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity">
+        SELECT PASSID,MEDIATYPE,
+               ENTIME,
+               CD_PATHFITTINGCLASS,
+               CD_INSERTTIME,
+               ENTOLLLANEID,
+               ENPROVINCEID,
+               ENTOLLSTATIONID,
+               CD_PATHFITTINGID,
+               EXPROVINCEID,
+               EXTIME,
+               EXTOLLLANEID,
+               EXTOLLSTATIONID,
+               ENSECTIONID,
+               EXSECTIONID,
+               ENVEHICLEID,
+               EXVEHICLEID,
+               MEDIANO,
+               OBUID,
+               EXVEHICLETYPE,
+               EXVEHICLECLASS,
+               SPECIALTYPE,
+               ENVEHICLETYPE,
+               ENVEHICLECLASS,
+               SECTIONIDGROUP,
+               CD_ETCDISCOUNTTYPE,
+               CD_ETCDISCOUNTSTATE,
+               CD_ETCDISCOUNTID,
+               CD_ETCDISCOUTTIME,
+               CD_ETCFREEID,
+               CD_ETCFREESTATE,
+               CD_ETCFREETIME,
+               CD_REFITTING,
+               CD_REFITTINGBYTRADETIME,
+               EXID
+        FROM "CD_TRADE"."TRADE_PASS"
+        WHERE PASSID = #{passId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getDataByPassIdList" resultType="com.tuozhi.zhlw.admin.jc.entity.TradePassEntity">
+        SELECT
+        tp.PASSID,
+        tp.MEDIATYPE,
+        tp.ENTIME,
+        tp.CD_PATHFITTINGCLASS,
+        tp.CD_INSERTTIME,
+        tp.ENTOLLLANEID,
+        tp.ENPROVINCEID,
+        tp.ENTOLLSTATIONID,
+        tp.CD_PATHFITTINGID,
+        tp.EXPROVINCEID,
+        tp.EXTIME,
+        tp.EXTOLLLANEID,
+        tp.EXTOLLSTATIONID,
+        tp.ENSECTIONID,
+        tp.EXSECTIONID,
+        tp.ENVEHICLEID,
+        tp.EXVEHICLEID,
+        tp.MEDIANO,
+        tp.OBUID,
+        tp.EXVEHICLETYPE,
+        tp.EXVEHICLECLASS,
+        tp.SPECIALTYPE,
+        tp.ENVEHICLETYPE,
+        tp.ENVEHICLECLASS,
+        tp.EXID,
+        regexp_substr(tp.ENVEHICLEID, '[^_]+', 1, 1) ENVEHICLENO,
+        regexp_substr(tp.ENVEHICLEID, '[^_]+', 1, 2) ENVEHICLECOLOR,
+        regexp_substr(tp.EXVEHICLEID, '[^_]+', 1, 1) EXVEHICLENO,
+        regexp_substr(tp.EXVEHICLEID, '[^_]+', 1, 2) EXVEHICLECOLOR,
+        sed1.ENUM_NAME MEDIATYPENAME,
+        sed2.ENUM_NAME ENVEHICLETYPENAME,
+        sed3.ENUM_NAME EXVEHICLETYPENAME,
+        sed4.ENUM_NAME ENVEHICLECLASSNAME,
+        sed5.ENUM_NAME EXVEHICLECLASSNAME
+        FROM "CD_PASS"."TRADE_PASS" tp
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = tp.MEDIATYPE AND sed1.ENUM_ID = 20042
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = tp.ENVEHICLETYPE AND sed2.ENUM_ID = 40
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = tp.EXVEHICLETYPE AND sed3.ENUM_ID = 40
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = tp.ENVEHICLECLASS AND sed4.ENUM_ID = 41
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = tp.EXVEHICLECLASS AND sed5.ENUM_ID = 41
+        WHERE 1 = 1
+        <if test="passIdList != null">
+            AND tp.PASSID IN
+            <foreach item="passId" collection="passIdList" separator="," open="(" close=")" index="">
+                #{passId,jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </select>
+    <select id="selectByTradePass" resultType="java.util.Map">
+         select
+         tp.ENVEHICLEID,
+          tp.ENVEHICLETYPE,
+           tp.ENVEHICLECLASS,
+            tp.EXVEHICLEID,
+             tp.EXVEHICLETYPE,
+              tp.EXVEHICLECLASS,
+               tp.PASSID,
+                tp.ENLANETYPE,
+                 tp.ENTIME,
+                  tp.ENTOLLLANEID,
+                   tp.EXTOLLLANEID,
+                   tp.ENTOLLSTATIONID,
+                    tp.EXTOLLSTATIONID,
+                     tp.MEDIANO,
+                     tp.EXTIME,
+                      tp.OBUSN,
+                      BASIC_BASICINFODOWN_RES
+         (SELECT max(x.HEX) from  CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.id=tp.ENTOLLLANEID) enTollLaneHex,
+         (SELECT max(x.HEX) from  CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.id=tp.ENTOLLSTATIONID) ENTOLLSTATIONIDHEX,
+         (SELECT max(x.HEX) from  CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.id=tp.exTollLaneId) exTollLaneHex,
+         (SELECT max(x.HEX) from  CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.id=tp.EXTOLLSTATIONID) exTollStationHex
+         from cd_trade.TRADE_PASS tp where passid=#{passId}
+     </select>
+
+    <insert id="insertJsonObject" parameterType="java.util.Map">
+        insert into cd_jc.JC_GANTRY_FITTING
+        values
+        (
+         CD_JC.SEQ_JC_GANTRY_FITTING.NEXTVAL,
+         #{m.passId,jdbcType=VARCHAR},
+         #{m.requestID,jdbcType=VARCHAR},
+         #{m.interfaceType,jdbcType=NUMERIC},
+         #{m.payFee,jdbcType=NUMERIC},
+         #{m.fee,jdbcType=NUMERIC},
+         #{m.discountFee,jdbcType=NUMERIC},
+         #{m.enTollLaneId,jdbcType=VARCHAR},
+         #{m.enTime,jdbcType=DATE},
+         #{m.enWeight,jdbcType=NUMERIC},
+         #{m.enAxleCount,jdbcType=NUMERIC},
+         #{m.enVehicleId,jdbcType=VARCHAR},
+         #{m.enVehicleType,jdbcType=NUMERIC},
+         #{m.enVehicleClass,jdbcType=NUMERIC},
+         #{m.specialType,jdbcType=VARCHAR},
+         #{m.enTollStationId,jdbcType=VARCHAR},
+         #{m.enTollPlazaId,jdbcType=VARCHAR},
+         #{m.exTollStationId,jdbcType=VARCHAR},
+         #{m.enTollStationName,jdbcType=VARCHAR},
+         #{m.responseTime,jdbcType=DATE},
+         #{m.apiCode,jdbcType=NUMERIC},
+         #{m.provinceFees,jdbcType=VARCHAR},
+          #{m.mtcTollIntervalFee,jdbcType=VARCHAR},
+           #{m.identifyVehicleId,jdbcType=VARCHAR},
+          #{m.exTime,jdbcType=VARCHAR}
+        )
+    </insert>
+    <select id="getStationName" resultType="String">
+        SELECT NAME name FROM CD_BASE.BASE_TOLLSTATION WHERE ID = #{id}
+    </select>
+    <select id="getLnegthByTollIntervalIdList" parameterType="ArrayList" resultType="double">
+        select sum(LENGTH) from CD_TRADE.BASE_VERTICALSECTION
+        <where>
+            id in
+            <foreach collection="tollIntervalIdList" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+    <select id="getNameById" parameterType="String" resultType="String">
+        select NAME from CD_TRADE.TOLLGRANTRY where id=#{id}
+    </select>
+
+    <select id="getTollgrantryIds" resultType="java.lang.String">
+        select id from cd_trade.TOLLGRANTRY where TYPE=1 and SECTIONID=#{sectionid}
+    </select>
+</mapper>

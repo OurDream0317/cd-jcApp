@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.WorkFlowNodeMapper">
+    <select id="findWorkFlowNodeByDefinationId" resultType="com.tuozhi.zhlw.admin.jc.entity.JCWorkFlowNode">
+        SELECT	node_id,
+defination_id,
+node_name,
+prev_node_id,
+next_node_id,
+max_day,
+workflowdeptrole,
+process_logic,
+printed_tableid,
+writable_fields,
+READONLY_FIELDS,
+node_type,
+correspond_node_id,
+CORRESPOND_SQL,
+orsplit_value,
+orsplit_desc from cd_jc.jc_workflow_node where defination_id=#{definationId}
+    </select>
+</mapper>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.TradeGantryMapper">
+    <select id="getDataByPassId" resultType="com.tuozhi.zhlw.admin.jc.entity.TradeGantryEntity">
+        SELECT tg.ID,
+               ROUND(tg.FEE / 100, 2)   FEE,
+               ROUND(tg.DISCOUNTFEE / 100, 2)   DISCOUNTFEE,
+               c4.REALFEE,
+               c4.OWEFEE,
+               c4.NEWVEHICLETYPE,
+               c4.OLDVEHICLETYPE,
+               tg.ENTOLLLANEID,
+               tg.ENTIME,
+               tg.ETCCARDID,
+               tg.VEHICLEID,
+               tg.SPECIALTYPE,
+               tg.VEHICLECLASS,
+               tg.RATEVERSION,
+               tg.OBUSIGN,
+               tg.OBUID,
+               tg.ETCCARDTYPE,
+               tg.TRANSTIME,
+               tg.TOLLINTERVALID,
+               tg.VEHICLETYPE,
+               tg.TAC,
+               ROUND(tg.TRANSFEE / 100, 2) TRANSFEE,
+               tg.SIGNSTATUS,
+               tg.TERMINALTRANSNO,
+               tg.TERMINALNO,
+               tg.SERVICETYPE,
+               tg.ENPASSRECORDID,
+               tg.FORWARDETCRECORDID,
+               tg.BACKWARDETCRECORDID,
+               tg.TOLLGANTRYID,
+               c3.NAME as   TOLLGANTRYNAME,
+               tg.MANUALSIGN,
+               tg.VEHICLESIGNID,
+               tg.PASSID,
+               tg.CD_TRANSACTIONTYPE                                                                                                CDTRANSACTIONTYPE,
+               tg.ISSUERID,
+               tg.TOLLPROVINCEID,
+               tg.CD_INSERTTIME                                                                                                     CDINSERTTIME,
+               ROUND(tg.PAYFEE / 100, 2)                                                                                            PAYFEE,
+               tg.ENWEIGHT,
+               tg.ENAXLECOUNT,
+               tg.TOLLINTERVALPAYFEE,
+               tg.TOLLINTERVALDISCOUNTFEE,
+               tg.TOLLINTERVALFEE,
+               tg.ENLANETYPE,
+               tg.ENTOLLSTATIONHEX,
+               tg.CPUNETID,
+               tg.VEHICLEUSERTYPE,
+               tg.OBUVERSION,
+               tg.ELECTRICALPERCENTAGE,
+               tg.OBUMAC,
+               tg.OBUISSUEID,
+               tg.OBUSN,
+               tg.CPUISSUEID,
+               tg.CPUVERSION,
+               tg.SECTIONID,
+               tg.ENTOLLSTATIONNAME,
+               tg.TOLLINTERVALNAME,
+               tg.IDENTIFYVEHICLEID,
+               tg.IDENTIFYVEHICLETYPE,
+               tg.TRANSTYPE,
+               tg.DESCRIPTION,
+               tg.KEYVERSION,
+               tg.DIRECTION,
+               tg.LINK,
+               tg.VEHICLESIGNIDS,
+               tg.LASTGANTRYHEX,
+               tg.LASTGANTRYTIME,
+               tg.VEHICLELENGTH,
+               tg.VEHICLEWIDTH,
+               tg.VEHICLEHIGHT,
+               tg.VEHICLEWEIGHTLIMITS,
+               tg.PLATECOLOR,
+               tg.FEEINFO1,
+               tg.FEEINFO2,
+               tg.FEEINFO3,
+               tg.FEELOGMSG,
+               tg.MEDIATYPE,
+               tg.CLEANDATE,
+               tg.CLEANSTATUS,
+               (SELECT regexp_substr(tg2.VEHICLEID, '[^_]+', 1, 1) FROM "CD_TRADE"."TRADE_GANTRY" tg2 WHERE tg2.ID = tg.ID)         VEHICLENO,
+               (SELECT regexp_substr(tg3.VEHICLEID, '[^_]+', 1, 2) FROM "CD_TRADE"."TRADE_GANTRY" tg3 WHERE tg3.ID = tg.ID)         VEHICLECOLOR,
+               (SELECT regexp_substr(tg4.IDENTIFYVEHICLEID, '[^_]+', 1, 1) FROM "CD_TRADE"."TRADE_GANTRY" tg4 WHERE tg4.ID = tg.ID) IDENTIFYVEHICLENO,
+               (SELECT regexp_substr(tg5.IDENTIFYVEHICLEID, '[^_]+', 1, 2) FROM "CD_TRADE"."TRADE_GANTRY" tg5 WHERE tg5.ID = tg.ID) IDENTIFYVEHICLECOLOR
+        FROM "CD_TRADE"."TRADE_GANTRY" tg
+                 left join CD_TRADE.BASE_TOLLPOINT c3 on c3.ID = tg.tollgantryid
+                 left join CD_JC.JC_NEWDATAOFPASSID c4 on c4.PASSID = tg.PASSID and c4.TOLLGANTRYID=tg.tollgantryid
+        WHERE tg.PASSID = #{passId}
+        ORDER BY tg.TRANSTIME asc
+    </select>
+
+    <select id="getTollintervalByPassId" resultType="java.lang.String">
+        SELECT TOLLINTERVALID  from CD_TRADE.TRADE_GANTRY cttr where cttr.passid=#{passId}
+    </select>
+
+    <select id="getDataByids" resultType="com.tuozhi.zhlw.admin.jc.entity.TradeGantryEntity">
+        SELECT
+        tg.ID,
+        tg.FEE,
+        tg.DISCOUNTFEE,
+        tg.ENTOLLLANEID,
+        tg.ENTIME,
+        tg.ETCCARDID,
+        tg.VEHICLEID,
+        tg.SPECIALTYPE,
+        tg.VEHICLECLASS,
+        tg.RATEVERSION,
+        tg.OBUSIGN,
+        tg.OBUID,
+        tg.ETCCARDTYPE,
+        tg.TRANSTIME,
+        tg.TOLLINTERVALID,
+        tg.VEHICLETYPE,
+        tg.TAC,
+        tg.TRANSFEE,
+        tg.SIGNSTATUS,
+        tg.TERMINALTRANSNO,
+        tg.TERMINALNO,
+        tg.SERVICETYPE,
+        tg.ENPASSRECORDID,
+        tg.FORWARDETCRECORDID,
+        tg.BACKWARDETCRECORDID,
+        tg.TOLLGANTRYID,
+        tg.MANUALSIGN,
+        tg.VEHICLESIGNID,
+        tg.PASSID,
+        tg.CD_TRANSACTIONTYPE CDTRANSACTIONTYPE,
+        tg.ISSUERID,
+        tg.TOLLPROVINCEID,
+        tg.CD_INSERTTIME CDINSERTTIME,
+        tg.PAYFEE,
+        tg.ENWEIGHT,
+        tg.ENAXLECOUNT,
+        tg.TOLLINTERVALPAYFEE,
+        tg.TOLLINTERVALDISCOUNTFEE,
+        tg.TOLLINTERVALFEE,
+        tg.ENLANETYPE,
+        tg.ENTOLLSTATIONHEX,
+        tg.CPUNETID,
+        tg.VEHICLEUSERTYPE,
+        tg.OBUVERSION,
+        tg.ELECTRICALPERCENTAGE,
+        tg.OBUMAC,
+        tg.OBUISSUEID,
+        tg.OBUSN,
+        tg.CPUISSUEID,
+        tg.CPUVERSION,
+        tg.SECTIONID,
+        tg.ENTOLLSTATIONNAME,
+        tg.TOLLINTERVALNAME,
+        tg.IDENTIFYVEHICLEID,
+        tg.IDENTIFYVEHICLETYPE,
+        tg.TRANSTYPE,
+        tg.DESCRIPTION,
+        tg.KEYVERSION,
+        tg.DIRECTION,
+        tg.LINK,
+        tg.VEHICLESIGNIDS,
+        tg.LASTGANTRYHEX,
+        tg.LASTGANTRYTIME,
+        tg.VEHICLELENGTH,
+        tg.VEHICLEWIDTH,
+        tg.VEHICLEHIGHT,
+        tg.VEHICLEWEIGHTLIMITS,
+        tg.PLATECOLOR,
+        tg.FEEINFO1,
+        tg.FEEINFO2,
+        tg.FEEINFO3,
+        tg.FEELOGMSG,
+        tg.MEDIATYPE,
+        tg.CLEANDATE,
+        tg.CLEANSTATUS,
+        (SELECT regexp_substr(tg2.VEHICLEID, '[^_]+', 1, 1) FROM "CD_TRADE"."TRADE_GANTRY" tg2 WHERE tg2.ID = tg.ID)
+        VEHICLENO,
+        (SELECT regexp_substr(tg3.VEHICLEID, '[^_]+', 1, 2) FROM "CD_TRADE"."TRADE_GANTRY" tg3 WHERE tg3.ID = tg.ID)
+        VEHICLECOLOR,
+        (SELECT regexp_substr(tg4.IDENTIFYVEHICLEID, '[^_]+', 1, 1) FROM "CD_TRADE"."TRADE_GANTRY" tg4 WHERE tg4.ID =
+        tg.ID) IDENTIFYVEHICLENO,
+        (SELECT regexp_substr(tg5.IDENTIFYVEHICLEID, '[^_]+', 1, 2) FROM "CD_TRADE"."TRADE_GANTRY" tg5 WHERE tg5.ID =
+        tg.ID) IDENTIFYVEHICLECOLOR
+        FROM
+        "CD_TRADE"."TRADE_GANTRY" tg
+        WHERE
+        tg.ID IN
+        <foreach item="id" collection="ids" separator="," open="(" close=")" index="">
+            #{id, jdbcType=NUMERIC}
+        </foreach>
+    </select>
+
+    <select id="getDataById" resultType="com.tuozhi.zhlw.admin.jc.entity.TradeGantryEntity">
+        SELECT tg.ID,
+               tg.FEE,
+               tg.DISCOUNTFEE,
+               tg.ENTOLLLANEID,
+               tg.ENTIME,
+               tg.ETCCARDID,
+               tg.VEHICLEID,
+               tg.SPECIALTYPE,
+               tg.VEHICLECLASS,
+               tg.RATEVERSION,
+               tg.OBUSIGN,
+               tg.OBUID,
+               tg.ETCCARDTYPE,
+               tg.TRANSTIME,
+               tg.TOLLINTERVALID,
+               tg.VEHICLETYPE,
+               tg.TAC,
+               tg.TRANSFEE,
+               tg.SIGNSTATUS,
+               tg.TERMINALTRANSNO,
+               tg.TERMINALNO,
+               tg.SERVICETYPE,
+               tg.ENPASSRECORDID,
+               tg.FORWARDETCRECORDID,
+               tg.BACKWARDETCRECORDID,
+               tg.TOLLGANTRYID,
+               tg.MANUALSIGN,
+               tg.VEHICLESIGNID,
+               tg.PASSID,
+               tg.CD_TRANSACTIONTYPE                                                                                                CDTRANSACTIONTYPE,
+               tg.ISSUERID,
+               tg.TOLLPROVINCEID,
+               tg.CD_INSERTTIME                                                                                                     CDINSERTTIME,
+               tg.PAYFEE,
+               tg.ENWEIGHT,
+               tg.ENAXLECOUNT,
+               tg.TOLLINTERVALPAYFEE,
+               tg.TOLLINTERVALDISCOUNTFEE,
+               tg.TOLLINTERVALFEE,
+               tg.ENLANETYPE,
+               tg.ENTOLLSTATIONHEX,
+               tg.CPUNETID,
+               tg.VEHICLEUSERTYPE,
+               tg.OBUVERSION,
+               tg.ELECTRICALPERCENTAGE,
+               tg.OBUMAC,
+               tg.OBUISSUEID,
+               tg.OBUSN,
+               tg.CPUISSUEID,
+               tg.CPUVERSION,
+               tg.SECTIONID,
+               tg.ENTOLLSTATIONNAME,
+               tg.TOLLINTERVALNAME,
+               tg.IDENTIFYVEHICLEID,
+               tg.IDENTIFYVEHICLETYPE,
+               tg.TRANSTYPE,
+               tg.DESCRIPTION,
+               tg.KEYVERSION,
+               tg.DIRECTION,
+               tg.LINK,
+               tg.VEHICLESIGNIDS,
+               tg.LASTGANTRYHEX,
+               tg.LASTGANTRYTIME,
+               tg.VEHICLELENGTH,
+               tg.VEHICLEWIDTH,
+               tg.VEHICLEHIGHT,
+               tg.VEHICLEWEIGHTLIMITS,
+               tg.PLATECOLOR,
+               tg.FEEINFO1,
+               tg.FEEINFO2,
+               tg.FEEINFO3,
+               tg.FEELOGMSG,
+               tg.MEDIATYPE,
+               tg.CLEANDATE,
+               tg.CLEANSTATUS,
+               (SELECT regexp_substr(tg2.VEHICLEID, '[^_]+', 1, 1) FROM "CD_TRADE"."TRADE_GANTRY" tg2 WHERE tg2.ID = tg.ID)         VEHICLENO,
+               (SELECT regexp_substr(tg3.VEHICLEID, '[^_]+', 1, 2) FROM "CD_TRADE"."TRADE_GANTRY" tg3 WHERE tg3.ID = tg.ID)         VEHICLECOLOR,
+               (SELECT regexp_substr(tg4.IDENTIFYVEHICLEID, '[^_]+', 1, 1) FROM "CD_TRADE"."TRADE_GANTRY" tg4 WHERE tg4.ID = tg.ID) IDENTIFYVEHICLENO,
+               (SELECT regexp_substr(tg5.IDENTIFYVEHICLEID, '[^_]+', 1, 2) FROM "CD_TRADE"."TRADE_GANTRY" tg5 WHERE tg5.ID = tg.ID) IDENTIFYVEHICLECOLOR
+        FROM "CD_TRADE"."TRADE_GANTRY" tg
+        WHERE tg.ID = #{id, jdbcType=NUMERIC}
+    </select>
+
+    <select id="getTradeGantryDataByPassId" resultType="com.tuozhi.zhlw.admin.jc.entity.TradeGantryEntity">
+         select TOLLGANTRYID,PASSID from CD_TRADE.TRADE_GANTRY where PASSID=#{passId}
+     </select>
+
+    <insert id="insertTradeGantryData">
+        begin
+        <foreach collection="tradeGantryDataList" item="item" index="index">
+            insert into CD_JC.JC_NEWDATAOFPASSID (TOLLGANTRYID,PASSID) values(
+            #{item.tollgantryid,jdbcType=VARCHAR},
+            #{item.passid,jdbcType=VARCHAR}
+            );
+        </foreach>
+        end;
+    </insert>
+
+    <insert id="insertNewTradeGantryData">
+        begin
+        <foreach collection="GtyBillingTransaction" item="item" index="index">
+            insert into CD_JC.JC_NEWDATAOFPASSID (TOLLGANTRYID,PASSID) values(
+            #{item.gantryid,jdbcType=VARCHAR},
+            #{item.passid,jdbcType=VARCHAR}
+            );
+        </foreach>
+        end;
+    </insert>
+
+    <insert id="insertNewTransactionPassData">
+        begin
+        <foreach collection="transactionMapList" item="item" index="index">
+            insert into CD_JC.JC_NEWDATAOFPASSID (TOLLGANTRYID,PASSID) values(
+            #{item.TOLLGANTRYID,jdbcType=VARCHAR},
+            #{item.PASSID,jdbcType=VARCHAR}
+            );
+        </foreach>
+        end;
+    </insert>
+
+    <update id="updateDataByPassId" parameterType="java.util.List">
+        <foreach collection="newList" open="begin" close=";end;" index="index" item="item" separator=";">
+            update CD_JC.JC_NEWDATAOFPASSID set
+            REALFEE=#{item.realFee,jdbcType=NUMERIC},
+            OWEFEE=#{item.oweFee,jdbcType=NUMERIC},
+            OLDVEHICLETYPE=#{item.oldVehicleType,jdbcType=NUMERIC},
+            NEWVEHICLETYPE=#{item.newVehicleType,jdbcType=NUMERIC}
+            where TOLLGANTRYID=#{item.tollgantryid,jdbcType=VARCHAR} and PASSID=#{item.passId,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+    <select id="getNewDataByPassId" resultType="java.lang.Integer">
+        select count(1) from cd_jc.JC_NEWDATAOFPASSID where passid=#{passId}
+    </select>
+
+    <select id="getVersion" resultType="java.util.Map">
+        SELECT VERSION as versionName,VERSION as versionValue from CD_TRADE.TECH_FEERATE_INTERVAL GROUP BY VERSION  order by VERSION desc
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="selectPassid" resultType="java.util.Map">
+        SELECT * from (SELECT s.*,ROWNUM rn from (SELECT passid,灰名单车型 realVehicleType,单省多省 sheng,fee
+  from CD_JC.AAAA2020061102) s) WHERE rn>8775
+    </select>
+
+    <update id="updateData">
+        update CD_JC.AAAA2020061102 set ALLFEE=#{realfee,jdbcType=NUMERIC},OWEFEE=#{oweFee,jdbcType=NUMERIC}
+        where passid=#{passId}
+    </update>
+</mapper>

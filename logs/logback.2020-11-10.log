@@ -1,0 +1,34 @@
+2020/11/10-09:08:02 [Druid-ConnectionPool-Destroy-71364493] ERROR com.alibaba.druid.util.JdbcUtils-[91] close connection error
+java.sql.SQLRecoverableException: IO 错误: Connection reset by peer: socket write error
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:857)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:2498)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:186)
+	at com.alibaba.druid.filter.stat.StatFilter.connection_close(StatFilter.java:261)
+	at com.alibaba.druid.filter.FilterChainImpl.connection_close(FilterChainImpl.java:181)
+	at com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl.close(ConnectionProxyImpl.java:114)
+	at com.alibaba.druid.util.JdbcUtils.close(JdbcUtils.java:89)
+	at com.alibaba.druid.pool.DruidDataSource.shrink(DruidDataSource.java:3067)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyTask.run(DruidDataSource.java:2811)
+	at com.alibaba.druid.pool.DruidDataSource$DestroyConnectionThread.run(DruidDataSource.java:2795)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at oracle.net.ns.DataPacket.send(DataPacket.java:209)
+	at oracle.net.ns.NetOutputStream.flush(NetOutputStream.java:215)
+	at oracle.net.ns.NetInputStream.getNextPacket(NetInputStream.java:302)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:249)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:171)
+	at oracle.net.ns.NetInputStream.read(NetInputStream.java:89)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.readNextPacket(T4CSocketInputStreamWrapper.java:123)
+	at oracle.jdbc.driver.T4CSocketInputStreamWrapper.read(T4CSocketInputStreamWrapper.java:79)
+	at oracle.jdbc.driver.T4CMAREngineStream.unmarshalUB1(T4CMAREngineStream.java:429)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:397)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:257)
+	at oracle.jdbc.driver.T4C7Ocommoncall.doOLOGOFF(T4C7Ocommoncall.java:59)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:844)
+	... 9 common frames omitted
+2020/11/10-09:08:22 [SpringContextShutdownHook] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler-[208] Shutting down ExecutorService 'taskScheduler'
+2020/11/10-09:08:22 [SpringContextShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean-[598] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020/11/10-09:08:22 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[1965] {dataSource-1} closing ...
+2020/11/10-09:08:22 [SpringContextShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource-[2037] {dataSource-1} closed

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.JcWorkflowDefinationMapper">
+    <select id="getDataByParam" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcWorkflowDefinationEntity" resultType="com.tuozhi.zhlw.admin.jc.entity.JcWorkflowDefinationEntity">
+        SELECT
+            DEFINATION_ID DEFINATIONID,
+            DEFINATION_NAME DEFINATIONNAME,
+            DEFINATION_STATUS DEFINATIONSTATUS,
+            DEFINATION_COMMENT DEFINATIONCOMMENT,
+            CREATE_TIME CREATETIME,
+            DEFINATION_MENU DEFINATIONMENU,
+            DEFINATION_INIT_DEPT DEFINATIONINITDEPT
+        FROM
+            "CD_JC"."JC_WORKFLOW_DEFINATION"
+        WHERE 1=1
+        <if test="definationId != null">
+            AND DEFINATION_ID = #{definationId,jdbcType=NUMERIC}
+        </if>
+        <if test="definationName != null">
+            AND DEFINATION_NAME LIKE '%' || #{definationName,jdbcType=VARCHAR} || '%'
+        </if>
+        <if test="definationStatus != null">
+            AND DEFINATION_STATUS = #{definationStatus,jdbcType=NUMERIC}
+        </if>
+        ORDER BY DEFINATION_ID
+    </select>
+
+    <insert id="insertData" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcWorkflowDefinationEntity">
+        INSERT INTO "CD_JC"."JC_WORKFLOW_DEFINATION" (
+            "DEFINATION_ID"
+        <if test="definationName != null">
+            ,"DEFINATION_NAME"
+        </if>
+        <if test="definationStatus != null">
+            ,"DEFINATION_STATUS"
+        </if>
+        <if test="definationComment != null">
+            ,"DEFINATION_COMMENT"
+        </if>
+        <if test="createTime != null">
+            ,"CREATE_TIME"
+        </if>
+        <if test="definationMenu != null">
+            ,"DEFINATION_MENU"
+        </if>
+        <if test="definationInitDept != null">
+            ,"DEFINATION_INIT_DEPT"
+        </if>
+        )
+        VALUES(
+            #{definationId,jdbcType=NUMERIC}
+        <if test="definationName != null">
+            ,#{definationName,jdbcType=VARCHAR}
+        </if>
+        <if test="definationStatus != null">
+            ,#{definationStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="definationComment != null">
+            ,#{definationComment,jdbcType=NUMERIC}
+        </if>
+        <if test="createTime != null">
+            ,#{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="definationMenu != null">
+            ,#{definationMenu,jdbcType=NUMERIC}
+        </if>
+        <if test="definationInitDept != null">
+            ,#{definationInitDept,jdbcType=VARCHAR}
+        </if>
+        )
+    </insert>
+    
+    <select id="getCountByDefinationInitDept" resultType="int">
+        SELECT
+            COUNT(0)
+        FROM
+            "CD_JC"."JC_WORKFLOW_DEFINATION"
+        WHERE
+            DEFINATION_INIT_DEPT = #{definationInitDept,jdbcType=VARCHAR}
+        AND DEFINATION_MENU = #{definationMenu,jdbcType=NUMERIC}
+    </select>
+
+    <update id="updateDataByDefinationId" parameterType="com.tuozhi.zhlw.admin.jc.entity.JcWorkflowDefinationEntity">
+        UPDATE "CD_JC"."JC_WORKFLOW_DEFINATION"
+        <trim prefix="set" suffixOverrides=",">
+            <if test="definationName != null">
+                DEFINATION_NAME = #{definationName,jdbcType=VARCHAR},
+            </if>
+            <if test="definationStatus != null">
+                DEFINATION_STATUS = #{definationStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="definationComment != null">
+                DEFINATION_COMMENT = #{definationComment,jdbcType=NUMERIC},
+            </if>
+            <if test="definationMenu != null">
+                DEFINATION_MENU = #{definationMenu,jdbcType=NUMERIC},
+            </if>
+            <if test="definationInitDept != null">
+                DEFINATION_INIT_DEPT = #{definationInitDept,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        WHERE
+            DEFINATION_ID = #{definationId,jdbcType=NUMERIC}
+    </update>
+
+    <delete id="deleteDataByDefinationId">
+        DELETE FROM
+            "CD_JC"."JC_WORKFLOW_DEFINATION"
+        WHERE
+            DEFINATION_ID IN
+        <foreach item="definationId" collection="list" separator="," open="(" close=")" index="">
+            #{definationId,jdbcType=NUMERIC}
+        </foreach>
+    </delete>
+
+    <select id="getDataByDefinationId" resultType="com.tuozhi.zhlw.admin.jc.entity.JcWorkflowDefinationEntity">
+        SELECT
+            DEFINATION_ID DEFINATIONID,
+            DEFINATION_NAME DEFINATIONNAME,
+            DEFINATION_STATUS DEFINATIONSTATUS,
+            DEFINATION_COMMENT DEFINATIONCOMMENT,
+            CREATE_TIME CREATETIME,
+            DEFINATION_MENU DEFINATIONMENU,
+            DEFINATION_INIT_DEPT DEFINATIONINITDEPT
+        FROM
+            "CD_JC"."JC_WORKFLOW_DEFINATION"
+        WHERE
+            DEFINATION_ID = #{definationId,jdbcType=NUMERIC}
+    </select>
+</mapper>

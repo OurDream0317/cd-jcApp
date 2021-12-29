@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.TransactionPasstuDetailMapper">
+    <select id="getTransactionPasstuDetailInfo" resultType="java.util.Map" parameterType="java.util.Map">
+        select * from (select rownum rn,s.* from (select tpd.ID, tpd.TOLLGANTRYID,bt.Name,ROUND(tpd.PAYFEE/100,2) PAYFEE
+        ,
+        ROUND(tpd.FEE/100,2) FEE,ROUND(tpd.DISCOUNTFEE/100,2) DISCOUNTFEE,
+        tpd.ENWEIGHT, tpd.ENAXLECOUNT, tpd.TRANSTIME, tpd.SECTIONID, tpd.SECTIONNAME, tpd.TOLLINTERVALID,
+        tpd.TOLLINTERVALNAME, cd_system.F_ENUM_VEHICLE(tpd.VEHICLEID) VEHICLEID,
+        CD_SYSTEM.F_ENUM_VEHICLETYPE(tpd.VEHICLETYPE) VEHICLETYPE, CD_SYSTEM.F_ENUM_VEHICLECLASS(tpd.VEHICLECLASS)
+        VEHICLECLASS, tpd.OBUID,tpd.ETCCARDID,tpd.VEHICLESIGNID,tpd.PASSID,tpd.CD_TRANSACTIONTYPE, c4.REALFEE,
+        c4.OWEFEE,
+        c4.NEWVEHICLETYPE
+        from cd_pass.TRANSACTION_PASSTU_DETAIL tpd
+        left join cd_PASS.BASE_TOLLPOINT bt on tpd.TOLLGANTRYID=bt.ID
+        left join CD_JC.JC_NEWDATAOFPASSID c4 on c4.PASSID = tpd.PASSID and c4.TOLLGANTRYID=tpd.tollgantryid
+        <where>
+            <trim prefixOverrides="and">
+                <if test="etccardid!=null">
+                    and tpd.ETCCARDID=#{etccardid}
+                </if>
+                <if test="obuid!=null">
+                    and tpd.OBUID=#{obuid}
+                </if>
+                <if test="tollgantryid!=null">
+                    and tpd.TOLLGANTRYID=#{tollgantryid}
+                </if>
+                <if test="section!=null">
+                    and tpd.TOLLGANTRYID=#{section}
+                </if>
+                <if test="passid!=null">
+                    and tpd.PASSID=#{passid}
+                </if>
+                <if test="color!=null">
+                    and tpd.VEHICLEID like #{color}
+                </if>
+                <if test="vehicleid!=null">
+                    and tpd.VEHICLEID like #{vehicleid}
+                </if>
+                <if test="startTime!=null">
+                    <![CDATA[  and tpd.TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')  ]]>
+                </if>
+                <if test="endTime!=null">
+                    <![CDATA[ and tpd.TRANSTIME<=to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')   ]]>
+                </if>
+            </trim>
+
+            and tpd.CD_INSERTTIME = (
+
+            select max(deta.CD_INSERTTIME) from cd_pass.TRANSACTION_PASSTU_DETAIL deta where deta.id=tpd.id GROUP BY deta.id
+
+            )
+
+
+            <choose>
+                <when test="startTime != null">
+                    order by TRANSTIME desc
+                </when>
+                <otherwise>
+                    order by TRANSTIME asc
+                </otherwise>
+            </choose>
+        </where>
+        ) s
+        <if test="pageEnd!=null">
+            where rownum  <![CDATA[ <=]]>  #{pageEnd}
+        </if>
+        )
+        <if test="pageStart!=null">
+            where rn <![CDATA[ >]]>  #{pageStart}
+        </if>
+
+
+    </select>
+    <select id="selectAllDataCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(1)
+        from cd_pass.TRANSACTION_PASSTU_DETAIL tpd
+        <where>
+            <trim prefixOverrides="and">
+                <if test="etccardid!=null">
+                    and tpd.ETCCARDID=#{etccardid}
+                </if>
+                <if test="obuid!=null">
+                    and tpd.OBUID=#{obuid}
+                </if>
+                <if test="tollgantryid!=null">
+                    and tpd.TOLLGANTRYID=#{tollgantryid}
+                </if>
+                <if test="section!=null">
+                    and tpd.TOLLGANTRYID=#{section}
+                </if>
+                <if test="passid!=null">
+                    and tpd.PASSID=#{passid}
+                </if>
+                <if test="color!=null">
+                    and tpd.VEHICLEID like #{color}
+                </if>
+                <if test="vehicleid!=null">
+                    and tpd.VEHICLEID like #{vehicleid}
+                </if>
+                <if test="startTime!=null">
+                    <![CDATA[  and tpd.TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')  ]]>
+                </if>
+                <if test="endTime!=null">
+                    <![CDATA[ and tpd.TRANSTIME<=to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')   ]]>
+                </if>
+            </trim>
+
+            and tpd.CD_INSERTTIME = (
+
+            select max(deta.CD_INSERTTIME) from cd_pass.TRANSACTION_PASSTU_DETAIL deta where deta.id=tpd.id GROUP BY deta.id
+
+            )
+
+
+        </where>
+    </select>
+
+    <select id="getDataByPassid" resultType="java.util.Map">
+        select TOLLINTERVALID,PASSID,PAYFEE
+        from cd_pass.TRANSACTION_PASSTU_DETAIL
+         where passid in #{passid}
+    </select>
+</mapper>

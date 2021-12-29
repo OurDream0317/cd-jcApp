@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.mapper.AppMapper">
+
+    <select id="findAllWithName" parameterType="String" resultType="com.tuozhi.zhlw.admin.entity.SysAppEntity">
+        select
+                sya.id as id,
+                sya.name as name,
+                sya.sort as sort,
+                sya.create_time as createTime,
+                sya.valid_status as validStatus,
+                sya.code as code,
+                sya.icon_cls as iconCls
+        from sys_app sya
+        where 1=1
+     <if test="appName != null">
+        AND sya.name LIKE '%' || #{appName,jdbcType=VARCHAR} || '%'
+     </if>
+     <if test="appId != null">
+        AND sya.id != #{appId,jdbcType=NUMERIC}
+     </if>
+   </select>
+
+
+</mapper>

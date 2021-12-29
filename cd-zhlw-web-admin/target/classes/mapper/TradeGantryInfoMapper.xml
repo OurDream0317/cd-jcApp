@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.TradeGantryInfoMapper">
+
+    <select id="selectTradeGantry" resultType="com.tuozhi.zhlw.admin.jc.entity.TradeGantryEntity" parameterType="Map">
+        SELECT
+        tg.ID,
+        C2.NAME as sectionname,
+        ROUND(tg.FEE/100,2) FEE,
+        ROUND(tg.DISCOUNTFEE/100,2) DISCOUNTFEE,
+        tg.ENTOLLLANEID,
+        tg.ENTIME,
+        tg.ETCCARDID,
+        tg.VEHICLEID,
+        tg.SPECIALTYPE,
+        tg.VEHICLECLASS,
+        tg.RATEVERSION,
+        tg.OBUSIGN,
+        tg.OBUID,
+        tg.ETCCARDTYPE,
+        tg.TRANSTIME,
+        tg.TOLLINTERVALID,
+        tg.VEHICLETYPE,
+        tg.TAC,
+        ROUND(tg.TRANSFEE/100,2) TRANSFEE,
+        tg.SIGNSTATUS,
+        tg.TERMINALTRANSNO,
+        tg.TERMINALNO,
+        tg.SERVICETYPE,
+        tg.ENPASSRECORDID,
+        tg.FORWARDETCRECORDID,
+        tg.BACKWARDETCRECORDID,
+        tg.TOLLGANTRYID,
+        c3.NAME as TOLLGANTRYNAME,
+        tg.MANUALSIGN,
+        tg.VEHICLESIGNID,
+        tg.PASSID,
+        tg.CD_TRANSACTIONTYPE,
+        tg.ISSUERID,
+        tg.TOLLPROVINCEID,
+        tg.CD_INSERTTIME,
+        ROUND(tg.PAYFEE/100,2) PAYFEE,
+        tg.ENWEIGHT,
+        tg.ENAXLECOUNT,
+        tg.TOLLINTERVALPAYFEE,
+        tg.TOLLINTERVALDISCOUNTFEE,
+        tg.TOLLINTERVALFEE,
+        tg.ENLANETYPE,
+        tg.ENTOLLSTATIONHEX,
+        tg.CPUNETID,
+        tg.VEHICLEUSERTYPE,
+        tg.OBUVERSION,
+        tg.ELECTRICALPERCENTAGE,
+        tg.OBUMAC,
+        tg.OBUISSUEID,
+        tg.OBUSN,
+        tg.CPUISSUEID,
+        tg.CPUVERSION,
+        tg.SECTIONID,
+        tg.ENTOLLSTATIONNAME,
+        tg.TOLLINTERVALNAME,
+        tg.IDENTIFYVEHICLEID,
+        tg.IDENTIFYVEHICLETYPE,
+        tg.TRANSTYPE,
+        tg.DESCRIPTION,
+        tg.KEYVERSION,
+        tg.DIRECTION,
+        tg.LINK,
+        tg.VEHICLESIGNIDS,
+        tg.LASTGANTRYHEX,
+        tg.LASTGANTRYTIME,
+        tg.VEHICLELENGTH,
+        tg.VEHICLEWIDTH,
+        tg.VEHICLEHIGHT,
+        tg.VEHICLEWEIGHTLIMITS,
+        tg.PLATECOLOR,
+        tg.FEEINFO1,
+        tg.FEEINFO2,
+        tg.FEEINFO3,
+        tg.FEELOGMSG,
+        tg.MEDIATYPE,
+        tg.CLEANDATE,
+        tg.CLEANSTATUS,
+        tg.CD_PACKAGETIME,
+        tg.DISPUTECLEANDATE,
+        tg.DISPUTESTATUS,
+        tg.DISPUTETYPE,
+        tg.OBUVEHICLETYPE,
+        tg.CD_ETCDISCOUNTTYPE
+        FROM
+        "CD_TRADE"."TRADE_GANTRY" tg
+        left join CD_PASS.BASE_SECTION c2 on c2.ID =tg.SECTIONID
+        left join CD_TRADE.BASE_TOLLPOINT c3 on c3.ID =tg.tollgantryid
+        <where>
+            <if test="passid!=null">
+                PASSID=#{passid}
+            </if>
+            <if test="mediatype!=null">
+                <![CDATA[
+			and	MEDIATYPE=#{mediatype}
+				]]>
+            </if>
+
+            <if test="section!=null">
+                <![CDATA[
+			and	SECTIONID=#{section}
+				]]>
+            </if>
+            <if test="station!=null">
+                <![CDATA[
+			and	ENTOLLSTATIONNAME=#{station}
+				]]>
+            </if>
+            <if test="etccardid!=null">
+                <![CDATA[
+			and	ETCCARDID=#{etccardid}
+				]]>
+            </if>
+            <if test="tollintervalname!=null">
+                <![CDATA[
+			and	TOLLINTERVALNAME=#{tollintervalname}
+				]]>
+            </if>
+            <if test="tollgantryid!=null">
+                <![CDATA[
+			and	TOLLGANTRYID=#{tollgantryid}
+				]]>
+            </if>
+            <if test="obuid!=null">
+                <![CDATA[
+			and	OBUID=#{obuid}
+				]]>
+            </if>
+           
+            <if test="startTime!=null">
+                <![CDATA[
+			and	TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+            <if test="endTime!=null">
+                <![CDATA[
+			and	TRANSTIME<= to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+            <if test="vehicleid!=null">
+                <![CDATA[
+			 AND VEHICLEID like #{vehicleid}||'%'
+				]]>
+            </if>
+            <if test="color!=null">
+                <![CDATA[
+			 AND VEHICLEID  LIKE '%'||#{color}
+				]]>
+            </if>
+            <if test="specialtypeTradeGantry!=null">
+                <![CDATA[
+				AND SPECIALTYPE LIKE '%' || #{specialtypeTradeGantry} || '%'
+				]]>
+            </if>
+        </where>
+        order by TRANSTIME desc,passid DESC
+    </select>
+
+
+
+    <select id="selectpassid" resultType="java.util.Map" parameterType="Map">
+        SELECT DISTINCT
+			passid
+        FROM
+        "CD_TRADE"."TRADE_GANTRY" 
+        
+        <where>
+            <if test="mediatype!=null">
+				MEDIATYPE=#{mediatype}
+            </if>
+
+            <if test="section!=null">
+                <![CDATA[
+			and	SECTIONID=#{section}
+				]]>
+            </if>
+            <if test="station!=null">
+                <![CDATA[
+			and	ENTOLLSTATIONNAME=#{station}
+				]]>
+            </if>
+            <if test="etccardid!=null">
+                <![CDATA[
+			and	ETCCARDID=#{etccardid}
+				]]>
+            </if>
+            <if test="tollintervalname!=null">
+                <![CDATA[
+			and	TOLLINTERVALNAME=#{tollintervalname}
+				]]>
+            </if>
+            <if test="tollgantryid!=null">
+                <![CDATA[
+			and	TOLLGANTRYID=#{tollgantryid}
+				]]>
+            </if>
+            <if test="obuid!=null">
+                <![CDATA[
+			and	OBUID=#{obuid}
+				]]>
+            </if>
+
+            <if test="startTime!=null">
+                <![CDATA[
+			and	TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+            <if test="endTime!=null">
+                <![CDATA[
+			and	TRANSTIME<= to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+            <if test="vehicleid!=null">
+                <![CDATA[
+			 AND VEHICLEID=#{vehicleid,jdbcType=VARCHAR} 
+				]]>
+            </if>
+            <if test="vehicleids!=null">
+                <![CDATA[
+			 AND VEHICLEID  LIKE CONCAT(#{vehicleids},'%')
+				]]>
+            </if>
+            <if test="specialtypeTradeGantry!=null">
+                <![CDATA[
+				AND SPECIALTYPE LIKE '%' || #{specialtypeTradeGantry} || '%'
+				]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTradeGantryList" resultType="com.tuozhi.zhlw.admin.jc.entity.TradeGantryEntity" parameterType="Map">
+               		SELECT a.*, d20.ENUM_NAME IDENTIFYVEHICLEIDCOLOR FROM (
+					
+						
+					SELECT
+	tg.ID,
+	C2.NAME AS sectionname,
+	ROUND( tg.FEE / 100, 2 ) FEE,
+	ROUND( tg.DISCOUNTFEE / 100, 2 ) DISCOUNTFEE,
+	tg.ENTOLLLANEID,
+	tg.ENTIME,
+	tg.ETCCARDID,
+	tg.VEHICLEID,
+	d2.ENUM_NAME AS SPECIALTYPE,
+	d3.ENUM_NAME AS VEHICLECLASS,
+	tg.RATEVERSION,
+	tg.OBUSIGN,
+	tg.OBUID,
+	d7.ENUM_NAME AS ETCCARDTYPE,
+	tg.TRANSTIME,
+	tg.TOLLINTERVALID,
+	d8.ENUM_NAME AS VEHICLETYPE,
+	tg.TAC,
+	ROUND( tg.TRANSFEE / 100, 2 ) TRANSFEE,
+	tg.SIGNSTATUS,
+	tg.TERMINALTRANSNO,
+	tg.TERMINALNO,
+	d9.ENUM_NAME AS SERVICETYPE,
+	tg.ENPASSRECORDID,
+	tg.FORWARDETCRECORDID,
+	tg.BACKWARDETCRECORDID,
+	tg.TOLLGANTRYID,
+	tg.MANUALSIGN,
+	tg.VEHICLESIGNID,
+	tg.PASSID,
+	d10.ENUM_NAME AS CD_TRANSACTIONTYPE,
+	tg.ISSUERID,
+	tg.TOLLPROVINCEID,
+	tg.CD_INSERTTIME,
+	ROUND( tg.PAYFEE / 100, 2 ) PAYFEE,
+	tg.ENWEIGHT,
+	tg.ENAXLECOUNT,
+	tg.TOLLINTERVALPAYFEE,
+	tg.TOLLINTERVALDISCOUNTFEE,
+	tg.TOLLINTERVALFEE,
+	tg.ENLANETYPE,
+	tg.ENTOLLSTATIONHEX,
+	tg.CPUNETID,
+	tg.VEHICLEUSERTYPE,
+	tg.OBUVERSION,
+	tg.ELECTRICALPERCENTAGE,
+	tg.OBUMAC,
+	tg.OBUISSUEID,
+	tg.OBUSN,
+	tg.CPUISSUEID,
+	tg.CPUVERSION,
+	tg.SECTIONID,
+	tg.ENTOLLSTATIONNAME,
+	tg.TOLLINTERVALNAME,
+	tg.IDENTIFYVEHICLEID,
+	d11.ENUM_NAME AS IDENTIFYVEHICLETYPE,
+	d13.ENUM_NAME AS TRANSTYPE,
+	tg.DESCRIPTION,
+	tg.KEYVERSION,
+	d12.ENUM_NAME AS DIRECTION,
+	tg.LINK,
+	tg.VEHICLESIGNIDS,
+	tg.LASTGANTRYHEX,
+	tg.LASTGANTRYTIME,
+	tg.VEHICLELENGTH,
+	tg.VEHICLEWIDTH,
+	tg.VEHICLEHIGHT,
+	tg.VEHICLEWEIGHTLIMITS,
+	tg.PLATECOLOR,
+	tg.FEEINFO1,
+	tg.FEEINFO2,
+	tg.FEEINFO3,
+	tg.FEELOGMSG,
+	d4.ENUM_NAME AS MEDIATYPE,
+	tg.CLEANDATE,
+	d5.ENUM_NAME AS CLEANSTATUS,
+	tg.CD_PACKAGETIME,
+	tg.DISPUTECLEANDATE,
+	d6.ENUM_NAME AS DISPUTESTATUS,
+	tg.DISPUTETYPE,
+	tg.OBUVEHICLETYPE,
+	(
+SELECT
+	regexp_substr ( tg5.VEHICLEID, '[^_]+', 1, 2 ) 
+FROM
+	"CD_TRADE"."TRADE_GANTRY" tg5 
+WHERE
+	tg5.ID = tg.ID 
+	) IDENTIFYVEHICLEIDCOLORA
+       	FROM
+	"CD_TRADE"."TRADE_GANTRY" tg
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d ON d.ENUM_ID = 39 
+	AND to_char ( tg.PLATECOLOR ) = d.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d2 ON d2.ENUM_ID = 20104 
+	AND tg.SPECIALTYPE = d2.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d3 ON d3.ENUM_ID = 41 
+	AND to_char ( tg.VEHICLECLASS ) = d3.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d8 ON d8.ENUM_ID = 41 
+	AND to_char ( tg.VEHICLETYPE ) = d8.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d4 ON d4.ENUM_ID = 99 
+	AND to_char ( tg.MEDIATYPE ) = d4.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d5 ON d5.ENUM_ID = 104 
+	AND to_char ( tg.CLEANSTATUS ) = d5.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d6 ON d6.ENUM_ID = 104 
+	AND to_char ( tg.DISPUTESTATUS ) = d6.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d7 ON d7.ENUM_ID = 106 
+	AND to_char ( tg.ETCCARDTYPE ) = d7.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d9 ON d9.ENUM_ID = 107 
+	AND to_char ( tg.SERVICETYPE ) = d9.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d10 ON d10.ENUM_ID = 108 
+	AND to_char ( tg.CD_TRANSACTIONTYPE ) = d10.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d11 ON d11.ENUM_ID = 40 
+	AND to_char ( tg.IDENTIFYVEHICLETYPE ) = d11.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d12 ON d12.ENUM_ID = 109 
+	AND to_char ( tg.DIRECTION ) = d12.ENUM_VALUE
+	LEFT JOIN "CD_SYSTEM"."SYS_ENUM_DETAILS" d13 ON d13.ENUM_ID = 108 
+	AND tg.TRANSTYPE = d13.ENUM_VALUE
+	LEFT JOIN "CD_BASE"."BASE_SECTION" c2 ON c2.ID = tg.SECTIONID 
+						) a
+	
+left join "CD_SYSTEM"."SYS_ENUM_DETAILS" d20 on d20.ENUM_ID =39 and a.IDENTIFYVEHICLEIDCOLORA=d20.ENUM_VALUE
+	
+        <where>
+            <if test="passid!=null">
+                PASSID=#{passid}
+            </if>
+
+            <if test="section!=null">
+                <![CDATA[
+			and	SECTIONID=#{section}
+				]]>
+            </if>
+            <if test="station!=null">
+                <![CDATA[
+			and	ENTOLLSTATIONNAME=#{station}
+				]]>
+            </if>
+            <if test="etccardid!=null">
+                <![CDATA[
+			and	ETCCARDID=#{etccardid}
+				]]>
+            </if>
+            <if test="tollintervalname!=null">
+                <![CDATA[
+			and	TOLLINTERVALNAME=#{tollintervalname}
+				]]>
+            </if>
+            <if test="tollgantryid!=null">
+                <![CDATA[
+			and	TOLLGANTRYID=#{tollgantryid}
+				]]>
+            </if>
+            <if test="obuid!=null">
+                <![CDATA[
+			and	OBUID=#{obuid}
+				]]>
+            </if>
+            <if test="mediatype!=null">
+                <![CDATA[
+			and	mediatype=#{mediatype}
+				]]>
+            </if>
+            <if test="startTime!=null">
+                <![CDATA[
+			and	TRANSTIME>= to_date(#{startTime},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+            <if test="endTime!=null">
+                <![CDATA[
+			and	TRANSTIME<= to_date(#{endTime},'yyyy-MM-dd HH24:mi:ss')
+				]]>
+            </if>
+           <if test="vehicleid!=null">
+                <![CDATA[
+			 AND VEHICLEID like #{vehicleid}||'%'
+				]]>
+            </if>
+            <if test="color!=null">
+                <![CDATA[
+			 AND VEHICLEID like '%'||#{color}
+				]]>
+            </if>
+        </where>
+       order by TRANSTIME desc,passid DESC
+    </select>
+
+</mapper>

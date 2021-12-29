@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.TechFeerateIntervalMapper">
+    <select id="getActualFee" resultType="Double">
+        SELECT
+            NVL((SELECT NVL(#{orginalFee,jdbcType=NUMERIC}/UNITPRICE, 0) FROM "CD_TRADE"."TECH_FEERATE_INTERVAL" WHERE TOLLINTERVALID = #{tollintervalId,jdbcType=VARCHAR} AND VEHICLETYPE = #{formerVehicleType,jdbcType=NUMERIC})*UNITPRICE,0)
+        FROM
+            "CD_TRADE"."TECH_FEERATE_INTERVAL"
+        WHERE
+            TOLLINTERVALID = #{tollintervalId,jdbcType=VARCHAR}
+        AND
+            VEHICLETYPE = #{newVehicleType,jdbcType=NUMERIC}
+    </select>
+
+
+
+    <select id="getActualFeeByVersion" resultType="Double">
+        SELECT nvl(sum (ROUND(FEE/100,2)),0) FEE from CD_TRADE.TECH_FEERATE_INTERVAL
+        where
+        TOLLINTERVALID in (
+        <foreach collection="tollintervalId" index="index" separator="," item="item">
+        #{item}
+        </foreach>
+        )
+        and VEHICLETYPE=#{newVehicleType} and version=#{version}
+    </select>
+
+    <select id="getMaxVersion" resultType="String">
+      select max(version) from CD_TRADE.TECH_FEERATE_INTERVAL
+    </select>
+</mapper>

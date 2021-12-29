@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jcApp.mapper.JCAuditStatusMapper">
+    <select id="getLocalBlackList" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT
+        jbr.REQUESTID,
+        jbr.CARNUMBER,
+        sed.ENUM_NAME CARCOLOUR,
+        jbr.CARFEATURE,
+        round( jbr.ELUDEMONEYNUMBER / 100, 2 ) ELUDEMONEYNUMBER,
+        round( jbr.FACTMONEYNUMBER / 100, 2 ) FACTMONEYNUMBER,
+        round(jbr.CARDLOSSFEE/100,2) CARDLOSSFEE,
+        sed1.ENUM_NAME ELUDEMONEYTYPE,
+        CASE
+
+        WHEN jbr.ELUDEMONEYTYPE = 1001 THEN
+        sed2.ENUM_NAME
+        WHEN jbr.ELUDEMONEYTYPE = 1002 THEN
+        sed3.ENUM_NAME
+        WHEN jbr.ELUDEMONEYTYPE = 1003 THEN
+        sed4.ENUM_NAME
+        WHEN jbr.ELUDEMONEYTYPE = 1004 THEN
+        sed5.ENUM_NAME
+        END ELUDEMONEYTYPEITEMNAME,
+        sed6.ENUM_NAME CARTYPE,
+        jbr.AXLETYPE,
+        bt2.NAME ENTRYSTATIONID,
+        bt3.NAME EXITSTATIONID,
+        to_char( jbr.ENTRYSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTRYSTATIONTIME,
+        to_char( jbr.EXITSTATIONTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXITSTATIONTIME,
+        nvl( jbr.TOTALWEIGHT, '' ) TOTALWEIGHT,
+        decode( jbr.HAVECARD, 1, '是', 0, '否', '' ) HAVECARD,
+        decode( jbr.HAVEDAMAGEDEVICE, 1, '有', 0, '无', '' ) HAVEDAMAGEDEVICE,
+        decode( jbr.HAVEVIDEO, 1, '有', 0, '无', '' ) HAVEVIDEO,
+        nvl( jbr.CPUCARDID, '' ) CPUCARDID,
+        nvl( jbr.REQUESTDESCRIPTION, '' ) REQUESTDESCRIPTION,
+        to_char( jbr.CREATETIME, 'yyyy-mm-dd HH24:mi:ss' ) CREATETIME,
+        jbr.CREATEUSERNAME,
+        sed7.dept_name CREATEDEPTID,
+        nvl( jbr.SUMTOTAL, 0 ) SUMTOTAL,
+        bd1.DEPT_NAME SERVICEDEPTNAME,
+        jbr1.SREQUESTID 撤销状态, --有值已撤销，没有值未撤销
+        jbr.IS_APP,
+        jbr.REQUESTSTATUS
+        FROM
+        cd_jc.JC_BLACKLIST_REQUEST jbr
+        LEFT JOIN "CD_JC"."JC_BLACKLIST_REQUEST" jbr1 ON jbr1.SREQUESTID = jbr.REQUESTID
+        AND jbr1.DELETEFLAG = 1
+        AND jbr1.LOGICTYPE = 2
+        INNER JOIN "CD_JC"."JC_BLACKLIST_FLOWPATH" jbf ON jbr.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.OPERATEDEPTID = bd1.ID
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON sed.ENUM_VALUE = jbr.CARCOLOUR
+        AND sed.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed1 ON sed1.ENUM_VALUE = jbr.ELUDEMONEYTYPE
+        AND sed1.ENUM_ID = 87
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed2 ON sed2.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed2.ENUM_ID = 88
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed3 ON sed3.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed3.ENUM_ID = 89
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed4 ON sed4.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed4.ENUM_ID = 90
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed5 ON sed5.ENUM_VALUE = jbr.ELUDEMONEYTYPEITEM
+        AND sed5.ENUM_ID = 91
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed6 ON sed6.ENUM_VALUE = jbr.CARTYPE
+        AND sed6.ENUM_ID = 40
+        LEFT JOIN CD_SYSTEM.SYS_DEPT sed7 ON sed7.ID = jbr.CREATEDEPTID
+        LEFT JOIN (
+        SELECT
+        ID,NAME
+        FROM
+        CD_PASS.BASIC_BASICINFODOWN_RES x
+        WHERE
+        x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =
+        24 )
+        AND x.TYPE = '1'
+        ) bt2 ON bt2.ID = jbr.ENTRYSTATIONID
+        LEFT JOIN (
+        SELECT
+        ID,NAME
+        FROM
+        CD_PASS.BASIC_BASICINFODOWN_RES x
+        WHERE
+        x.downid = ( SELECT max( w.down_id ) FROM CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type =
+        24 )
+        AND x.TYPE = '1'
+        ) bt3 ON bt3.ID = jbr.EXITSTATIONID
+        WHERE
+        jbr.DELETEFLAG = 1
+        AND jbr.LOGICTYPE =1
+        <choose>
+            <when test="vehicle!=null">
+                and jbr.CARNUMBER like '%'||#{vehicle,jdbcType=VARCHAR}||'%'
+            </when>
+            <otherwise>
+                <![CDATA[
+                and jbr.CREATETIME>=#{nowDate} and jbr.CREATETIME<=sysdate
+                ]]>
+           </otherwise>
+        </choose>
+        ORDER BY jbr.CREATETIME desc
+    </select>
+
+    <select id="getLocalGreyList" parameterType="java.lang.String" resultType="java.util.Map">
+        select t.REQUESTID,CARNUMBER,s2.ENUM_NAME LICENSECOLORID,CARFEATURE,round(ELUDEMONEYNUMBER/100,2)
+        ELUDEMONEYNUMBER,round(FACTMONEYNUMBER/100,2) FACTMONEYNUMBER,s.ENUM_NAME ELUDEMONEYTYPE,s1.ENUM_NAME
+        ELUDEMONEYTYPEITEM,s3.ENUM_NAME CARTYPE,AXLETYPE,
+        bt2.NAME ENTRYSTATIONID,
+        bt3.NAME EXITSTATIONID,
+        to_char(ENTRYSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') ENTRYSTATIONTIME,
+        to_char(EXITSTATIONTIME,'yyyy-mm-dd HH24:mi:ss') EXITSTATIONTIME,
+        nvl(TOTALWEIGHT,'') TOTALWEIGHT,
+        decode(HAVECARD,1,'是',0,'否','') HAVECARD,
+        decode(HAVEDAMAGEDEVICE,1,'有',0,'无','') HAVEDAMAGEDEVICE,
+        decode(HAVEVIDEO,1,'有',0,'无','') HAVEVIDEO,
+        nvl(CPUCARDID,'') CPUCARDID,
+        nvl(REQUESTDESCRIPTION,'') REQUESTDESCRIPTION,
+        to_char(t.CREATETIME,'yyyy-mm-dd HH24:mi:ss') CREATETIME,
+        CREATEUSERNAME,
+        s4.dept_name CREATEDEPTID,
+        nvl(SUMTOTAL,0) SUMTOTAL,
+        bd1.DEPT_NAME SERVICEDEPTNAME
+        from cd_jc.JC_GRAYLIST_REQUEST t
+        INNER JOIN "CD_JC"."JC_GRAYLIST_FLOWPATH" jbf ON t.CURRENTFLOWPATHID = jbf.FLOWPATHID
+        LEFT JOIN CD_SYSTEM.SYS_DEPT bd1 ON jbf.DEPTID = bd1.DEPT_WORK
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s ON t.ELUDEMONEYTYPE = s.ENUM_VALUE and s.ENUM_ID = 43
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s1 ON t.ELUDEMONEYTYPEITEM = s1.ENUM_VALUE and s1.ENUM_ID = 44
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s2 ON t.LICENSECOLORID = s2.ENUM_VALUE and s2.ENUM_ID = 39
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS s3 ON s3.ENUM_VALUE = t.CARTYPE AND s3.ENUM_ID = 40
+        LEFT JOIN CD_SYSTEM.SYS_DEPT s4 ON to_char(s4.ID) = t.CREATEDEPTID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt2 ON bt2.ID =
+        t.ENTRYSTATIONID
+        LEFT JOIN (SELECT ID,NAME FROM CD_PASS.BASIC_BASICINFODOWN_RES x WHERE x.downid = ( SELECT max( w.down_id ) FROM
+        CD_PASS.CLEAR_DOWNLOAD_LOG w WHERE w.read_result = 1 AND w.file_type = 24 ) AND x.TYPE = '1') bt3 ON bt3.ID =
+        t.EXITSTATIONID
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+                <when test="vehicle!=null">
+                    and t.CARNUMBER like '%'||#{vehicle,jdbcType=VARCHAR}||'%'
+                </when>
+                <otherwise>
+                    <![CDATA[
+                and t.CREATETIME>=#{nowDate} and t.CREATETIME<=sysdate
+                ]]>
+                </otherwise>
+            </choose>
+        </trim>
+        order by t.CREATETIME desc
+    </select>
+
+    <insert id="insertJCAppAttachment">
+        begin
+        <foreach collection="array" item="item" index="index">
+            insert into cd_jc.JC_APP_ATTACHMENT
+            (
+            ATTACHMENTID,
+            REQUESTID,
+            TYPE,
+            ATTACHMENT,
+            FILETYPE
+            )values (
+            TO_NUMBER(to_char(sysdate,'yyyymmdd')||cd_jc.SEQ_JC_APP_ATTACHMENT.nextval),
+            #{requestId,jdbcType=NUMERIC},
+            #{type,jdbcType=NUMERIC},
+            #{item.attachment,jdbcType=CLOB},
+            #{item.fileType,jdbcType=NUMERIC}
+            );
+        </foreach>
+        end;
+    </insert>
+
+    <insert id="insertJCAppViw">
+         insert into cd_jc.JC_APP_ATTACHMENT(
+           ATTACHMENTID,
+           ATTACHMENTNAME,
+           ATTACHMENTSIZE,
+           ATTACHMENTPATH,
+           REQUESTID,
+           FILETYPE,
+           USERID,
+           USERNAME,
+           DEPTID,
+           DEPTNAME,
+           FLOWPATHID,
+           TYPE
+         )values (
+            TO_NUMBER(to_char(sysdate,'yyyymmdd')||cd_jc.SEQ_JC_APP_ATTACHMENT.nextval),
+            #{fileName,jdbcType=VARCHAR},
+            #{fileLength,jdbcType=NUMERIC},
+            #{base64Path,jdbcType=CLOB},
+            #{requestId,jdbcType=NUMERIC},
+            #{fileType,jdbcType=NUMERIC},
+            #{userId,jdbcType=NUMERIC},
+            #{userName,jdbcType=VARCHAR},
+            #{deptId,jdbcType=NUMERIC},
+            #{deptName,jdbcType=VARCHAR},
+            NULL,
+            #{type,jdbcType=NUMERIC}
+            )
+    </insert>
+
+    <select id="getBasePathByRequestId" resultType="java.util.Map" parameterType="java.lang.Long">
+       select  ATTACHMENTID,REQUESTID,TYPE,ATTACHMENT,FILETYPE
+       from cd_jc.JC_APP_ATTACHMENT
+       where REQUESTID=#{requestId,jdbcType=NUMERIC}
+    </select>
+
+    <select id="getJCBlacklistEvidenceDetails" resultType="java.util.Map">
+        SELECT
+        SID,
+        to_char( ENTIME, 'yyyy-mm-dd HH24:mi:ss' ) ENTIME,
+        to_char( EXTIME, 'yyyy-mm-dd HH24:mi:ss' ) EXTIME,
+        ENSTATIONNAME,
+        nvl( round( OWEFEE / 100, 2 ), 0 ) OWEFEE,
+        nvl( round( FEE / 100, 2 ), 0 ) FEE,
+        EXSTATIONNAME
+        FROM
+        cd_jc.JC_BLACKLIST_EVIDENCE_DETAILS
+        <trim prefix="where" prefixOverrides="and">
+            <if test="required!=null">
+                and REQUESTID=#{required}
+            </if>
+        </trim>
+    </select>
+
+    <update id="updateJCBlacklistEvidenceDetailsBySid">
+            update cd_jc.JC_BLACKLIST_EVIDENCE_DETAILS set PAYBACKFEE=owefee,PAYFLAG=1 where REQUESTID=#{requestId,jdbcType=NUMERIC}
+    </update>
+
+    <select id="getEtctsEntrypassdataInfo" resultType="com.tuozhi.zhlw.admin.jc.entity.EtctsEntrypassdata">
+        SELECT
+        ID,
+        CD_SYSTEM.F_ENUM_VEHICLE(VEHICLEID) VEHICLEID,
+        VEHICLETYPE,
+        sed.ENUM_NAME ENVEHICLECLASS,
+        ENSTATIONNAME,
+        ENSTATIONID,
+        ENTIME,
+        ENTOLLLANEID,
+        TRANSFEE,
+        SIGNSTATUS,
+        MEDIATYPE,
+        CARDID,
+        OBUID,
+        ENWEIGHT,
+        ENAXLECOUNT,
+        PASSID,
+        SPECIALTYPE,
+        VEHICLESIGNID,
+        LANETYPE,
+        AXLETYPE,
+        MONITORTYPE,
+        ENTOLLPLAZAID
+        from CD_PASS.ETCTS_ENTRYPASSDATA entry
+        LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON  entry.VEHICLETYPE = sed.ENUM_VALUE and sed.ENUM_ID = 41
+        <trim prefix="where" prefixOverrides="and">
+            <if test="carNumber!=null">
+                and  VEHICLEID like CONCAT(#{carNumber},'%')
+            </if>
+            <if test="carColor!=null">
+                and  VEHICLEID like CONCAT('%',#{carColor})
+            </if>
+            <if test="startDate!=null">
+			   and	ENTIME >= #{startDate}
+            </if>
+            <if test="endTime!=null">
+               and  ENTIME  <![CDATA[<=]]>#{endDate}
+            </if>
+        </trim>
+        order by ENTIME DESC
+    </select>
+</mapper>

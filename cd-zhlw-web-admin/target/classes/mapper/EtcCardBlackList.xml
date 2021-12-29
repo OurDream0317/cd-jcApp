@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tuozhi.zhlw.admin.jc.mapper.EtcCardBlackListMapper">
+
+    <select id="findAll" parameterType="Map" resultType="java.util.HashMap">
+        select
+        t.REQUESTORDERID,
+        sed.enum_name OICARUSERTYPE,
+        ttt.OICARTONNAGE,
+        ttt.OICARAXIES,
+        ttt.OICARWIDTH,
+        ttt.OICARLENGTH,
+        ttt.OIHEADSTOCKHEIGHT,
+        to_char(t.saledate, 'yyyy-mm-dd HH24:mi:ss') saledate,
+        t.cpucardid cpucardid,
+        ttt.oiid oiid,
+        s.codename codename,
+        t.plateno plateno,
+        s1.codename cardvehiclecolor,
+        s2.codename cardvehicletype,
+        decode(t.cardstate,
+        1,'待激活',
+        3,
+        '发行',
+        4,
+        '挂失',
+        5,'黑名单（欠费）',
+        6,
+        '无卡挂起',
+        7,'有卡挂起',8,'无卡注销',
+        9,
+        '有卡注销'
+        ) cardstate,
+        bc.codename cardblacklisttype,
+        to_char(bc.createdate, 'yyyy-mm-dd hh24:mi:ss') createdate,
+        ttt.oiplateno oiplateno,
+        ttt.oiplatecolor oiplatecolor,
+        ttt.oicarcategory oicarcategory,
+        decode(ttt.oistate,
+        3,
+        '在用',
+        4,
+        '挂失',
+        6,
+        '车型不符',
+        9,
+        '注销',
+        '不可用') oistate,
+        t.ownername ownername,
+        i.ciclientname as ciclientname,
+        i.cimobile as cimobile,
+        i.citel citel,
+        i.ciidcard ciidcard,
+        i.cilinkman cilinkman,
+        t.clientid clientid,
+        ebo.OFFICENAME,
+        su.username,
+        eocrt.oiid oiidtemp,
+        evi.approvedcount,
+        (select to_char(max(aecr.avt_inserttime), 'yyyy-mm-dd HH24:mi:ss') from avt_etc_card_client_rel@db_link_2310etc
+        aecr where aecr.plateno=t.plateno and aecr.platenocolor=t.platenocolor) aecrsaledate,
+        (select to_char(max(aeocr.avt_inserttime), 'yyyy-mm-dd HH24:mi:ss') from avt_etc_obu_client_rel@db_link_2310etc
+        aeocr where aeocr.oiplateno=t.plateno and aeocr.oiplatecolor=t.platenocolor) aeocrsaledate
+        from etc_card_client_rel@db_link_2310etc t
+        left join etc_vehicle_info@db_link_2310etc evi on evi.plateno=t.plateno and evi.platenocolor=t.platenocolor
+        left join ETC_OBU_CLIENT_REL_TEMP@db_link_2310etc eocrt on eocrt.oiplateno=t.plateno
+        left join ETC_BUSINESS_OFFICE@db_link_2310etc ebo on t.OFFICEID=ebo.id
+        left join etcv3_sys_user@db_link_2310etc su on t.userid=su.id
+        left join etc_client_info@db_link_2310etc i
+        on t.clientid = i.id
+        left join (select tt.oiid,
+        tt.oiplateno,
+        o1.codename as oiplatecolor,
+        o2.codename as oicarcategory,
+        tt.oistate,
+        tt.oiplatecolor as platecolor,
+        tt.OICARTONNAGE,
+        tt.OICARUSERTYPE,
+        tt.OICARAXIES,
+        tt.OICARWIDTH,
+        tt.OICARLENGTH,
+        tt.OIHEADSTOCKHEIGHT
+        from etc_obu_client_rel@db_link_2310etc tt
+        left join etc_system_code@db_link_2310etc o1
+        on o1.codevalue = tt.oiplatecolor
+        and o1.typeid = 12
+        left join etc_system_code@db_link_2310etc o2
+        on o2.codevalue = tt.oicarcategory
+        and o2.typeid = 13) ttt
+        on ttt.oiplateno = t.plateno
+        and ttt.platecolor = t.platenocolor
+        left join (select b.cpucardid, b.createdate, bs.codename
+        from etc_card_blacklist@db_link_2310etc b
+        left join etc_system_code@db_link_2310etc bs
+        on b.blacklisttype = bs.codevalue
+        and bs.typeid = 43) bc
+        on t.cpucardid = bc.cpucardid
+        left join etc_system_code@db_link_2310etc s
+        on s.codevalue = nvl(t.sendid, '1001002210001001')
+        and s.typeid = 62
+        left join etc_system_code@db_link_2310etc s1
+        on s1.codevalue = t.platenocolor
+        and s1.typeid = 12
+        left join etc_system_code@db_link_2310etc s2
+        on s2.codevalue = t.carcategory
+        and s2.typeid = 13
+         LEFT JOIN CD_SYSTEM.SYS_ENUM_DETAILS sed ON  ttt.OICARUSERTYPE = sed.ENUM_VALUE and sed.ENUM_ID = 41
+        WHERE  t.plateno =#{vehicleOrCardId,jdbcType=VARCHAR} OR t.CPUCARDID=#{vehicleOrCardId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllDataCount" resultType="java.lang.Long">
+select count(1)
+        from etc_card_client_rel@db_link_2310etc t
+        left join etc_client_info@db_link_2310etc i
+        on t.clientid = i.id
+        left join (select tt.oiid,
+        tt.oiplateno,
+        o1.codename as oiplatecolor,
+        o2.codename as oicarcategory,
+        tt.oistate,
+        tt.oiplatecolor as platecolor,
+        tt.OICARTONNAGE,
+        tt.OICARUSERTYPE,
+        tt.OICARAXIES,
+        tt.OICARWIDTH,
+        tt.OICARLENGTH,
+        tt.OIHEADSTOCKHEIGHT
+        from etc_obu_client_rel@db_link_2310etc tt
+        left join etc_system_code@db_link_2310etc o1
+        on o1.codevalue = tt.oiplatecolor
+        and o1.typeid = 12
+        left join etc_system_code@db_link_2310etc o2
+        on o2.codevalue = tt.oicarcategory
+        and o2.typeid = 13) ttt
+        on ttt.oiplateno = t.plateno
+        and ttt.platecolor = t.platenocolor
+        WHERE
+        1 = 1
+        <if test="excelFlag != null and  vehicleIds !=null">
+            and t.plateno in
+            <foreach collection="vehicleIds" item="item" open="(" separator="," close="）">
+                #{item}
+            </foreach>
+        </if>
+        <if test="excelFlag == null and vehicleId != null">
+            <![CDATA[ and t.plateno = #{vehicleId}]]>
+        </if>
+        <if test="cardId != null">
+            <![CDATA[ and t.cpucardid = #{cardId}]]>
+        </if>
+        <if test="obuId != null">
+            <![CDATA[ and ttt.oiid = #{obuId}]]>
+        </if>
+        <if test="reason != null">
+            <![CDATA[  and to_char( t.sendid ) = #{reason}]]>
+        </if>
+        <if test="startTime != null">
+            <![CDATA[and to_char( trunc(t.saledate, 'dd'), 'yyyy-mm-dd ' ) >= #{startTime}]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[and to_char( trunc(t.saledate, 'dd'), 'yyyy-mm-dd ' ) <= #{endTime}]]>
+        </if>
+        <if test="ownerName != null">
+            <![CDATA[ and t.ownername like '%'||#{ownerName}||'%']]>
+        </if>
+        <if test="ciIdCard != null">
+            <![CDATA[ and i.ciidcard = #{ciIdCard}]]>
+        </if>
+        <choose>
+            <when test="excelFlag != null and  vehicleIds !=null">
+                order by t.plateno asc
+            </when>
+            <when test="excelFlag == null and vehicleId != null">
+                order by t.saledate desc
+            </when>
+        </choose>
+
+    </select>
+
+    <select id="findEnumCode" resultType="java.util.HashMap">
+		select codevalue as ID,codename as NAME from etc_system_code@db_link_2310etc where typeid=62
+			
+	</select>
+
+    <select id="findPicture" parameterType="Map" resultType="java.util.HashMap">
+        SELECT
+        c.filename imgname,
+        'http://10.212.10.45/' || substr( nvl( tc.sendid, '1001002210001001' ), 9, 4 ) || '/' || tc.requestorderid ||
+        '/' || c.filename AS path
+        FROM
+        bkmsg_Sn_image_r @db_link_2310etc c INNER join etc_card_client_rel @db_link_2310etc tc ON c.messageid =
+        tc.requestorderid
+        WHERE
+        1 = 1
+        <if test="requestOrderId != null">
+            <![CDATA[ and c.messageid =#{requestOrderId}]]>
+        </if>
+
+
+    </select>
+
+
+</mapper>
